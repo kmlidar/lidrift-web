@@ -134,6 +134,50 @@ h2{font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:600;letter-spac
 .chips{display:flex;gap:8px;flex-wrap:wrap}
 .chip{font-size:13px;background:#f7f2e4;border:1px solid #eadfc0;color:#7d6330;border-radius:99px;padding:5px 12px;font-weight:500}
 
+/* Correcciones */
+.parts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.part{background:linear-gradient(180deg,var(--bg-3),var(--bg-2));border:1px solid var(--line);border-radius:18px;padding:18px 14px 16px;text-align:center}
+.part svg{width:100%;height:auto;display:block;margin-bottom:10px}
+.part b{display:block;font:600 15px var(--display);margin-bottom:4px}
+.part span{display:block;font-size:12.5px;color:var(--muted);line-height:1.4}
+.key{display:flex;gap:22px;justify-content:center;margin-top:22px;font-size:13px;color:var(--muted)}
+.key i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}
+
+/* Tres carpetas */
+.alt{background:var(--bg-2);border-block:1px solid var(--line)}
+.wrap.two{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.folders{list-style:none;counter-reset:f;display:grid;gap:0;margin-bottom:26px}
+.folders li{counter-increment:f;position:relative;padding:16px 0 16px 56px;border-top:1px solid var(--line)}
+.folders li:last-child{border-bottom:1px solid var(--line)}
+.folders li:before{content:counter(f);position:absolute;left:0;top:16px;width:36px;height:36px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;color:var(--gold-light);font:700 15px var(--display)}
+.folders b{display:block;font:600 17px var(--display)}
+.folders span{color:var(--muted);font-size:15px}
+.note{padding:16px 20px;border:1px solid var(--line);border-radius:14px;color:var(--muted);font-size:14px;max-width:62ch}
+.win{background:var(--bg);border:1px solid var(--line-strong);border-radius:16px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.7)}
+.win-bar{display:flex;align-items:center;gap:7px;padding:12px 16px;background:var(--bg-3);border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}
+.win-bar i{width:10px;height:10px;border-radius:50%;background:#3a352d}
+.win-bar span{margin-left:10px}
+.win-body{padding:22px;display:grid;gap:16px}
+.pick label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+.fld{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:10px;padding:9px 10px 9px 14px;background:var(--bg-2);font-size:14px}
+.fld span{color:#d9d2c0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fld b{font-size:12px;font-weight:600;color:var(--gold-light);border:1px solid var(--line-strong);border-radius:8px;padding:5px 12px}
+.go{margin-top:6px;text-align:center;font-weight:600;font-size:15px;color:var(--ink);background:linear-gradient(135deg,#e6c98f,#c8a96a);border-radius:12px;padding:14px}
+.win figcaption{font-size:12px;color:var(--muted);padding:0 22px 16px}
+
+/* Tiempo */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.vs>div{border-radius:22px;padding:32px}
+.vs h3{font:600 20px var(--display);margin-bottom:16px}
+.vs ul{list-style:none;display:grid;gap:12px}
+.vs li{padding-left:28px;position:relative;font-size:16px}
+.vs-a{border:1px solid var(--line);background:var(--bg-2);color:var(--muted)}
+.vs-a li:before{content:"";position:absolute;left:3px;top:.8em;width:12px;border-top:2px solid #5d584d}
+.vs-b{border:1px solid var(--gold);background:linear-gradient(160deg,rgba(200,169,106,.16),rgba(200,169,106,.04))}
+.vs-b li:before{content:"";position:absolute;left:2px;top:.5em;width:12px;height:6px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(-45deg)}
+.vs-b p{margin-top:22px;font:600 19px var(--display);color:var(--gold-light)}
+@media (max-width:900px){.wrap.two,.vs{grid-template-columns:1fr;gap:16px}.wrap.two{gap:36px}}
+
 /* Pasos */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;counter-reset:s}
 .step{padding:0 32px 0 0;position:relative}
@@ -220,7 +264,7 @@ footer .brand img{height:26px}
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="plane" viewBox="0 0 40 40"><path d="M20 1.5c1.3 0 2 2.6 2 6v7.5l16 9.5v3.5l-16-4v7.5l4 3v2.5l-6-1.5-6 1.5v-2.5l4-3v-7.5l-16 4v-3.5l16-9.5v-7.5c0-3.4.7-6 2-6z"/></symbol></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="plane" viewBox="0 0 40 40"><path d="M20 1.5c1.3 0 2 2.6 2 6v7.5l16 9.5v3.5l-16-4v7.5l4 3v2.5l-6-1.5-6 1.5v-2.5l4-3v-7.5l-16 4v-3.5l16-9.5v-7.5c0-3.4.7-6 2-6z"/></symbol><symbol id="plane-side" viewBox="0 0 80 30"><path d="M5 14L2 3h8l12 11z"/><path d="M3 14C9 12 15 12 22 12H60C70 12 77 14 79 16.5C77 19 70 21 60 21H22C13 21 7 18 3 14z"/><path d="M30 19h17L37 28H25z"/><path d="M8 15h10l-3 3.5H6z"/></symbol><symbol id="plane-front" viewBox="0 0 60 30"><rect x="1" y="13.5" width="58" height="3" rx="1.5"/><circle cx="30" cy="15" r="5.5"/><rect x="29" y="2" width="2" height="9" rx="1"/><rect x="24" y="3" width="12" height="2" rx="1"/></symbol><defs><marker id="ah" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0l8 4-8 4z" fill="#e6c98f"/></marker></defs></svg>
 
 <header>
   <div class="wrap bar">
@@ -240,14 +284,14 @@ footer .brand img{height:26px}
   <div class="wrap">
     <div>
       <h1>Pasadas LiDAR que casan, con el informe listo para el cliente</h1>
-      <p class="lead">LiDrift ajusta en cota y planta las pasadas de un vuelo apoyándose en el propio terreno y en los rasgos que detecta: tejados, taludes y torres. Sin puntos de control, aunque los admite si los tienes.</p>
+      <p class="lead">LiDrift ajusta en cota y planta las pasadas de un vuelo apoyándose en el propio terreno y en los rasgos que detecta: tejados, taludes y torres. Sin puntos de control, aunque los admite si los tienes. Eliges tres carpetas en una interfaz gráfica, sin escribir código.</p>
       <div class="actions">
         <a class="btn solid" href="#contacto">Pedir prueba gratuita</a>
         <a class="btn" href="#tarifas">Ver tarifas</a>
       </div>
       <div class="facts">
         <span>Procesado 100 % local</span>
-        <span>Sin proyectos ni clasificación</span>
+        <span>Interfaz gráfica, sin código</span>
         <span>GCP opcionales</span>
       </div>
     </div>
@@ -275,20 +319,9 @@ footer .brand img{height:26px}
     <p class="intro">En las zonas de solape, las pasadas no casan del todo y corregirlo y documentarlo a mano consume horas por proyecto. <strong>LiDrift automatiza el ajuste y genera el informe de calidad.</strong></p>
     <div class="bento">
       <div class="cell">
-        <svg viewBox="0 0 400 100" fill="none" aria-hidden="true">
-<rect x="10" y="14" width="96" height="72" rx="12" stroke="#c8a96a" stroke-width="1.6" fill="rgba(200,169,106,.06)"/>
-<g fill="#e6c98f"><circle cx="30" cy="42" r="2.2"/><circle cx="44" cy="32" r="2.2"/><circle cx="52" cy="46" r="2.2"/><circle cx="64" cy="36" r="2.2"/><circle cx="76" cy="48" r="2.2"/><circle cx="86" cy="34" r="2.2"/><circle cx="38" cy="52" r="2.2"/><circle cx="70" cy="28" r="2.2"/></g>
-<text x="58" y="74" text-anchor="middle" fill="#e6c98f" font-size="12" font-weight="600" font-family="Inter,sans-serif">Carpeta LAZ</text>
-<rect x="122" y="14" width="96" height="72" rx="12" stroke="#c8a96a" stroke-width="1.6" fill="rgba(200,169,106,.06)"/>
-<path d="M134 52C148 24 164 66 178 42S200 30 208 38" stroke="#e6c98f" stroke-width="2" stroke-linecap="round"/>
-<text x="170" y="74" text-anchor="middle" fill="#e6c98f" font-size="12" font-weight="600" font-family="Inter,sans-serif">Trayectorias</text>
-<path d="M232 50h30m-7-7 7 7-7 7" stroke="#c8a96a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="276" y="14" width="114" height="72" rx="12" stroke="#e6c98f" stroke-width="1.6" fill="rgba(230,201,143,.1)"/>
-<circle cx="333" cy="40" r="11" stroke="#e6c98f" stroke-width="1.6"/><path d="M329.8 40.2l2.4 2.6 4.4-5" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="333" y="74" text-anchor="middle" fill="#f1ece0" font-size="10.5" font-weight="600" font-family="Inter,sans-serif">Pasadas + informe</text>
-</svg>
-        <h3>Sin proyectos ni clasificación</h3>
-        <p>Basta una ruta con los LAZ y otra con las trayectorias. No hay que crear proyectos ni clasificar la nube previamente.</p>
+        <svg viewBox="0 0 400 100" fill="none" aria-hidden="true"><rect x="8" y="14" width="104" height="72" rx="12" stroke="#c8a96a" stroke-width="1.6" fill="rgba(200,169,106,.06)"/><g transform="translate(46 26)"><path d="M0 3a3 3 0 0 1 3-3h7l3 3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3z" stroke="#c8a96a" stroke-width="1.8" fill="rgba(200,169,106,.1)"/></g><text x="60" y="74" text-anchor="middle" fill="#f1ece0" font-size="11.5" font-weight="600" font-family="Inter,sans-serif">Entrada (LAZ)</text><path d="M127 44l6 6-6 6" stroke="#c8a96a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="148" y="14" width="104" height="72" rx="12" stroke="#c8a96a" stroke-width="1.6" fill="rgba(200,169,106,.06)"/><g transform="translate(186 26)"><path d="M0 3a3 3 0 0 1 3-3h7l3 3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3z" stroke="#c8a96a" stroke-width="1.8" fill="rgba(200,169,106,.1)"/></g><text x="200" y="74" text-anchor="middle" fill="#f1ece0" font-size="11.5" font-weight="600" font-family="Inter,sans-serif">Trayectorias</text><path d="M267 44l6 6-6 6" stroke="#c8a96a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="288" y="14" width="104" height="72" rx="12" stroke="#e6c98f" stroke-width="1.6" fill="rgba(230,201,143,.1)"/><g transform="translate(326 26)"><path d="M0 3a3 3 0 0 1 3-3h7l3 3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3z" stroke="#e6c98f" stroke-width="1.8" fill="rgba(200,169,106,.1)"/></g><text x="340" y="74" text-anchor="middle" fill="#f1ece0" font-size="11.5" font-weight="600" font-family="Inter,sans-serif">Salida</text></svg>
+        <h3>Sin proyectos, sin clasificación, sin código</h3>
+        <p>Eliges la carpeta de LAZ, la de trayectorias y la de salida desde una interfaz gráfica. No hay que crear proyectos, clasificar la nube ni escribir código.</p>
       </div>
       <div class="cell">
         <svg viewBox="0 0 200 100" fill="none" aria-hidden="true">
@@ -390,16 +423,61 @@ footer .brand img{height:26px}
   </div>
 </section>
 
-<section>
+<section class="corr" id="correcciones">
   <div class="wrap">
-    <h2>En tres pasos</h2>
-    <p class="intro">Sin configurar nada y sin curva de aprendizaje.</p>
-    <div class="steps">
-      <div class="step"><h3>Dos rutas</h3><p>La carpeta de LAZ y la de trayectorias.</p></div>
-      <div class="step"><h3>Ajuste automático</h3><p>Por zonas y sin configurar nada.</p></div>
-      <div class="step"><h3>Entrega</h3><p>Pasadas ajustadas más informe de calidad.</p></div>
+    <h2>Corrige el sistema y cada pasada</h2>
+    <p class="intro">LiDrift calcula primero la calibración del sistema, común a todo el vuelo, y después la corrección propia de cada pasada. <strong>Todo queda documentado en el informe.</strong></p>
+    <div class="parts">
+      <figure class="part"><svg viewBox="0 0 140 90" fill="none" aria-hidden="true"><use href="#plane-front" x="25" y="30" width="90" height="45" fill="#5d584d"/><use href="#plane-front" x="25" y="30" width="90" height="45" fill="#e6c98f" transform="rotate(-16 70 52.5)"/><path d="M126 74C136 62 136 50 126 38" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/><path d="M14 38C4 50 4 62 14 74" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/></svg><figcaption><b>Roll</b><span>giro alrededor del eje de vuelo (alabeo)</span></figcaption></figure>
+      <figure class="part"><svg viewBox="0 0 140 90" fill="none" aria-hidden="true"><use href="#plane" x="42" y="18" width="56" height="56" fill="#5d584d"/><use href="#plane" x="42" y="18" width="56" height="56" fill="#e6c98f" transform="rotate(22 70 46)"/><path d="M46 14C60 3 82 4 96 14" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/></svg><figcaption><b>Heading</b><span>giro alrededor de la vertical (guiñada)</span></figcaption></figure>
+      <figure class="part"><svg viewBox="0 0 140 90" fill="none" aria-hidden="true"><use href="#plane" x="42" y="32" width="56" height="56" fill="#5d584d"/><use href="#plane" x="42" y="4" width="56" height="56" fill="#e6c98f"/><path d="M14 72V20" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/><path d="M126 72V20" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/></svg><figcaption><b>A lo largo del vuelo</b><span>desplazamiento hacia delante o atrás</span></figcaption></figure>
+      <figure class="part"><svg viewBox="0 0 140 90" fill="none" aria-hidden="true"><use href="#plane" x="30" y="17" width="56" height="56" fill="#5d584d"/><use href="#plane" x="60" y="17" width="56" height="56" fill="#e6c98f"/><path d="M30 8H104" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/><path d="M30 84H104" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/></svg><figcaption><b>A través del vuelo</b><span>desplazamiento hacia un lado</span></figcaption></figure>
+      <figure class="part"><svg viewBox="0 0 140 90" fill="none" aria-hidden="true"><use href="#plane-side" x="20" y="26" width="100" height="37.5" fill="#5d584d"/><use href="#plane-side" x="20" y="26" width="100" height="37.5" fill="#e6c98f" transform="rotate(-12 70 44.75)"/><path d="M128 58C136 50 136 38 128 30" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/><path d="M12 32C4 40 4 52 12 60" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/></svg><figcaption><b>Pitch</b><span>cabeceo: en el terreno se ve como «a lo largo»</span></figcaption></figure>
     </div>
-    <p class="note">El sistema de coordenadas y el tipo de altura se leen de la cabecera del LAZ. El procesado es local: LiDrift no envía tus datos a ningún sitio.</p>
+    <p class="key"><span><i style="background:#5d584d"></i>Sin corregir</span><span><i style="background:#e6c98f"></i>Corregido</span></p>
+  </div>
+</section>
+
+<section class="alt" id="sencillo">
+  <div class="wrap two">
+    <div>
+      <h2>Elige tres carpetas. Nada más.</h2>
+      <p class="intro">Sin escribir código y sin preparar proyectos: todo se hace desde una interfaz gráfica.</p>
+      <ol class="folders">
+        <li><b>Carpeta de entrada</b><span>Los LAZ del vuelo.</span></li>
+        <li><b>Carpeta de trayectorias</b><span>Las trayectorias del avión.</span></li>
+        <li><b>Carpeta de salida</b><span>Aquí se guardan las pasadas ajustadas y el informe de calidad.</span></li>
+      </ol>
+      <p class="note">El sistema de coordenadas y el tipo de altura se leen de la cabecera del LAZ. El procesado es local: LiDrift no envía tus datos a ningún sitio.</p>
+    </div>
+    <figure class="win">
+      <div class="win-bar"><i></i><i></i><i></i><span>LiDrift</span></div>
+      <div class="win-body">
+        <div class="pick"><label>Carpeta de entrada (LAZ)</label><div class="fld"><span>D:\Vuelo\LAZ</span><b>Elegir</b></div></div>
+        <div class="pick"><label>Carpeta de trayectorias</label><div class="fld"><span>D:\Vuelo\Trayectorias</span><b>Elegir</b></div></div>
+        <div class="pick"><label>Carpeta de salida</label><div class="fld"><span>D:\Vuelo\Salida</span><b>Elegir</b></div></div>
+        <div class="go">Ajustar pasadas</div>
+      </div>
+      <figcaption>Ilustración de la interfaz</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="time">
+  <div class="wrap">
+    <h2>El tiempo de tu equipo, para otra cosa</h2>
+    <p class="intro">Preparar proyectos y datos suele ocupar a uno o varios técnicos. Con LiDrift ese trabajo desaparece: <strong>eliges las carpetas y el ajuste y el informe salen solos.</strong></p>
+    <div class="vs">
+      <div class="vs-a">
+        <h3>Antes</h3>
+        <ul><li>Crear y configurar proyectos</li><li>Preparar y organizar los datos</li><li>Clasificar la nube previamente</li><li>Ajustar y documentar a mano</li></ul>
+      </div>
+      <div class="vs-b">
+        <h3>Con LiDrift</h3>
+        <ul><li>Carpeta de entrada</li><li>Carpeta de trayectorias</li><li>Carpeta de salida</li></ul>
+        <p>Nada más. Sin escribir código.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -474,7 +552,7 @@ footer .brand img{height:26px}
 <footer>
   <div class="wrap">
     <a class="brand" href="#"><img src="logo.png" alt="">LiDrift</a>
-    <span>Sin crear proyectos ni clasificar: solo una ruta de LAZ y otra de trayectorias.</span>
+    <span>Sin proyectos, sin clasificar, sin código: tres carpetas y listo.</span>
   </div>
 </footer>
 
