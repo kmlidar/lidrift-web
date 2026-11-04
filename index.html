@@ -353,12 +353,11 @@ footer .brand img{height:26px}
       <p class="direct">¿Prefieres escribirnos directamente? <a href="mailto:info@lidrift.com">info@lidrift.com</a></p>
     </div>
 
-    <form class="form" id="form" action="https://formsubmit.co/info@lidrift.com" method="POST" novalidate>
-      <input type="hidden" name="_subject" value="Nueva solicitud de prueba gratuita – LiDrift">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" id="f-next" value="https://lidrift.com/?enviado#contacto">
-      <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <form class="form" id="form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+      <input type="hidden" name="access_key" value="PEGA_AQUI_TU_CLAVE">
+      <input type="hidden" name="subject" value="Nueva solicitud de prueba gratuita – LiDrift">
+      <input type="hidden" name="from_name" value="Web LiDrift">
+      <input class="hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
 
       <div class="field"><label for="f-name">Nombre</label><input id="f-name" name="nombre" type="text" autocomplete="name" required placeholder="Tu nombre"></div>
       <div class="field"><label for="f-mail">Correo electrónico</label><input id="f-mail" name="email" type="email" autocomplete="email" required placeholder="tu@empresa.com"></div>
@@ -468,26 +467,24 @@ footer .brand img{height:26px}
 (function(){
   var f=document.getElementById('form'),st=document.getElementById('status'),btn=document.getElementById('send');
   var okHTML='<div class="sent" role="status"><div class="ok"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e6c98f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3>Solicitud enviada</h3><p>Gracias, te respondemos por correo en cuanto revisemos tu solicitud.</p></div>';
-  document.getElementById('f-next').value=location.origin+location.pathname+'?enviado#contacto';
-  if(/[?&]enviado/.test(location.search)){f.innerHTML=okHTML}
-                                      f.addEventListener('submit',function(e){
+  f.addEventListener('submit',function(e){
     e.preventDefault();
     st.className='status';
     var name=f.nombre.value.trim(),mail=f.email.value.trim();
     if(!name||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){st.className='status err';st.textContent='Revisa tu nombre y un correo válido.';return}
     if(!document.getElementById('f-ok').checked){st.className='status err';st.textContent='Marca la casilla de consentimiento para enviar.';return}
-    if(f._honey.value){return}
+    if(f.botcheck.checked){return}
     btn.disabled=true;btn.textContent='Enviando…';st.textContent='';
     var data={};
     new FormData(f).forEach(function(v,k){data[k]=v});
-    fetch('https://formsubmit.co/ajax/info@lidrift.com',{
+    data.name=data.nombre;
+    fetch('https://api.web3forms.com/submit',{
       method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)
     }).then(function(r){return r.json()}).then(function(j){
-      if(j&&(j.success===true||j.success==='true')){f.innerHTML=okHTML}else{throw new Error()}
+      if(j&&j.success){f.innerHTML=okHTML}else{throw new Error()}
     }).catch(function(){
-      /* Plan B: envío normal del formulario (funciona aunque falle la petición AJAX) */
-      st.textContent='Enviando por vía alternativa…';
-      f.submit();
+      btn.disabled=false;btn.textContent='Enviar solicitud';
+      st.className='status err';st.innerHTML='No se pudo enviar. Inténtalo de nuevo o escribe a <a href="mailto:info@lidrift.com" style="color:inherit;text-decoration:underline">info@lidrift.com</a>.';
     });
   });
 })();
