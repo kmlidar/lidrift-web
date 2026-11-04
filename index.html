@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LiDrift – Ajuste y control de calidad de pasadas LiDAR</title>
 <meta name="description" content="LiDrift ajusta automáticamente las pasadas de un vuelo LiDAR en cota y planta y genera un informe de calidad listo para el cliente. Sin proyectos ni clasificación.">
+<meta name="theme-color" content="#14120f">
 <meta property="og:title" content="LiDrift – Ajuste de pasadas LiDAR">
 <meta property="og:description" content="Ajuste automático entre pasadas e informe de calidad para el cliente. Licencia anual por puesto.">
 <meta property="og:type" content="website">
@@ -12,108 +13,183 @@
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#181614; --ink-2:#221f1b; --paper:#f9f7f2; --line:#e6dfcf;
+  --bg:#14120f; --bg-2:#1b1814; --bg-3:#221e18;
+  --line:rgba(230,201,143,.14); --line-strong:rgba(230,201,143,.3);
   --gold:#c8a96a; --gold-light:#e6c98f; --gold-deep:#7d6330;
-  --text:#2a2723; --muted:#5d584d; --muted-dark:#a39d90;
+  --text:#f1ece0; --muted:#a39d90; --paper:#f7f4ec; --ink:#181614;
+  --display:"Bricolage Grotesque",Inter,system-ui,sans-serif;
+  --body:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--paper);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
-.wrap{width:min(1080px,100% - 40px);margin-inline:auto}
+:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+h1,h2,h3{font-family:var(--display)}
 
-/* Cabecera */
-header{background:var(--ink);color:#efe9dc}
-.bar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 0}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:600;font-size:20px;letter-spacing:.2px}
-.brand img{height:40px;width:auto;border-radius:4px;display:block}
-nav{display:flex;align-items:center;gap:26px;font-size:14px;color:var(--muted-dark)}
-nav a{text-decoration:none}
-nav a:hover{color:var(--gold-light)}
-.btn{display:inline-block;text-decoration:none;font-weight:600;font-size:14px;padding:11px 20px;border-radius:8px;border:1px solid var(--gold);color:var(--gold-light);transition:background .2s,color .2s}
-.btn:hover{background:var(--gold);color:var(--ink)}
-.btn.solid{background:var(--gold);color:var(--ink)}
-.btn.solid:hover{background:var(--gold-light)}
-.rule{height:6px;background:linear-gradient(90deg,#9a7b3f,#e6c98f 60%,#c8a96a)}
+/* Botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font:600 15px/1 var(--body);padding:14px 24px;border-radius:999px;border:1px solid var(--line-strong);color:var(--gold-light);background:transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s}
+.btn:hover{border-color:var(--gold);background:rgba(200,169,106,.1)}
+.btn.solid{background:linear-gradient(135deg,#e6c98f,#c8a96a);color:var(--ink);border-color:transparent}
+.btn.solid:hover{background:linear-gradient(135deg,#f0d9a8,#d4b676);transform:translateY(-1px)}
+.btn.small{padding:10px 18px;font-size:14px}
+
+/* Navegación */
+header{position:sticky;top:0;z-index:50;background:rgba(20,18,15,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:20px;height:68px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font:700 21px/1 var(--display);letter-spacing:-.2px}
+.brand img{height:34px;width:auto;border-radius:6px;display:block}
+nav{display:flex;align-items:center;gap:30px;font-size:14px;color:var(--muted)}
+nav a{text-decoration:none;transition:color .2s}
+nav a:not(.btn):hover{color:var(--gold-light)}
 
 /* Hero */
-.hero{background:var(--ink);color:#f1ece0;padding:64px 0 80px}
-.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-h1{font-size:clamp(34px,5vw,54px);line-height:1.08;font-weight:700;letter-spacing:-1px;margin-bottom:20px}
-.hero p.lead{font-size:18px;color:var(--muted-dark);max-width:52ch;margin-bottom:30px}
-.hero .actions{display:flex;gap:14px;flex-wrap:wrap}
-.viz{background:var(--ink-2);border:1px solid #34302a;border-radius:14px;padding:22px}
-.viz svg{width:100%;height:auto;display:block}
-.viz figcaption{font-size:13px;color:var(--muted-dark);margin-top:10px}
+.hero{position:relative;padding:84px 0 96px;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:-20% -10% auto auto;width:720px;height:720px;background:radial-gradient(circle,rgba(200,169,106,.16),transparent 62%);pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1fr 1.08fr;gap:56px;align-items:center}
+h1{font-size:clamp(38px,5.4vw,66px);line-height:1.02;font-weight:800;letter-spacing:-2px;margin-bottom:22px}
+.lead{font-size:18px;color:var(--muted);max-width:50ch;margin-bottom:34px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.facts{display:flex;gap:10px 22px;flex-wrap:wrap;margin-top:34px;font-size:13px;color:var(--muted)}
+.facts span{display:inline-flex;align-items:center;gap:8px}
+.facts span:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold)}
+
+.demo{background:linear-gradient(180deg,var(--bg-3),var(--bg-2));border:1px solid var(--line-strong);border-radius:24px;padding:18px;box-shadow:0 40px 80px -30px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.02) inset}
+.demo-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.seg{display:inline-flex;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:4px}
+.seg button{font:600 13px/1 var(--body);color:var(--muted);background:none;border:0;padding:9px 16px;border-radius:999px;cursor:pointer;transition:background .25s,color .25s}
+.seg button[aria-pressed="true"]{background:var(--gold);color:var(--ink)}
+.readout{font-size:13px;color:var(--muted);text-align:right}
+.readout b{display:block;font:700 28px/1.05 var(--display);color:var(--gold-light);letter-spacing:-.5px;font-variant-numeric:tabular-nums}
+canvas{display:block;width:100%;height:280px;border-radius:14px;background:radial-gradient(120% 90% at 50% 0,#201c15,#16130f)}
+.demo figcaption{font-size:12px;color:var(--muted);margin-top:10px;padding-inline:4px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.legend{display:flex;gap:14px}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:baseline}
 
 /* Secciones */
-section{padding:76px 0}
-h2{font-size:clamp(24px,3vw,32px);line-height:1.2;font-weight:700;letter-spacing:-.4px;margin-bottom:14px}
-.intro{max-width:62ch;color:var(--muted);font-size:17px;margin-bottom:40px}
-.intro strong{color:var(--gold-deep)}
+section{padding:96px 0}
+h2{font-size:clamp(28px,3.6vw,44px);line-height:1.08;font-weight:800;letter-spacing:-1.2px;margin-bottom:16px;max-width:20ch}
+.intro{max-width:60ch;color:var(--muted);font-size:17px;margin-bottom:48px}
+.intro strong{color:var(--gold-light);font-weight:600}
 
-.feats{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
-.feat{padding:22px 0 22px 20px;border-top:1px solid var(--line);border-left:3px solid var(--gold);margin-top:-1px}
-.feat h3{font-size:17px;font-weight:600;margin-bottom:6px}
-.feat p{color:var(--muted);font-size:15px}
+/* Bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.cell{background:linear-gradient(180deg,var(--bg-3),var(--bg-2));border:1px solid var(--line);border-radius:22px;padding:30px;transition:border-color .25s}
+.cell:hover{border-color:var(--line-strong)}
+.cell:nth-child(1){grid-column:span 4}
+.cell:nth-child(2){grid-column:span 2}
+.cell:nth-child(3){grid-column:span 2}
+.cell:nth-child(4){grid-column:span 4}
+.cell svg{width:100%;height:auto;display:block;margin-bottom:22px;max-height:120px}
+.cell h3{font-size:21px;font-weight:700;letter-spacing:-.4px;margin-bottom:8px}
+.cell p{color:var(--muted);font-size:15px;max-width:48ch}
 
-.report{background:#fff;border-block:1px solid var(--line)}
-.report .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
-.metrics{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.metric{border:1px solid var(--line);border-radius:10px;padding:18px;text-align:center;background:var(--paper)}
-.metric b{display:block;font-size:26px;color:var(--gold-deep);font-weight:700;line-height:1.2}
-.metric span{font-size:13px;color:var(--muted)}
+/* Informe */
+.report{background:var(--paper);color:var(--ink)}
+.report .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:center}
+.report h2{color:var(--ink)}
+.report .intro{color:#5d584d;margin-bottom:0}
+.sheet{background:#fff;border:1px solid #e6dfcf;border-radius:18px;padding:28px;box-shadow:0 30px 60px -28px rgba(60,45,15,.35)}
+.sheet-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:16px;border-bottom:1px solid #eee7d6;margin-bottom:6px}
+.sheet-head b{font:700 17px var(--display)}
+.sheet-head span{font-size:12px;color:#8a8372}
+.row{padding:16px 0;border-bottom:1px solid #f0eadb}
+.row:last-child{border-bottom:0;padding-bottom:0}
+.row-top{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:#5d584d;margin-bottom:8px}
+.row-top b{color:var(--ink);font-weight:600}
+.bar-track{height:8px;border-radius:99px;background:#f0eadb;overflow:hidden;margin-bottom:5px}
+.bar-track i{display:block;height:100%;border-radius:99px}
+.bar-track.before i{background:#c9bfa6;width:100%}
+.bar-track.after i{background:linear-gradient(90deg,#9a7b3f,#e6c98f);width:12%}
+.bar-lbl{display:flex;justify-content:space-between;font-size:12px;color:#8a8372}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-size:13px;background:#f7f2e4;border:1px solid #eadfc0;color:#7d6330;border-radius:99px;padding:5px 12px;font-weight:500}
 
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
-.step{background:var(--ink);color:#f1ece0;border-radius:12px;padding:26px 22px}
-.step i{font-style:normal;color:var(--gold);font-weight:700;font-size:14px;display:block;margin-bottom:10px}
-.step h3{font-size:19px;font-weight:600;margin-bottom:6px}
-.step p{color:var(--muted-dark);font-size:14px}
+/* Pasos */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;counter-reset:s}
+.step{padding:0 32px 0 0;position:relative}
+.step:before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid var(--gold);color:var(--gold-light);font:700 17px var(--display);margin-bottom:20px;background:var(--bg);position:relative;z-index:1}
+.step:after{content:"";position:absolute;left:44px;right:0;top:22px;border-top:1px dashed var(--line-strong)}
+.step:last-child:after{display:none}
+.step h3{font-size:21px;font-weight:700;letter-spacing:-.4px;margin-bottom:6px}
+.step p{color:var(--muted);font-size:15px;max-width:30ch}
+.note{margin-top:44px;padding:18px 22px;border:1px solid var(--line);border-radius:14px;color:var(--muted);font-size:14px;max-width:72ch}
 
 /* Tarifas */
-.pricing{background:var(--ink);color:#f1ece0}
-.pricing h2{color:#f1ece0}
-.pricing .intro{color:var(--muted-dark)}
-.plan{background:var(--ink-2);border:1px solid #3a352d;border-radius:18px;padding:44px 40px;max-width:760px;margin-inline:auto;position:relative}
-.tag{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--ink);font-weight:700;font-size:12px;letter-spacing:.8px;padding:6px 18px;border-radius:99px;white-space:nowrap}
-.plan h3{text-align:center;color:var(--gold);font-weight:600;font-size:18px}
-.price{text-align:center;margin:10px 0 4px}
-.price b{font-size:76px;line-height:1;font-weight:700;color:var(--gold-light);letter-spacing:-2px}
-.price sup{font-size:30px;color:var(--gold);vertical-align:top;position:relative;top:10px;margin-right:4px;font-weight:700}
-.price span{color:var(--muted-dark);font-size:17px;margin-left:6px}
-.after{text-align:center;color:var(--muted-dark);font-size:14px;padding-bottom:26px;border-bottom:1px solid #3a352d}
-.after strong{color:#f1ece0}
-.checks{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 32px;margin:26px 0 30px}
-.checks li{padding-left:26px;position:relative;font-size:15px}
-.checks li:before{content:"";position:absolute;left:3px;top:.55em;width:11px;height:6px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(-45deg)}
-.plan .btn{display:block;text-align:center}
-.cond{max-width:760px;margin:36px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:10px 36px;font-size:13px;color:var(--muted-dark)}
-.cond p{padding-left:14px;position:relative}
-.cond p:before{content:"";position:absolute;left:0;top:.7em;width:5px;height:5px;border-radius:50%;background:var(--gold)}
-.cond strong{color:#e8e2d4}
+.pricing{position:relative;background:var(--bg-2);border-block:1px solid var(--line)}
+.pricing:before{content:"";position:absolute;left:50%;top:0;width:640px;height:420px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(200,169,106,.14),transparent 70%);pointer-events:none}
+.pricing .wrap{position:relative}
+.pricing h2,.pricing .intro{margin-inline:auto;text-align:center}
+.plan{max-width:780px;margin-inline:auto;border-radius:28px;padding:2px;background:linear-gradient(145deg,#e6c98f,#7d6330 45%,#c8a96a);position:relative}
+.plan-in{background:var(--bg);border-radius:26px;padding:48px 44px 40px}
+.tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--ink);font-weight:700;font-size:12px;letter-spacing:.6px;padding:6px 16px;border-radius:99px;white-space:nowrap}
+.plan h3{text-align:center;color:var(--gold-light);font-weight:700;font-size:20px}
+.price{text-align:center;margin:12px 0 6px;font-family:var(--display)}
+.price b{font-size:92px;line-height:1;font-weight:800;color:var(--text);letter-spacing:-4px}
+.price sup{font-size:34px;color:var(--gold);vertical-align:top;position:relative;top:12px;margin-right:4px;font-weight:700}
+.price span{color:var(--muted);font:400 17px var(--body);margin-left:8px;letter-spacing:0}
+.after{text-align:center;color:var(--muted);font-size:14px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.after strong{color:var(--text)}
+.checks{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px 32px;margin:30px 0 34px}
+.checks li{padding-left:28px;position:relative;font-size:15px}
+.checks li:before{content:"";position:absolute;left:2px;top:.5em;width:12px;height:6px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(-45deg)}
+.plan .btn{display:flex;width:100%}
+.cond{max-width:780px;margin:40px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:12px 40px;font-size:13px;color:var(--muted)}
+.cond p{padding-left:16px;position:relative}
+.cond p:before{content:"";position:absolute;left:0;top:.65em;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.cond strong{color:var(--text);font-weight:600}
 
 /* Contacto */
-.contact{text-align:center}
-.contact p{color:var(--muted);max-width:54ch;margin:0 auto 26px;font-size:17px}
-.mail{display:inline-block;margin-top:18px;font-weight:600;color:var(--gold-deep);font-size:18px}
-.contact .btn{background:var(--ink);color:var(--gold-light);border-color:var(--ink)}
-.contact .btn:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.contact .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start}
+.contact h2{max-width:14ch}
+.contact .intro{margin-bottom:28px}
+.direct{font-size:14px;color:var(--muted)}
+.direct a{color:var(--gold-light);font-weight:600;text-decoration:none;border-bottom:1px solid var(--line-strong)}
+.form{background:linear-gradient(180deg,var(--bg-3),var(--bg-2));border:1px solid var(--line-strong);border-radius:24px;padding:34px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+label{font-size:13px;font-weight:500;color:#d9d2c0}
+input,select,textarea{font:400 15px var(--body);color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:13px 14px;width:100%;transition:border-color .2s,box-shadow .2s;appearance:none;-webkit-appearance:none}
+select{background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%);background-position:calc(100% - 20px) 52%,calc(100% - 14px) 52%;background-size:6px 6px;background-repeat:no-repeat;padding-right:36px}
+textarea{resize:vertical;min-height:110px}
+input::placeholder,textarea::placeholder{color:#6f6a5e}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,169,106,.18)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.consent{grid-column:1/-1;display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted)}
+.consent input{width:18px;height:18px;margin-top:2px;flex:none;padding:0;accent-color:var(--gold);appearance:auto;-webkit-appearance:checkbox}
+.submit{grid-column:1/-1;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.status{font-size:14px;min-height:1.4em}
+.status.err{color:#f0a58f}
+.sent{grid-column:1/-1;text-align:center;padding:30px 10px}
+.sent .ok{width:56px;height:56px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:rgba(200,169,106,.14);border:1px solid var(--gold)}
+.sent h3{font-size:24px;margin-bottom:8px}
+.sent p{color:var(--muted);max-width:42ch;margin-inline:auto}
 
-footer{border-top:1px solid var(--line);padding:26px 0;font-size:13px;color:var(--muted)}
-footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-footer b{color:var(--gold-deep)}
+footer{border-top:1px solid var(--line);padding:30px 0;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer .brand{font-size:17px}
+footer .brand img{height:26px}
 
-@media (max-width:860px){
+@media (max-width:900px){
   nav a:not(.btn){display:none}
-  .hero .wrap,.report .wrap{grid-template-columns:1fr;gap:36px}
-  .feats,.steps,.checks,.cond{grid-template-columns:1fr}
-  .plan{padding:40px 22px 30px}
-  .price b{font-size:62px}
-  section{padding:56px 0}
+  .hero{padding:56px 0 64px}
+  .hero .wrap,.report .wrap,.contact .wrap{grid-template-columns:1fr;gap:40px}
+  section{padding:64px 0}
+  .bento{grid-template-columns:1fr}
+  .cell:nth-child(n){grid-column:auto}
+  .steps{grid-template-columns:1fr;gap:28px}
+  .step{padding:0 0 0 64px}
+  .step:before{position:absolute;left:0;top:0}
+  .step:after{display:none}
+  .checks,.cond,.form{grid-template-columns:1fr}
+  .plan-in{padding:40px 22px 28px}
+  .price b{font-size:68px}
+  canvas{height:240px}
+  .form{padding:24px 18px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
@@ -125,12 +201,12 @@ footer b{color:var(--gold-deep)}
     <a class="brand" href="#"><img src="logo.png" alt="">LiDrift</a>
     <nav aria-label="Principal">
       <a href="#como">Cómo funciona</a>
+      <a href="#informe">Informe</a>
       <a href="#tarifas">Tarifas</a>
-      <a href="#contacto" class="btn">Pedir prueba gratuita</a>
+      <a href="#contacto" class="btn solid small">Pedir prueba gratuita</a>
     </nav>
   </div>
 </header>
-<div class="rule"></div>
 
 <main>
 <div class="hero">
@@ -142,24 +218,26 @@ footer b{color:var(--gold-deep)}
         <a class="btn solid" href="#contacto">Pedir prueba gratuita</a>
         <a class="btn" href="#tarifas">Ver tarifas</a>
       </div>
+      <div class="facts">
+        <span>Procesado 100 % local</span>
+        <span>Sin proyectos ni clasificación</span>
+        <span>GCP opcionales</span>
+      </div>
     </div>
-    <figure class="viz">
-      <svg viewBox="0 0 520 250" role="img" aria-label="Diferencia de cota entre pasadas en el solape, antes y después del ajuste">
-        <text x="10" y="22" fill="#a39d90" font-size="13" font-family="Inter,sans-serif">Antes del ajuste: las pasadas se dispersan</text>
-        <g fill="none" stroke-linecap="round">
-          <path d="M10 70 C120 48 200 94 300 66 S460 52 510 74" stroke="#c8a96a" stroke-width="2.5" opacity=".95"/>
-          <path d="M10 88 C110 100 210 54 310 86 S450 102 510 82" stroke="#9a8658" stroke-width="2.5" opacity=".9"/>
-          <path d="M10 60 C130 82 190 68 300 102 S470 66 510 94" stroke="#e6c98f" stroke-width="2" opacity=".6"/>
-        </g>
-        <line x1="10" y1="132" x2="510" y2="132" stroke="#34302a"/>
-        <text x="10" y="162" fill="#e6c98f" font-size="13" font-family="Inter,sans-serif">Después: coinciden en el solape</text>
-        <g fill="none" stroke-linecap="round">
-          <path d="M10 204 C150 200 300 208 510 202" stroke="#c8a96a" stroke-width="3"/>
-          <path d="M10 205.5 C150 201.5 300 209.5 510 203.5" stroke="#e6c98f" stroke-width="1.6" opacity=".8"/>
-          <path d="M10 202.5 C150 198.5 300 206.5 510 200.5" stroke="#9a8658" stroke-width="1.6" opacity=".8"/>
-        </g>
-      </svg>
-      <figcaption>Diferencia de cota entre pasadas en el solape.</figcaption>
+
+    <figure class="demo">
+      <div class="demo-top">
+        <div class="seg" role="group" aria-label="Estado de las pasadas">
+          <button type="button" id="b0" aria-pressed="true">Sin ajustar</button>
+          <button type="button" id="b1" aria-pressed="false">Ajustado</button>
+        </div>
+        <div class="readout"><b id="rms">0,0 cm</b>discrepancia entre pasadas</div>
+      </div>
+      <canvas id="cv" role="img" aria-label="Perfil de terreno con tres pasadas LiDAR que se superponen tras el ajuste"></canvas>
+      <figcaption>
+        <span class="legend"><span><i style="background:#c8a96a"></i>Pasada 1</span><span><i style="background:#f3e6c4"></i>Pasada 2</span><span><i style="background:#8fb8c9"></i>Pasada 3</span></span>
+        <span>Simulación ilustrativa en una zona de solape</span>
+      </figcaption>
     </figure>
   </div>
 </div>
@@ -168,26 +246,58 @@ footer b{color:var(--gold-deep)}
   <div class="wrap">
     <h2>Pensado para ser directo</h2>
     <p class="intro">En las zonas de solape, las pasadas no casan del todo y corregirlo y documentarlo a mano consume horas por proyecto. <strong>LiDrift automatiza el ajuste y genera el informe de calidad.</strong></p>
-    <div class="feats">
-      <div class="feat"><h3>Sin proyectos ni clasificación</h3><p>Basta una ruta con los LAZ y otra con las trayectorias. No hay que crear proyectos ni clasificar la nube previamente.</p></div>
-      <div class="feat"><h3>Ajuste entre pasadas</h3><p>Corrige cota y planta registrando las pasadas sobre el terreno y sus rasgos. GCP opcionales para anclaje absoluto.</p></div>
-      <div class="feat"><h3>Zonas independientes automáticas</h3><p>Detecta bloques separados por kilómetros en un mismo vuelo y ajusta cada zona por separado, con un informe por zona.</p></div>
-      <div class="feat"><h3>Proceso por lotes</h3><p>Encadena decenas de proyectos de una sola tirada, adaptándose a los recursos del equipo sin saturarlo.</p></div>
+    <div class="bento">
+      <div class="cell">
+        <svg viewBox="0 0 400 100" fill="none" aria-hidden="true"><path d="M0 70h400" stroke="#34302a"/><path d="M20 62h60l10-24h50l10 24h60M250 62h40V30h30v32h60" stroke="#c8a96a" stroke-width="2.5" stroke-linejoin="round"/><circle cx="60" cy="82" r="3" fill="#e6c98f"/><circle cx="150" cy="82" r="3" fill="#e6c98f"/><circle cx="300" cy="82" r="3" fill="#e6c98f"/></svg>
+        <h3>Sin proyectos ni clasificación</h3>
+        <p>Basta una ruta con los LAZ y otra con las trayectorias. No hay que crear proyectos ni clasificar la nube previamente.</p>
+      </div>
+      <div class="cell">
+        <svg viewBox="0 0 200 100" fill="none" aria-hidden="true"><path d="M10 50c40-30 80 30 180-10" stroke="#8f7a4d" stroke-width="2.5" stroke-linecap="round"/><path d="M10 62c40-20 80 20 180-6" stroke="#e6c98f" stroke-width="2.5" stroke-linecap="round" opacity=".6"/><path d="M10 80h180" stroke="#c8a96a" stroke-width="3" stroke-linecap="round"/></svg>
+        <h3>Ajuste entre pasadas</h3>
+        <p>Corrige cota y planta registrando las pasadas sobre el terreno y sus rasgos. GCP opcionales para anclaje absoluto.</p>
+      </div>
+      <div class="cell">
+        <svg viewBox="0 0 200 100" fill="none" aria-hidden="true"><rect x="8" y="26" width="76" height="48" rx="8" stroke="#c8a96a" stroke-width="2"/><rect x="116" y="26" width="76" height="48" rx="8" stroke="#e6c98f" stroke-width="2"/><path d="M92 50h16" stroke="#34302a" stroke-width="2" stroke-dasharray="3 4"/></svg>
+        <h3>Zonas independientes automáticas</h3>
+        <p>Detecta bloques separados por kilómetros en un mismo vuelo y ajusta cada zona por separado, con un informe por zona.</p>
+      </div>
+      <div class="cell">
+        <svg viewBox="0 0 400 100" fill="none" aria-hidden="true"><g stroke="#c8a96a" stroke-width="2"><rect x="10" y="20" width="70" height="60" rx="10"/><rect x="95" y="20" width="70" height="60" rx="10" opacity=".8"/><rect x="180" y="20" width="70" height="60" rx="10" opacity=".6"/><rect x="265" y="20" width="70" height="60" rx="10" opacity=".4"/><rect x="350" y="20" width="40" height="60" rx="10" opacity=".25"/></g></svg>
+        <h3>Proceso por lotes</h3>
+        <p>Encadena decenas de proyectos de una sola tirada, adaptándose a los recursos del equipo sin saturarlo.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="report">
+<section class="report" id="informe">
   <div class="wrap">
     <div>
       <h2>Un informe que puedes entregar tal cual</h2>
-      <p class="intro" style="margin-bottom:0">Cada zona incluye la medida de lo que cambió y de lo que queda, para que el cliente vea la mejora con números.</p>
+      <p class="intro">Cada zona incluye la medida de lo que cambió y de lo que queda, para que el cliente vea la mejora con números.</p>
     </div>
-    <div class="metrics">
-      <div class="metric"><b>cm</b><span>Coherencia entre pasadas, antes y después</span></div>
-      <div class="metric"><b>%</b><span>Cobertura y número de pasadas</span></div>
-      <div class="metric"><b>pts/m²</b><span>Densidad de pulsos</span></div>
-      <div class="metric"><b>GCP</b><span>Exactitud vertical, si hay apoyos</span></div>
+    <div class="sheet" aria-label="Ejemplo ilustrativo de informe de calidad">
+      <div class="sheet-head"><b>Informe de calidad · Zona 1</b><span>Ejemplo ilustrativo</span></div>
+      <div class="row">
+        <div class="row-top"><b>Coherencia entre pasadas</b><span>cm</span></div>
+        <div class="bar-track before"><i></i></div>
+        <div class="bar-lbl"><span>Antes</span><span>11,2</span></div>
+        <div class="bar-track after" style="margin-top:10px"><i></i></div>
+        <div class="bar-lbl"><span>Después</span><span>1,3</span></div>
+      </div>
+      <div class="row">
+        <div class="row-top"><b>Cobertura y número de pasadas</b><span>%</span></div>
+        <div class="chips"><span class="chip">Cobertura del solape</span><span class="chip">Pasadas por zona</span></div>
+      </div>
+      <div class="row">
+        <div class="row-top"><b>Densidad de pulsos</b><span>pts/m²</span></div>
+        <div class="chips"><span class="chip">Media por zona</span><span class="chip">Mínimo detectado</span></div>
+      </div>
+      <div class="row">
+        <div class="row-top"><b>Exactitud vertical</b><span>si hay GCP</span></div>
+        <div class="chips"><span class="chip">Error medio y RMSE contra apoyos</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -195,33 +305,36 @@ footer b{color:var(--gold-deep)}
 <section>
   <div class="wrap">
     <h2>En tres pasos</h2>
+    <p class="intro">Sin configurar nada y sin curva de aprendizaje.</p>
     <div class="steps">
-      <div class="step"><i>1</i><h3>Dos rutas</h3><p>La carpeta de LAZ y la de trayectorias.</p></div>
-      <div class="step"><i>2</i><h3>Ajuste automático</h3><p>Por zonas y sin configurar nada.</p></div>
-      <div class="step"><i>3</i><h3>Entrega</h3><p>Pasadas ajustadas más informe de calidad.</p></div>
+      <div class="step"><h3>Dos rutas</h3><p>La carpeta de LAZ y la de trayectorias.</p></div>
+      <div class="step"><h3>Ajuste automático</h3><p>Por zonas y sin configurar nada.</p></div>
+      <div class="step"><h3>Entrega</h3><p>Pasadas ajustadas más informe de calidad.</p></div>
     </div>
-    <p class="intro" style="margin:26px 0 0;font-size:15px">El sistema de coordenadas y el tipo de altura se leen de la cabecera del LAZ. El procesado es local: LiDrift no envía tus datos a ningún sitio.</p>
+    <p class="note">El sistema de coordenadas y el tipo de altura se leen de la cabecera del LAZ. El procesado es local: LiDrift no envía tus datos a ningún sitio.</p>
   </div>
 </section>
 
 <section class="pricing" id="tarifas">
   <div class="wrap">
-    <h2 style="text-align:center">Una sola licencia</h2>
-    <p class="intro" style="text-align:center;margin-inline:auto">Precio por puesto y año, con todo incluido y actualizaciones durante la vigencia.</p>
+    <h2>Una sola licencia</h2>
+    <p class="intro">Precio por puesto y año, con todo incluido y actualizaciones durante la vigencia.</p>
     <div class="plan">
       <div class="tag">PRECIO DE LANZAMIENTO</div>
-      <h3>Licencia anual por puesto</h3>
-      <div class="price"><sup>€</sup><b>800</b><span>/ año</span></div>
-      <p class="after">Después: <strong>1.500 € / año</strong>. Precios en euros, IVA no incluido.</p>
-      <ul class="checks">
-        <li>Ajuste de pasadas (cota y planta)</li>
-        <li>Informe de calidad para el cliente</li>
-        <li>Zonas independientes automáticas</li>
-        <li>Proceso por lotes de muchos proyectos</li>
-        <li>Actualizaciones durante la licencia</li>
-        <li>Soporte por correo</li>
-      </ul>
-      <a class="btn solid" href="mailto:info@lidrift.com?subject=Prueba%20gratuita%20de%20LiDrift">Pedir prueba gratuita</a>
+      <div class="plan-in">
+        <h3>Licencia anual por puesto</h3>
+        <div class="price"><sup>€</sup><b>800</b><span>/ año</span></div>
+        <p class="after">Después: <strong>1.500 € / año</strong>. Precios en euros, IVA no incluido.</p>
+        <ul class="checks">
+          <li>Ajuste de pasadas (cota y planta)</li>
+          <li>Informe de calidad para el cliente</li>
+          <li>Zonas independientes automáticas</li>
+          <li>Proceso por lotes de muchos proyectos</li>
+          <li>Actualizaciones durante la licencia</li>
+          <li>Soporte por correo</li>
+        </ul>
+        <a class="btn solid" href="#contacto">Pedir prueba gratuita</a>
+      </div>
     </div>
     <div class="cond">
       <p><strong>Prueba gratuita</strong> sobre tus datos antes de decidir.</p>
@@ -234,20 +347,145 @@ footer b{color:var(--gold-deep)}
 
 <section class="contact" id="contacto">
   <div class="wrap">
-    <h2>Pruébalo con tus propios datos</h2>
-    <p>Escríbenos con el tamaño aproximado de tu proyecto y te preparamos una prueba gratuita.</p>
-    <a class="btn" href="mailto:info@lidrift.com?subject=Prueba%20gratuita%20de%20LiDrift">Pedir prueba gratuita</a><br>
-    <a class="mail" href="mailto:info@lidrift.com">info@lidrift.com</a>
+    <div>
+      <h2>Pruébalo con tus propios datos</h2>
+      <p class="intro">Cuéntanos el tamaño aproximado de tu proyecto y te preparamos una prueba gratuita.</p>
+      <p class="direct">¿Prefieres escribirnos directamente? <a href="mailto:info@lidrift.com">info@lidrift.com</a></p>
+    </div>
+
+    <form class="form" id="form" action="https://formsubmit.co/info@lidrift.com" method="POST" novalidate>
+      <input type="hidden" name="_subject" value="Nueva solicitud de prueba gratuita – LiDrift">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <div class="field"><label for="f-name">Nombre</label><input id="f-name" name="nombre" type="text" autocomplete="name" required placeholder="Tu nombre"></div>
+      <div class="field"><label for="f-mail">Correo electrónico</label><input id="f-mail" name="email" type="email" autocomplete="email" required placeholder="tu@empresa.com"></div>
+      <div class="field"><label for="f-co">Empresa</label><input id="f-co" name="empresa" type="text" autocomplete="organization" placeholder="Opcional"></div>
+      <div class="field">
+        <label for="f-size">Tamaño aproximado del proyecto</label>
+        <select id="f-size" name="tamano">
+          <option value="">Selecciona…</option>
+          <option>Menos de 50 GB</option>
+          <option>50 – 500 GB</option>
+          <option>Más de 500 GB</option>
+          <option>Aún no lo sé</option>
+        </select>
+      </div>
+      <div class="field full"><label for="f-msg">Mensaje</label><textarea id="f-msg" name="mensaje" placeholder="Sensor, tipo de vuelo, qué te gustaría comprobar…"></textarea></div>
+      <label class="consent"><input type="checkbox" id="f-ok" required>Acepto que LiDrift use estos datos solo para responder a mi solicitud.</label>
+      <div class="submit">
+        <button class="btn solid" type="submit" id="send">Enviar solicitud</button>
+        <span class="status" id="status" role="status" aria-live="polite"></span>
+      </div>
+    </form>
   </div>
 </section>
 </main>
 
 <footer>
   <div class="wrap">
+    <a class="brand" href="#"><img src="logo.png" alt="">LiDrift</a>
     <span>Sin crear proyectos ni clasificar: solo una ruta de LAZ y otra de trayectorias.</span>
-    <b>LiDrift</b>
   </div>
 </footer>
 
+<script>
+/* ---------- Demostración: pasadas antes / después del ajuste ---------- */
+(function(){
+  var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+  var b0=document.getElementById('b0'),b1=document.getElementById('b1'),out=document.getElementById('rms');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var colors=['#c8a96a','#f3e6c4','#8fb8c9'];
+  var base=[{dz:9,dx:6},{dz:-7,dx:-7},{dz:4,dx:9}];
+  var t=0,target=0,raf=null,W=0,H=0,dpr=1,swaths=[];
+
+  function rng(s){return function(){s|=0;s=s+0x6D2B79F5|0;var r=Math.imul(s^s>>>15,1|s);r=r+Math.imul(r^r>>>7,61|r)^r;return((r^r>>>14)>>>0)/4294967296}}
+  function sm(a,b,x){x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x)}
+  function ground(x){
+    var y=.56+.14*sm(.12,.30,x)+.03*Math.sin(x*9)+.015*Math.sin(x*23+1);
+    if(x>.52&&x<.67)y-=.16;            /* edificio */
+    if(x>.835&&x<.855)y-=.30;          /* torre */
+    return y;
+  }
+  function build(){
+    swaths=[];
+    for(var k=0;k<3;k++){
+      var r=rng(11+k*97),pts=[];
+      for(var i=0;i<430;i++){
+        var x=r();
+        if(i%9===0){var e=[.52,.67,.835,.855][Math.floor(r()*4)];x=e+(r()-.5)*.012}
+        pts.push([x,ground(x)+(r()-.5)*.012]);
+      }
+      swaths.push(pts);
+    }
+  }
+  function size(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    var rc=cv.getBoundingClientRect();W=rc.width;H=rc.height;
+    cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);draw();
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var s=1-.88*t,mx=W*.04,uw=W-mx*2;
+    /* referencia del terreno */
+    ctx.beginPath();
+    for(var i=0;i<=120;i++){var x=i/120,px=mx+x*uw,py=ground(x)*H;i?ctx.lineTo(px,py):ctx.moveTo(px,py)}
+    ctx.strokeStyle='rgba(230,201,143,'+(.05+.12*t)+')';ctx.lineWidth=1;ctx.setLineDash([4,5]);ctx.stroke();ctx.setLineDash([]);
+    ctx.globalAlpha=.9;
+    for(var k=0;k<3;k++){
+      ctx.fillStyle=colors[k];
+      var dx=base[k].dx*s*(W/520)*1.6,dz=base[k].dz*s*(H/280)*1.5;
+      for(var j=0;j<swaths[k].length;j++){
+        var p=swaths[k][j];
+        ctx.beginPath();ctx.arc(mx+p[0]*uw+dx,p[1]*H+dz,1.7,0,6.2832);ctx.fill();
+      }
+    }
+    ctx.globalAlpha=1;
+    var rms=Math.sqrt((81+49+16)/3)*s*1.6;
+    out.textContent=rms.toFixed(1).replace('.',',')+' cm';
+  }
+  function tick(now){
+    var d=target-t;
+    if(Math.abs(d)<.002){t=target;draw();raf=null;return}
+    t+=d*.07;draw();raf=requestAnimationFrame(tick);
+  }
+  function go(v){
+    target=v;
+    b0.setAttribute('aria-pressed',v===0);b1.setAttribute('aria-pressed',v===1);
+    if(reduce){t=v;draw();return}
+    if(!raf)raf=requestAnimationFrame(tick);
+  }
+  b0.onclick=function(){go(0)};b1.onclick=function(){go(1)};
+  build();size();
+  window.addEventListener('resize',size);
+  setTimeout(function(){go(1)},reduce?0:1100);
+})();
+
+/* ---------- Formulario de contacto (sin abrir el cliente de correo) ---------- */
+(function(){
+  var f=document.getElementById('form'),st=document.getElementById('status'),btn=document.getElementById('send');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    st.className='status';
+    var name=f.nombre.value.trim(),mail=f.email.value.trim();
+    if(!name||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){st.className='status err';st.textContent='Revisa tu nombre y un correo válido.';return}
+    if(!document.getElementById('f-ok').checked){st.className='status err';st.textContent='Marca la casilla de consentimiento para enviar.';return}
+    if(f._honey.value){return}
+    btn.disabled=true;btn.textContent='Enviando…';st.textContent='';
+    var data={};
+    new FormData(f).forEach(function(v,k){data[k]=v});
+    fetch('https://formsubmit.co/ajax/info@lidrift.com',{
+      method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)
+    }).then(function(r){if(!r.ok)throw new Error();return r.json()}).then(function(){
+      f.innerHTML='<div class="sent" role="status"><div class="ok"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e6c98f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3>Solicitud enviada</h3><p>Gracias, te respondemos por correo en cuanto revisemos tu solicitud.</p></div>';
+    }).catch(function(){
+      btn.disabled=false;btn.textContent='Enviar solicitud';
+      st.className='status err';st.innerHTML='No se pudo enviar. Inténtalo de nuevo o escribe a <a href="mailto:info@lidrift.com" style="color:inherit;text-decoration:underline">info@lidrift.com</a>.';
+    });
+  });
+})();
+</script>
 </body>
 </html>
