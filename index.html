@@ -354,7 +354,7 @@ footer .brand img{height:26px}
     </div>
 
     <form class="form" id="form" action="https://api.web3forms.com/submit" method="POST" novalidate>
-      <input type="hidden" name="access_key" value="cbb31a79-a7da-482e-a824-5b39144b1632">
+      <input type="hidden" name="access_key" value="eb8ac132-9169-4ef6-af52-e2d30bf46c61">
       <input type="hidden" name="subject" value="Nueva solicitud de prueba gratuita – LiDrift">
       <input type="hidden" name="from_name" value="Web LiDrift">
       <input class="hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -480,11 +480,13 @@ footer .brand img{height:26px}
     data.name=data.nombre;
     fetch('https://api.web3forms.com/submit',{
       method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)
-    }).then(function(r){return r.json()}).then(function(j){
-      if(j&&j.success){f.innerHTML=okHTML}else{throw new Error()}
-    }).catch(function(){
+    }).then(function(r){return r.json().catch(function(){return{success:false,message:'Respuesta no válida del servidor (código '+r.status+')'}})}).then(function(j){
+      if(j&&j.success){f.innerHTML=okHTML}else{throw new Error((j&&j.message)||'Error desconocido')}
+    }).catch(function(err){
+      console.error('Formulario:',err);
+      var why=(err&&err.message&&err.message!=='Failed to fetch')?err.message:'No hay conexión con el servicio de envío (puede estar bloqueado por tu navegador o una extensión)';
       btn.disabled=false;btn.textContent='Enviar solicitud';
-      st.className='status err';st.innerHTML='No se pudo enviar. Inténtalo de nuevo o escribe a <a href="mailto:info@lidrift.com" style="color:inherit;text-decoration:underline">info@lidrift.com</a>.';
+      st.className='status err';st.innerHTML='No se pudo enviar: '+why+'. Puedes escribir a <a href="mailto:info@lidrift.com" style="color:inherit;text-decoration:underline">info@lidrift.com</a>.';
     });
   });
 })();
