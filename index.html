@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LiDrift – Ajuste y control de calidad de pasadas LiDAR</title>
+<meta name="description" content="LiDrift ajusta automáticamente las pasadas de un vuelo LiDAR en cota y planta y genera un informe de calidad listo para el cliente. Sin proyectos ni clasificación.">
+<meta property="og:title" content="LiDrift – Ajuste de pasadas LiDAR">
+<meta property="og:description" content="Ajuste automático entre pasadas e informe de calidad para el cliente. Licencia anual por puesto.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lidrift.com/">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#181614; --ink-2:#221f1b; --paper:#f9f7f2; --line:#e6dfcf;
+  --gold:#c8a96a; --gold-light:#e6c98f; --gold-deep:#7d6330;
+  --text:#2a2723; --muted:#5d584d; --muted-dark:#a39d90;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--paper);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.wrap{width:min(1080px,100% - 40px);margin-inline:auto}
+
+/* Cabecera */
+header{background:var(--ink);color:#efe9dc}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 0}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:600;font-size:20px;letter-spacing:.2px}
+.brand img{height:40px;width:auto;border-radius:4px;display:block}
+nav{display:flex;align-items:center;gap:26px;font-size:14px;color:var(--muted-dark)}
+nav a{text-decoration:none}
+nav a:hover{color:var(--gold-light)}
+.btn{display:inline-block;text-decoration:none;font-weight:600;font-size:14px;padding:11px 20px;border-radius:8px;border:1px solid var(--gold);color:var(--gold-light);transition:background .2s,color .2s}
+.btn:hover{background:var(--gold);color:var(--ink)}
+.btn.solid{background:var(--gold);color:var(--ink)}
+.btn.solid:hover{background:var(--gold-light)}
+.rule{height:6px;background:linear-gradient(90deg,#9a7b3f,#e6c98f 60%,#c8a96a)}
+
+/* Hero */
+.hero{background:var(--ink);color:#f1ece0;padding:64px 0 80px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+h1{font-size:clamp(34px,5vw,54px);line-height:1.08;font-weight:700;letter-spacing:-1px;margin-bottom:20px}
+.hero p.lead{font-size:18px;color:var(--muted-dark);max-width:52ch;margin-bottom:30px}
+.hero .actions{display:flex;gap:14px;flex-wrap:wrap}
+.viz{background:var(--ink-2);border:1px solid #34302a;border-radius:14px;padding:22px}
+.viz svg{width:100%;height:auto;display:block}
+.viz figcaption{font-size:13px;color:var(--muted-dark);margin-top:10px}
+
+/* Secciones */
+section{padding:76px 0}
+h2{font-size:clamp(24px,3vw,32px);line-height:1.2;font-weight:700;letter-spacing:-.4px;margin-bottom:14px}
+.intro{max-width:62ch;color:var(--muted);font-size:17px;margin-bottom:40px}
+.intro strong{color:var(--gold-deep)}
+
+.feats{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+.feat{padding:22px 0 22px 20px;border-top:1px solid var(--line);border-left:3px solid var(--gold);margin-top:-1px}
+.feat h3{font-size:17px;font-weight:600;margin-bottom:6px}
+.feat p{color:var(--muted);font-size:15px}
+
+.report{background:#fff;border-block:1px solid var(--line)}
+.report .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.metric{border:1px solid var(--line);border-radius:10px;padding:18px;text-align:center;background:var(--paper)}
+.metric b{display:block;font-size:26px;color:var(--gold-deep);font-weight:700;line-height:1.2}
+.metric span{font-size:13px;color:var(--muted)}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+.step{background:var(--ink);color:#f1ece0;border-radius:12px;padding:26px 22px}
+.step i{font-style:normal;color:var(--gold);font-weight:700;font-size:14px;display:block;margin-bottom:10px}
+.step h3{font-size:19px;font-weight:600;margin-bottom:6px}
+.step p{color:var(--muted-dark);font-size:14px}
+
+/* Tarifas */
+.pricing{background:var(--ink);color:#f1ece0}
+.pricing h2{color:#f1ece0}
+.pricing .intro{color:var(--muted-dark)}
+.plan{background:var(--ink-2);border:1px solid #3a352d;border-radius:18px;padding:44px 40px;max-width:760px;margin-inline:auto;position:relative}
+.tag{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--ink);font-weight:700;font-size:12px;letter-spacing:.8px;padding:6px 18px;border-radius:99px;white-space:nowrap}
+.plan h3{text-align:center;color:var(--gold);font-weight:600;font-size:18px}
+.price{text-align:center;margin:10px 0 4px}
+.price b{font-size:76px;line-height:1;font-weight:700;color:var(--gold-light);letter-spacing:-2px}
+.price sup{font-size:30px;color:var(--gold);vertical-align:top;position:relative;top:10px;margin-right:4px;font-weight:700}
+.price span{color:var(--muted-dark);font-size:17px;margin-left:6px}
+.after{text-align:center;color:var(--muted-dark);font-size:14px;padding-bottom:26px;border-bottom:1px solid #3a352d}
+.after strong{color:#f1ece0}
+.checks{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 32px;margin:26px 0 30px}
+.checks li{padding-left:26px;position:relative;font-size:15px}
+.checks li:before{content:"";position:absolute;left:3px;top:.55em;width:11px;height:6px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(-45deg)}
+.plan .btn{display:block;text-align:center}
+.cond{max-width:760px;margin:36px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:10px 36px;font-size:13px;color:var(--muted-dark)}
+.cond p{padding-left:14px;position:relative}
+.cond p:before{content:"";position:absolute;left:0;top:.7em;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.cond strong{color:#e8e2d4}
+
+/* Contacto */
+.contact{text-align:center}
+.contact p{color:var(--muted);max-width:54ch;margin:0 auto 26px;font-size:17px}
+.mail{display:inline-block;margin-top:18px;font-weight:600;color:var(--gold-deep);font-size:18px}
+.contact .btn{background:var(--ink);color:var(--gold-light);border-color:var(--ink)}
+.contact .btn:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+footer{border-top:1px solid var(--line);padding:26px 0;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer b{color:var(--gold-deep)}
+
+@media (max-width:860px){
+  nav a:not(.btn){display:none}
+  .hero .wrap,.report .wrap{grid-template-columns:1fr;gap:36px}
+  .feats,.steps,.checks,.cond{grid-template-columns:1fr}
+  .plan{padding:40px 22px 30px}
+  .price b{font-size:62px}
+  section{padding:56px 0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#"><img src="logo.png" alt="">LiDrift</a>
+    <nav aria-label="Principal">
+      <a href="#como">Cómo funciona</a>
+      <a href="#tarifas">Tarifas</a>
+      <a href="#contacto" class="btn">Pedir prueba gratuita</a>
+    </nav>
+  </div>
+</header>
+<div class="rule"></div>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Pasadas LiDAR que casan, con el informe listo para el cliente</h1>
+      <p class="lead">LiDrift ajusta en cota y planta las pasadas de un vuelo apoyándose en el propio terreno y en los rasgos que detecta: tejados, taludes y torres. Sin puntos de control, aunque los admite si los tienes.</p>
+      <div class="actions">
+        <a class="btn solid" href="#contacto">Pedir prueba gratuita</a>
+        <a class="btn" href="#tarifas">Ver tarifas</a>
+      </div>
+    </div>
+    <figure class="viz">
+      <svg viewBox="0 0 520 250" role="img" aria-label="Diferencia de cota entre pasadas en el solape, antes y después del ajuste">
+        <text x="10" y="22" fill="#a39d90" font-size="13" font-family="Inter,sans-serif">Antes del ajuste: las pasadas se dispersan</text>
+        <g fill="none" stroke-linecap="round">
+          <path d="M10 70 C120 48 200 94 300 66 S460 52 510 74" stroke="#c8a96a" stroke-width="2.5" opacity=".95"/>
+          <path d="M10 88 C110 100 210 54 310 86 S450 102 510 82" stroke="#9a8658" stroke-width="2.5" opacity=".9"/>
+          <path d="M10 60 C130 82 190 68 300 102 S470 66 510 94" stroke="#e6c98f" stroke-width="2" opacity=".6"/>
+        </g>
+        <line x1="10" y1="132" x2="510" y2="132" stroke="#34302a"/>
+        <text x="10" y="162" fill="#e6c98f" font-size="13" font-family="Inter,sans-serif">Después: coinciden en el solape</text>
+        <g fill="none" stroke-linecap="round">
+          <path d="M10 204 C150 200 300 208 510 202" stroke="#c8a96a" stroke-width="3"/>
+          <path d="M10 205.5 C150 201.5 300 209.5 510 203.5" stroke="#e6c98f" stroke-width="1.6" opacity=".8"/>
+          <path d="M10 202.5 C150 198.5 300 206.5 510 200.5" stroke="#9a8658" stroke-width="1.6" opacity=".8"/>
+        </g>
+      </svg>
+      <figcaption>Diferencia de cota entre pasadas en el solape.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<section id="como">
+  <div class="wrap">
+    <h2>Pensado para ser directo</h2>
+    <p class="intro">En las zonas de solape, las pasadas no casan del todo y corregirlo y documentarlo a mano consume horas por proyecto. <strong>LiDrift automatiza el ajuste y genera el informe de calidad.</strong></p>
+    <div class="feats">
+      <div class="feat"><h3>Sin proyectos ni clasificación</h3><p>Basta una ruta con los LAZ y otra con las trayectorias. No hay que crear proyectos ni clasificar la nube previamente.</p></div>
+      <div class="feat"><h3>Ajuste entre pasadas</h3><p>Corrige cota y planta registrando las pasadas sobre el terreno y sus rasgos. GCP opcionales para anclaje absoluto.</p></div>
+      <div class="feat"><h3>Zonas independientes automáticas</h3><p>Detecta bloques separados por kilómetros en un mismo vuelo y ajusta cada zona por separado, con un informe por zona.</p></div>
+      <div class="feat"><h3>Proceso por lotes</h3><p>Encadena decenas de proyectos de una sola tirada, adaptándose a los recursos del equipo sin saturarlo.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="report">
+  <div class="wrap">
+    <div>
+      <h2>Un informe que puedes entregar tal cual</h2>
+      <p class="intro" style="margin-bottom:0">Cada zona incluye la medida de lo que cambió y de lo que queda, para que el cliente vea la mejora con números.</p>
+    </div>
+    <div class="metrics">
+      <div class="metric"><b>cm</b><span>Coherencia entre pasadas, antes y después</span></div>
+      <div class="metric"><b>%</b><span>Cobertura y número de pasadas</span></div>
+      <div class="metric"><b>pts/m²</b><span>Densidad de pulsos</span></div>
+      <div class="metric"><b>GCP</b><span>Exactitud vertical, si hay apoyos</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>En tres pasos</h2>
+    <div class="steps">
+      <div class="step"><i>1</i><h3>Dos rutas</h3><p>La carpeta de LAZ y la de trayectorias.</p></div>
+      <div class="step"><i>2</i><h3>Ajuste automático</h3><p>Por zonas y sin configurar nada.</p></div>
+      <div class="step"><i>3</i><h3>Entrega</h3><p>Pasadas ajustadas más informe de calidad.</p></div>
+    </div>
+    <p class="intro" style="margin:26px 0 0;font-size:15px">El sistema de coordenadas y el tipo de altura se leen de la cabecera del LAZ. El procesado es local: LiDrift no envía tus datos a ningún sitio.</p>
+  </div>
+</section>
+
+<section class="pricing" id="tarifas">
+  <div class="wrap">
+    <h2 style="text-align:center">Una sola licencia</h2>
+    <p class="intro" style="text-align:center;margin-inline:auto">Precio por puesto y año, con todo incluido y actualizaciones durante la vigencia.</p>
+    <div class="plan">
+      <div class="tag">PRECIO DE LANZAMIENTO</div>
+      <h3>Licencia anual por puesto</h3>
+      <div class="price"><sup>€</sup><b>800</b><span>/ año</span></div>
+      <p class="after">Después: <strong>1.500 € / año</strong>. Precios en euros, IVA no incluido.</p>
+      <ul class="checks">
+        <li>Ajuste de pasadas (cota y planta)</li>
+        <li>Informe de calidad para el cliente</li>
+        <li>Zonas independientes automáticas</li>
+        <li>Proceso por lotes de muchos proyectos</li>
+        <li>Actualizaciones durante la licencia</li>
+        <li>Soporte por correo</li>
+      </ul>
+      <a class="btn solid" href="mailto:info@lidrift.com?subject=Prueba%20gratuita%20de%20LiDrift">Pedir prueba gratuita</a>
+    </div>
+    <div class="cond">
+      <p><strong>Prueba gratuita</strong> sobre tus datos antes de decidir.</p>
+      <p>El <strong>precio de lanzamiento se respeta en las renovaciones</strong> de los primeros clientes. Descuento por varios puestos.</p>
+      <p>Licencia <strong>anual, por puesto</strong>, nominal e intransferible, para uso interno del cliente.</p>
+      <p>Oferta válida 30 días. Se aplica el IVA que corresponda según el país de facturación.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <h2>Pruébalo con tus propios datos</h2>
+    <p>Escríbenos con el tamaño aproximado de tu proyecto y te preparamos una prueba gratuita.</p>
+    <a class="btn" href="mailto:info@lidrift.com?subject=Prueba%20gratuita%20de%20LiDrift">Pedir prueba gratuita</a><br>
+    <a class="mail" href="mailto:info@lidrift.com">info@lidrift.com</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Sin crear proyectos ni clasificar: solo una ruta de LAZ y otra de trayectorias.</span>
+    <b>LiDrift</b>
+  </div>
+</footer>
+
+</body>
+</html>
