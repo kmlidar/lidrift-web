@@ -3,17 +3,160 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LiDrift – Ajuste y control de calidad de pasadas LiDAR</title>
-<meta name="description" content="LiDrift ajusta automáticamente las pasadas de un vuelo LiDAR en cota y planta y genera un informe de calidad listo para el cliente. Sin proyectos ni clasificación.">
+<title>Software de ajuste de pasadas LiDAR | LiDrift</title>
+<meta name="description" content="Software para ajustar pasadas LiDAR en cota y planta y generar el informe de calidad para el cliente. Sin proyectos ni clasificación. Prueba gratuita.">
 <meta name="theme-color" content="#14120f">
-<meta property="og:title" content="LiDrift – Ajuste de pasadas LiDAR">
-<meta property="og:description" content="Ajuste automático entre pasadas e informe de calidad para el cliente. Licencia anual por puesto.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://lidrift.com/">
+<meta property="og:site_name" content="LiDrift">
+<meta property="og:locale" content="es_ES">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://lidrift.com/">
+<meta property="og:title" content="LiDrift – Ajuste de pasadas LiDAR e informe de calidad">
+<meta property="og:description" content="Ajuste automático entre pasadas e informe de calidad para el cliente. Procesado local, licencia anual por puesto y prueba gratuita.">
+<meta property="og:image" content="https://lidrift.com/img/og-lidrift.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="LiDrift: perfil de nube LiDAR con cuatro pasadas que casan tras el ajuste">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LiDrift – Ajuste de pasadas LiDAR e informe de calidad">
+<meta name="twitter:description" content="Ajuste automático entre pasadas e informe de calidad para el cliente. Procesado local, licencia anual por puesto y prueba gratuita.">
+<meta name="twitter:image" content="https://lidrift.com/img/og-lidrift.png">
 <link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://lidrift.com/#org",
+   "name": "LiDrift",
+   "url": "https://lidrift.com/",
+   "logo": "https://lidrift.com/logo.png",
+   "email": "info@lidrift.com"
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://lidrift.com/#web",
+   "url": "https://lidrift.com/",
+   "name": "LiDrift",
+   "inLanguage": "es",
+   "publisher": {
+    "@id": "https://lidrift.com/#org"
+   }
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://lidrift.com/#app",
+   "name": "LiDrift",
+   "url": "https://lidrift.com/",
+   "description": "Software para ajustar pasadas LiDAR en cota y planta y generar el informe de calidad para el cliente. Sin proyectos ni clasificación. Prueba gratuita.",
+   "applicationCategory": "BusinessApplication",
+   "inLanguage": "es",
+   "image": "https://lidrift.com/img/og-lidrift.png",
+   "publisher": {
+    "@id": "https://lidrift.com/#org"
+   },
+   "featureList": [
+    "Ajuste de pasadas LiDAR en cota y planta",
+    "Informe de calidad para el cliente",
+    "Zonas independientes automáticas",
+    "Proceso por lotes de muchos proyectos",
+    "Puntos de control (GCP) opcionales",
+    "Procesado 100 % local"
+   ],
+   "offers": {
+    "@type": "Offer",
+    "url": "https://lidrift.com/#tarifas",
+    "price": "800",
+    "priceCurrency": "EUR",
+    "description": "Licencia anual por puesto, precio de lanzamiento. Después 1.500 € al año. IVA no incluido.",
+    "priceSpecification": {
+     "@type": "UnitPriceSpecification",
+     "price": "800",
+     "priceCurrency": "EUR",
+     "unitCode": "ANN",
+     "valueAddedTaxIncluded": false
+    }
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://lidrift.com/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "¿Qué es el ajuste de pasadas LiDAR (strip adjustment)?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Es corregir los pequeños errores de posición y orientación de cada pasada del vuelo para que las zonas de solape casen en cota y planta. LiDrift lo hace registrando las pasadas sobre el terreno y sus rasgos: tejados, taludes y torres."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "¿Necesito puntos de control (GCP)?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. LiDrift ajusta las pasadas entre sí sin puntos de control. Si los tienes, los admite para el anclaje absoluto, y el informe añade entonces la exactitud vertical (error medio y RMSE contra los apoyos)."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "¿Qué datos necesito para empezar?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Los LAZ del vuelo y las trayectorias del avión, cada uno en su carpeta, más una carpeta de salida. El sistema de coordenadas y el tipo de altura se leen de la cabecera del LAZ."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "¿Tengo que clasificar la nube o crear proyectos antes?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. No hay que crear proyectos, clasificar la nube ni escribir código: eliges las tres carpetas desde una interfaz gráfica y LiDrift hace el resto."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "¿Qué incluye el informe de calidad?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Por cada zona, la coherencia entre pasadas antes y después del ajuste, la cobertura del solape y el número de pasadas, la densidad de pulsos y, si hay GCP, la exactitud vertical. También documenta las correcciones aplicadas a cada pasada."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "¿Se envían mis datos a algún servidor?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. El procesado es 100 % local: LiDrift no envía tus datos a ningún sitio."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "¿Puedo procesar varios proyectos o zonas a la vez?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sí. LiDrift detecta bloques separados por kilómetros en un mismo vuelo y ajusta cada zona por separado, con un informe por zona. Además, encadena decenas de proyectos de una sola tirada."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "¿Cuánto cuesta y hay prueba gratuita?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "La licencia es anual y por puesto: 800 € al año como precio de lanzamiento y 1.500 € al año después, IVA no incluido. Puedes pedir una prueba gratuita sobre tus propios datos antes de decidir."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 <style>
 :root{
   --bg:#14120f; --bg-2:#1b1814; --bg-3:#221e18;
@@ -138,10 +281,10 @@ h2{font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:600;letter-spac
 .d-row{display:grid;grid-template-columns:78px 1fr;align-items:center;gap:10px;margin-bottom:16px}
 .d-lbl{font-size:13px;color:var(--muted)}
 .d-bar{display:flex;gap:2px;height:44px;border-radius:8px;overflow:hidden}
-.seg{display:flex;align-items:center;justify-content:center;flex:0 1 var(--w);min-width:0;overflow:hidden;white-space:nowrap;font:700 12.5px var(--body);font-style:normal;color:#fff;transition:flex-basis 1.1s cubic-bezier(.2,.7,.2,1)}
-.rp.armed .seg{flex-basis:0}
-.rp.armed.in .seg{flex-basis:var(--w)}
-.seg.c1{background:var(--c1)}.seg.c2{background:var(--c2)}.seg.c3{background:var(--c3);color:#3a2d08}.seg.c4{background:var(--c4)}
+.bseg{display:flex;align-items:center;justify-content:center;flex:0 1 var(--w);min-width:0;overflow:hidden;white-space:nowrap;font:700 12.5px var(--body);font-style:normal;color:#fff;transition:flex-basis 1.1s cubic-bezier(.2,.7,.2,1)}
+.rp.armed .bseg{flex-basis:0}
+.rp.armed.in .bseg{flex-basis:var(--w)}
+.bseg.c1{background:var(--c1)}.bseg.c2{background:var(--c2)}.bseg.c3{background:var(--c3);color:#3a2d08}.bseg.c4{background:var(--c4)}
 .d-axis{display:flex;justify-content:space-between;margin-left:88px;font-size:11px;color:#7d786c;border-top:1px solid var(--line);padding-top:6px}
 .ba{padding:14px 0;border-top:1px solid var(--line)}
 .ba:first-of-type{border-top:0;padding-top:0}
@@ -217,7 +360,7 @@ h2{font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:600;letter-spac
 .note{margin-top:44px;padding:18px 22px;border:1px solid var(--line);border-radius:14px;color:var(--muted);font-size:14px;max-width:72ch}
 
 /* Tarifas */
-.pricing{position:relative;background:var(--bg-2);border-block:1px solid var(--line)}
+.pricing{position:relative;overflow:hidden;background:var(--bg-2);border-block:1px solid var(--line)}
 .pricing:before{content:"";position:absolute;left:50%;top:0;width:640px;height:420px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(200,169,106,.14),transparent 70%);pointer-events:none}
 .pricing .wrap{position:relative}
 .pricing h2,.pricing .intro{margin-inline:auto;text-align:center}
@@ -239,6 +382,21 @@ h2{font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:600;letter-spac
 .cond p{padding-left:16px;position:relative}
 .cond p:before{content:"";position:absolute;left:0;top:.65em;width:5px;height:5px;border-radius:50%;background:var(--gold)}
 .cond strong{color:var(--text);font-weight:600}
+
+/* Eyebrow y preguntas frecuentes */
+.eyebrow{display:inline-block;font:600 12.5px/1 var(--body);letter-spacing:.9px;text-transform:uppercase;color:var(--gold-light);border:1px solid var(--line-strong);border-radius:99px;padding:8px 14px;margin-bottom:22px}
+.faq .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.faq h2{max-width:14ch}
+.faq .intro{margin-bottom:0}
+.qa{border-top:1px solid var(--line)}
+.qa:last-child{border-bottom:1px solid var(--line)}
+.qa summary{list-style:none;cursor:pointer;position:relative;padding:20px 44px 20px 0;font:600 17px/1.4 var(--display);transition:color .2s}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary:hover{color:var(--gold-light)}
+.qa summary:after{content:"";position:absolute;right:8px;top:50%;width:9px;height:9px;border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+.qa[open] summary:after{transform:translateY(-30%) rotate(-135deg)}
+.qa p{color:var(--muted);font-size:15.5px;padding:0 44px 22px 0;max-width:64ch}
+@media (max-width:900px){.faq .wrap{grid-template-columns:1fr;gap:28px}}
 
 /* Contacto */
 .contact .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start}
@@ -302,6 +460,7 @@ footer .brand img{height:26px}
       <a href="#resultado">Resultados</a>
       <a href="#informe">Informe</a>
       <a href="#tarifas">Tarifas</a>
+      <a href="#preguntas">Preguntas</a>
       <a href="#contacto" class="btn solid small">Pedir prueba gratuita</a>
     </nav>
   </div>
@@ -311,6 +470,7 @@ footer .brand img{height:26px}
 <div class="hero">
   <div class="wrap">
     <div>
+      <p class="eyebrow">Software de ajuste de pasadas LiDAR</p>
       <h1>Pasadas LiDAR que casan, con el informe listo para el cliente</h1>
       <p class="lead">LiDrift ajusta en cota y planta las pasadas de un vuelo apoyándose en el propio terreno y en los rasgos que detecta: tejados, taludes y torres. Sin puntos de control, aunque los admite si los tienes. Eliges tres carpetas en una interfaz gráfica, sin escribir código.</p>
       <div class="actions">
@@ -408,8 +568,8 @@ footer .brand img{height:26px}
         </div>
       </div>
       <div class="cmp" id="cmp">
-        <img id="im-b" src="img/mdt1.jpg" alt="Modelo digital del terreno" draggable="false">
-        <img id="im-t" class="top" src="img/mds1.jpg" alt="Modelo digital de superficie" draggable="false">
+        <img id="im-b" src="img/mdt1.jpg" alt="Modelo digital del terreno (MDT) generado a partir de una nube LiDAR ajustada con LiDrift" loading="lazy" decoding="async" draggable="false">
+        <img id="im-t" class="top" src="img/mds1.jpg" alt="Modelo digital de superficie (MDS) generado a partir de una nube LiDAR ajustada con LiDrift" loading="lazy" decoding="async" draggable="false">
         <span class="tg l">MDS<small>Superficie</small></span>
         <span class="tg r">MDT<small>Terreno</small></span>
         <div class="hd" aria-hidden="true"><i><svg viewBox="0 0 24 24" fill="none" stroke="#e6c98f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></i></div>
@@ -441,8 +601,8 @@ footer .brand img{height:26px}
       <div class="rp-low">
         <div class="rp-box">
           <h4>Reparto de la superficie con solape según la diferencia de cota entre pasadas</h4>
-          <div class="dist-body"><div class="d-row"><span class="d-lbl">Original</span><div class="d-bar"><i class="seg c1" style="--w:6%"></i><i class="seg c2" style="--w:5%"></i><i class="seg c3" style="--w:11%">11 %</i><i class="seg c4" style="--w:78%">78 %</i></div></div>
-          <div class="d-row"><span class="d-lbl">Entregado</span><div class="d-bar"><i class="seg c1" style="--w:94%">94 %</i><i class="seg c2" style="--w:5%"></i><i class="seg c3" style="--w:1%"></i></div></div>
+          <div class="dist-body"><div class="d-row"><span class="d-lbl">Original</span><div class="d-bar"><i class="bseg c1" style="--w:6%"></i><i class="bseg c2" style="--w:5%"></i><i class="bseg c3" style="--w:11%">11 %</i><i class="bseg c4" style="--w:78%">78 %</i></div></div>
+          <div class="d-row"><span class="d-lbl">Entregado</span><div class="d-bar"><i class="bseg c1" style="--w:94%">94 %</i><i class="bseg c2" style="--w:5%"></i><i class="bseg c3" style="--w:1%"></i></div></div>
           <div class="d-axis" aria-hidden="true"><span>0 %</span><span>25 %</span><span>50 %</span><span>75 %</span><span>100 %</span></div></div>
           <ul class="rp-leg" aria-label="Leyenda">
         <li><i style="background:var(--c1)"></i>≤ 5 cm</li>
@@ -467,7 +627,7 @@ footer .brand img{height:26px}
 <section class="corr" id="correcciones">
   <div class="wrap">
     <h2>Corrige el sistema y cada pasada</h2>
-    <p class="intro">LiDrift calcula primero la calibración del sistema, común a todo el vuelo, y después la corrección propia de cada pasada. <strong>Todo queda documentado en el informe.</strong></p>
+    <p class="intro">LiDrift calcula primero la calibración del sistema (boresight), común a todo el vuelo, y después la corrección propia de cada pasada. <strong>Todo queda documentado en el informe.</strong></p>
     <div class="parts">
       <figure class="part"><svg viewBox="0 0 140 90" fill="none" aria-hidden="true"><use href="#plane-front" x="46" y="36" width="48" height="18" fill="#5d584d"/><use href="#plane-front" x="46" y="36" width="48" height="18" fill="#e6c98f" transform="rotate(-16 70 46.2)"/><path d="M102 62C110 54 110 40 102 32" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/><path d="M38 32C30 40 30 54 38 62" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/></svg><figcaption><b>Roll</b><span>giro alrededor del eje de vuelo (alabeo)</span></figcaption></figure>
       <figure class="part"><svg viewBox="0 0 140 90" fill="none" aria-hidden="true"><use href="#plane" x="47" y="22" width="46" height="46" fill="#5d584d"/><use href="#plane" x="47" y="22" width="46" height="46" fill="#e6c98f" transform="rotate(22 70 45)"/><path d="M50 16C62 6 80 6 91 15" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/></svg><figcaption><b>Heading</b><span>giro alrededor de la vertical (guiñada)</span></figcaption></figure>
@@ -552,7 +712,26 @@ footer .brand img{height:26px}
   </div>
 </section>
 
-<section class="contact" id="contacto">
+<section class="faq" id="preguntas">
+  <div class="wrap">
+    <div>
+      <h2>Preguntas frecuentes</h2>
+      <p class="intro">Lo que suelen preguntar antes de probar LiDrift con sus datos.</p>
+    </div>
+    <div>
+      <details class="qa"><summary>¿Qué es el ajuste de pasadas LiDAR (strip adjustment)?</summary><p>Es corregir los pequeños errores de posición y orientación de cada pasada del vuelo para que las zonas de solape casen en cota y planta. LiDrift lo hace registrando las pasadas sobre el terreno y sus rasgos: tejados, taludes y torres.</p></details>
+      <details class="qa"><summary>¿Necesito puntos de control (GCP)?</summary><p>No. LiDrift ajusta las pasadas entre sí sin puntos de control. Si los tienes, los admite para el anclaje absoluto, y el informe añade entonces la exactitud vertical (error medio y RMSE contra los apoyos).</p></details>
+      <details class="qa"><summary>¿Qué datos necesito para empezar?</summary><p>Los LAZ del vuelo y las trayectorias del avión, cada uno en su carpeta, más una carpeta de salida. El sistema de coordenadas y el tipo de altura se leen de la cabecera del LAZ.</p></details>
+      <details class="qa"><summary>¿Tengo que clasificar la nube o crear proyectos antes?</summary><p>No. No hay que crear proyectos, clasificar la nube ni escribir código: eliges las tres carpetas desde una interfaz gráfica y LiDrift hace el resto.</p></details>
+      <details class="qa"><summary>¿Qué incluye el informe de calidad?</summary><p>Por cada zona, la coherencia entre pasadas antes y después del ajuste, la cobertura del solape y el número de pasadas, la densidad de pulsos y, si hay GCP, la exactitud vertical. También documenta las correcciones aplicadas a cada pasada.</p></details>
+      <details class="qa"><summary>¿Se envían mis datos a algún servidor?</summary><p>No. El procesado es 100 % local: LiDrift no envía tus datos a ningún sitio.</p></details>
+      <details class="qa"><summary>¿Puedo procesar varios proyectos o zonas a la vez?</summary><p>Sí. LiDrift detecta bloques separados por kilómetros en un mismo vuelo y ajusta cada zona por separado, con un informe por zona. Además, encadena decenas de proyectos de una sola tirada.</p></details>
+      <details class="qa"><summary>¿Cuánto cuesta y hay prueba gratuita?</summary><p>La licencia es anual y por puesto: 800 € al año como precio de lanzamiento y 1.500 € al año después, IVA no incluido. Puedes pedir una prueba gratuita sobre tus propios datos antes de decidir.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="contact alt" id="contacto">
   <div class="wrap">
     <div>
       <h2>Pruébalo con tus propios datos</h2>
