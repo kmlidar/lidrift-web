@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Software de ajuste de pasadas LiDAR | LiDrift</title>
-<meta name="description" content="Software para ajustar pasadas LiDAR en cota y planta y generar el informe de calidad para el cliente. Sin proyectos ni clasificación. Prueba gratuita.">
+<meta name="description" content="Software para ajustar pasadas LiDAR de dron, avión o helicóptero en cota y planta y generar el informe de calidad para el cliente. Sin proyectos ni clasificación. Prueba gratuita.">
 <meta name="theme-color" content="#14120f">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://lidrift.com/">
@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://lidrift.com/img/og-lidrift.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="LiDrift: perfil de nube LiDAR con cuatro pasadas que casan tras el ajuste">
+<meta property="og:image:alt" content="LiDrift: perfil de nube LiDAR con cuatro pasadas alineadas tras el ajuste">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="LiDrift – Ajuste de pasadas LiDAR e informe de calidad">
 <meta name="twitter:description" content="Ajuste automático entre pasadas e informe de calidad para el cliente. Procesado local, licencia anual por puesto y prueba gratuita.">
@@ -54,7 +54,7 @@
    "@id": "https://lidrift.com/#app",
    "name": "LiDrift",
    "url": "https://lidrift.com/",
-   "description": "Software para ajustar pasadas LiDAR en cota y planta y generar el informe de calidad para el cliente. Sin proyectos ni clasificación. Prueba gratuita.",
+   "description": "Software para ajustar pasadas LiDAR de dron, avión o helicóptero en cota y planta y generar el informe de calidad para el cliente. Sin proyectos ni clasificación. Prueba gratuita.",
    "applicationCategory": "BusinessApplication",
    "inLanguage": "es",
    "image": "https://lidrift.com/img/og-lidrift.png",
@@ -93,7 +93,7 @@
      "name": "¿Qué es el ajuste de pasadas LiDAR (strip adjustment)?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Es corregir los pequeños errores de posición y orientación de cada pasada del vuelo para que las zonas de solape casen en cota y planta. LiDrift lo hace registrando las pasadas sobre el terreno y sus rasgos: tejados, taludes y torres."
+      "text": "Es corregir los pequeños errores de posición y orientación de cada pasada del vuelo para que las zonas de solape coincidan en cota y planta. LiDrift lo hace tomando como referencia el terreno y sus rasgos: tejados, taludes y otras estructuras."
      }
     },
     {
@@ -101,7 +101,15 @@
      "name": "¿Necesito puntos de control (GCP)?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "No. LiDrift ajusta las pasadas entre sí sin puntos de control. Si los tienes, los admite para el anclaje absoluto, y el informe añade entonces la exactitud vertical (error medio y RMSE contra los apoyos)."
+      "text": "No. LiDrift ajusta las pasadas entre sí sin puntos de control. Si los tienes, los admite para el anclaje absoluto, y el informe añade entonces la exactitud vertical (error medio y RMSE contra los puntos de control)."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "¿Sirve para vuelos con dron, avión o helicóptero?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sí. LiDrift ajusta las pasadas de cualquier plataforma, siempre que tengas los archivos LAS o LAZ del vuelo y sus trayectorias."
      }
     },
     {
@@ -109,7 +117,7 @@
      "name": "¿Qué datos necesito para empezar?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Los LAZ del vuelo y las trayectorias del avión, cada uno en su carpeta, más una carpeta de salida. El sistema de coordenadas y el tipo de altura se leen de la cabecera del LAZ."
+      "text": "Los LAS o LAZ del vuelo y las trayectorias de la plataforma (avión, helicóptero o dron), cada uno en su carpeta, más una carpeta de salida. El sistema de coordenadas y el tipo de altura se leen de la cabecera del archivo."
      }
     },
     {
@@ -117,7 +125,7 @@
      "name": "¿Tengo que clasificar la nube o crear proyectos antes?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "No. No hay que crear proyectos, clasificar la nube ni escribir código: eliges las tres carpetas desde una interfaz gráfica y LiDrift hace el resto."
+      "text": "No. No hay que crear proyectos, clasificar la nube ni escribir ninguna línea de código: eliges las tres carpetas desde una interfaz gráfica y LiDrift hace el resto."
      }
     },
     {
@@ -125,7 +133,7 @@
      "name": "¿Qué incluye el informe de calidad?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Por cada zona, la coherencia entre pasadas antes y después del ajuste, la cobertura del solape y el número de pasadas, la densidad de pulsos y, si hay GCP, la exactitud vertical. También documenta las correcciones aplicadas a cada pasada."
+      "text": "Por cada zona, la coherencia entre pasadas antes y después del ajuste, la cobertura del solape y el número de pasadas, la densidad de pulsos y, si hay GCP, la exactitud vertical. También incluye los datos del vuelo: longitud total, pasadas y puntos totales procesados. Si indicas un área de trabajo, añade la cobertura y la densidad registradas sobre ella. Además, documenta las correcciones aplicadas a cada pasada."
      }
     },
     {
@@ -475,15 +483,17 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
   <div class="wrap">
     <div>
       <p class="eyebrow">Software de ajuste de pasadas LiDAR</p>
-      <h1>Pasadas LiDAR que casan, con el informe listo para el cliente</h1>
-      <p class="lead">LiDrift ajusta en cota y planta las pasadas de un vuelo apoyándose en el propio terreno y en los rasgos que detecta: tejados, taludes y torres. Sin puntos de control, aunque los admite si los tienes. Eliges tres carpetas en una interfaz gráfica, sin escribir código.</p>
+      <h1>Pasadas LiDAR alineadas, con el informe de calidad listo para el cliente</h1>
+      <p class="lead">LiDrift alinea en cota y planta las pasadas de cualquier vuelo LiDAR, sea con dron, avión o helicóptero. Toma como referencia el propio terreno y los rasgos que detecta: tejados, taludes y otras estructuras. No necesita puntos de control, aunque los admite si los tienes. Eliges tres carpetas en una interfaz gráfica, sin escribir ninguna línea de código.</p>
       <div class="actions">
         <a class="btn solid" href="#contacto">Pedir prueba gratuita</a>
         <a class="btn" href="#tarifas">Ver tarifas</a>
       </div>
       <div class="facts">
         <span>Procesado 100 % local</span>
-        <span>Interfaz gráfica, sin código</span>
+        <span>Dron, avión o helicóptero</span>
+        <span>Acepta LAS y LAZ</span>
+        <span>Sin escribir ninguna línea de código</span>
         <span>GCP opcionales</span>
       </div>
     </div>
@@ -508,12 +518,12 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
 <section id="como">
   <div class="wrap">
     <h2>Pensado para ser directo</h2>
-    <p class="intro">En las zonas de solape, las pasadas no casan del todo y corregirlo y documentarlo a mano consume horas por proyecto. <strong>LiDrift automatiza el ajuste y genera el informe de calidad.</strong></p>
+    <p class="intro">Ajustar las pasadas de un vuelo suele significar montar un proyecto, clasificar la nube, configurar parámetros y dedicar a un técnico especializado, y aún falta preparar un informe que el cliente pueda leer. <strong>LiDrift hace el ajuste y el informe de calidad con solo elegir tres carpetas.</strong></p>
     <div class="bento">
       <div class="cell">
-        <svg viewBox="0 0 400 100" fill="none" aria-hidden="true"><rect x="8" y="14" width="104" height="72" rx="12" stroke="#c8a96a" stroke-width="1.6" fill="rgba(200,169,106,.06)"/><g transform="translate(46 26)"><path d="M0 3a3 3 0 0 1 3-3h7l3 3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3z" stroke="#c8a96a" stroke-width="1.8" fill="rgba(200,169,106,.1)"/></g><text x="60" y="74" text-anchor="middle" fill="#f1ece0" font-size="11.5" font-weight="600" font-family="Inter,sans-serif">Entrada (LAZ)</text><path d="M127 44l6 6-6 6" stroke="#c8a96a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="148" y="14" width="104" height="72" rx="12" stroke="#c8a96a" stroke-width="1.6" fill="rgba(200,169,106,.06)"/><g transform="translate(186 26)"><path d="M0 3a3 3 0 0 1 3-3h7l3 3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3z" stroke="#c8a96a" stroke-width="1.8" fill="rgba(200,169,106,.1)"/></g><text x="200" y="74" text-anchor="middle" fill="#f1ece0" font-size="11.5" font-weight="600" font-family="Inter,sans-serif">Trayectorias</text><path d="M267 44l6 6-6 6" stroke="#c8a96a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="288" y="14" width="104" height="72" rx="12" stroke="#e6c98f" stroke-width="1.6" fill="rgba(230,201,143,.1)"/><g transform="translate(326 26)"><path d="M0 3a3 3 0 0 1 3-3h7l3 3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3z" stroke="#e6c98f" stroke-width="1.8" fill="rgba(200,169,106,.1)"/></g><text x="340" y="74" text-anchor="middle" fill="#f1ece0" font-size="11.5" font-weight="600" font-family="Inter,sans-serif">Salida</text></svg>
-        <h3>Sin proyectos, sin clasificación, sin código</h3>
-        <p>Eliges la carpeta de LAZ, la de trayectorias y la de salida desde una interfaz gráfica. No hay que crear proyectos, clasificar la nube ni escribir código.</p>
+        <svg viewBox="0 0 400 100" fill="none" aria-hidden="true"><rect x="8" y="14" width="104" height="72" rx="12" stroke="#c8a96a" stroke-width="1.6" fill="rgba(200,169,106,.06)"/><g transform="translate(46 26)"><path d="M0 3a3 3 0 0 1 3-3h7l3 3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3z" stroke="#c8a96a" stroke-width="1.8" fill="rgba(200,169,106,.1)"/></g><text x="60" y="74" text-anchor="middle" fill="#f1ece0" font-size="10.5" font-weight="600" font-family="Inter,sans-serif">Entrada (LAS/LAZ)</text><path d="M127 44l6 6-6 6" stroke="#c8a96a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="148" y="14" width="104" height="72" rx="12" stroke="#c8a96a" stroke-width="1.6" fill="rgba(200,169,106,.06)"/><g transform="translate(186 26)"><path d="M0 3a3 3 0 0 1 3-3h7l3 3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3z" stroke="#c8a96a" stroke-width="1.8" fill="rgba(200,169,106,.1)"/></g><text x="200" y="74" text-anchor="middle" fill="#f1ece0" font-size="11.5" font-weight="600" font-family="Inter,sans-serif">Trayectorias</text><path d="M267 44l6 6-6 6" stroke="#c8a96a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="288" y="14" width="104" height="72" rx="12" stroke="#e6c98f" stroke-width="1.6" fill="rgba(230,201,143,.1)"/><g transform="translate(326 26)"><path d="M0 3a3 3 0 0 1 3-3h7l3 3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3z" stroke="#e6c98f" stroke-width="1.8" fill="rgba(200,169,106,.1)"/></g><text x="340" y="74" text-anchor="middle" fill="#f1ece0" font-size="11.5" font-weight="600" font-family="Inter,sans-serif">Salida</text></svg>
+        <h3>Sin proyectos, sin clasificación, sin escribir código</h3>
+        <p>Eliges la carpeta de LAS o LAZ, la de trayectorias y la de salida desde una interfaz gráfica. No hay que crear proyectos, clasificar la nube ni escribir ninguna línea de código.</p>
       </div>
       <div class="cell">
         <svg viewBox="0 0 200 100" fill="none" aria-hidden="true">
@@ -556,7 +566,7 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
   <div class="wrap">
     <div>
       <h2>Con la nube bien ajustada, todo lo que sale de ella mejora</h2>
-      <p class="intro">Mismo vuelo, dos productos. Desliza para pasar del modelo de superficie al de terreno y comprueba lo que se ve cuando las pasadas casan.</p>
+      <p class="intro">Mismo vuelo, dos productos. Desliza para pasar del modelo de superficie al de terreno y comprueba lo que se ve cuando las pasadas están bien ajustadas.</p>
       <ul class="gains">
         <li><b>Productos que salen bien a la primera</b><span>Modelos de superficie y de terreno limpios, listos para entregar.</span></li>
         <li><b>Clasificación más fiable</b><span>Los algoritmos separan mejor el suelo de la vegetación y las estructuras.</span></li>
@@ -588,7 +598,7 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
   <div class="wrap">
     <div class="head">
       <h2>Un informe de calidad listo para entregar al cliente</h2>
-      <p class="intro">Cada informe recoge las cifras de lo que había y de lo que queda, para que el cliente vea la mejora con números.</p>
+      <p class="intro">Cada informe recoge las cifras de lo que había y de lo que queda, además de los datos del vuelo: longitud total, número de pasadas y puntos totales procesados. Si indicas un área de trabajo, añade también la cobertura y la densidad de puntos registradas sobre ella. Así el cliente ve la mejora con números.</p>
     </div>
 
     <div class="rp" id="rp" role="group" aria-label="Ejemplo ilustrativo de informe de calidad">
@@ -623,7 +633,7 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
       </div>
 
       <p class="rp-note">La diferencia se mide solo donde se solapan dos o más pasadas, en celdas de terreno despejado de 2 m.</p>
-      <div class="rp-foot"><span>9 pasadas de vuelo · 40 km</span><span>258 millones de puntos entregados</span><span>Coordenadas y alturas del propio LAZ</span></div>
+      <div class="rp-foot"><span>Longitud total del vuelo</span><span>Pasadas procesadas</span><span>Puntos totales procesados</span><span>Cobertura y densidad sobre tu área (opcional)</span><span>Coordenadas y alturas del propio archivo</span></div>
     </div>
   </div>
 </section>
@@ -647,18 +657,18 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
   <div class="wrap two">
     <div>
       <h2>Elige tres carpetas. Nada más.</h2>
-      <p class="intro">Sin escribir código y sin preparar proyectos: todo se hace desde una interfaz gráfica.</p>
+      <p class="intro">Sin escribir ninguna línea de código y sin preparar proyectos: todo se hace desde una interfaz gráfica.</p>
       <ol class="folders">
-        <li><b>Carpeta de entrada</b><span>Los LAZ del vuelo.</span></li>
-        <li><b>Carpeta de trayectorias</b><span>Las trayectorias del avión.</span></li>
+        <li><b>Carpeta de entrada</b><span>Los LAS o LAZ del vuelo.</span></li>
+        <li><b>Carpeta de trayectorias</b><span>Las trayectorias del vuelo (avión, helicóptero o dron).</span></li>
         <li><b>Carpeta de salida</b><span>Aquí se guardan las pasadas ajustadas y el informe de calidad.</span></li>
       </ol>
-      <p class="note">El sistema de coordenadas y el tipo de altura se leen de la cabecera del LAZ. El procesado es local: LiDrift no envía tus datos a ningún sitio.</p>
+      <p class="note">Opcional: indica un área de trabajo y el informe añadirá la cobertura y la densidad sobre ella. El sistema de coordenadas y el tipo de altura se leen de la cabecera del archivo. El procesado es local: LiDrift no envía tus datos a ningún sitio.</p>
     </div>
     <figure class="win">
       <div class="win-bar"><i></i><i></i><i></i><span>LiDrift</span></div>
       <div class="win-body">
-        <div class="pick"><label>Carpeta de entrada (LAZ)</label><div class="fld"><span>D:\Vuelo\LAZ</span><b>Elegir</b></div></div>
+        <div class="pick"><label>Carpeta de entrada (LAS/LAZ)</label><div class="fld"><span>D:\Vuelo\Entrada</span><b>Elegir</b></div></div>
         <div class="pick"><label>Carpeta de trayectorias</label><div class="fld"><span>D:\Vuelo\Trayectorias</span><b>Elegir</b></div></div>
         <div class="pick"><label>Carpeta de salida</label><div class="fld"><span>D:\Vuelo\Salida</span><b>Elegir</b></div></div>
         <div class="go">Ajustar pasadas</div>
@@ -675,12 +685,12 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
     <div class="vs">
       <div class="vs-a">
         <h3>Antes</h3>
-        <ul><li>Crear y configurar proyectos</li><li>Preparar y organizar los datos</li><li>Clasificar la nube previamente</li><li>Ajustar y documentar a mano</li></ul>
+        <ul><li>Crear y configurar proyectos</li><li>Preparar y organizar los datos</li><li>Clasificar la nube previamente</li><li>Configurar parámetros para cada vuelo</li><li>Preparar el informe para el cliente</li></ul>
       </div>
       <div class="vs-b">
         <h3>Con LiDrift</h3>
         <ul><li>Carpeta de entrada</li><li>Carpeta de trayectorias</li><li>Carpeta de salida</li></ul>
-        <p>Nada más. Sin escribir código.</p>
+        <p>Nada más. Sin escribir ninguna línea de código.</p>
       </div>
     </div>
   </div>
@@ -723,11 +733,12 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
       <p class="intro">Lo que suelen preguntar antes de probar LiDrift con sus datos.</p>
     </div>
     <div>
-      <details class="qa"><summary>¿Qué es el ajuste de pasadas LiDAR (strip adjustment)?</summary><p>Es corregir los pequeños errores de posición y orientación de cada pasada del vuelo para que las zonas de solape casen en cota y planta. LiDrift lo hace registrando las pasadas sobre el terreno y sus rasgos: tejados, taludes y torres.</p></details>
-      <details class="qa"><summary>¿Necesito puntos de control (GCP)?</summary><p>No. LiDrift ajusta las pasadas entre sí sin puntos de control. Si los tienes, los admite para el anclaje absoluto, y el informe añade entonces la exactitud vertical (error medio y RMSE contra los apoyos).</p></details>
-      <details class="qa"><summary>¿Qué datos necesito para empezar?</summary><p>Los LAZ del vuelo y las trayectorias del avión, cada uno en su carpeta, más una carpeta de salida. El sistema de coordenadas y el tipo de altura se leen de la cabecera del LAZ.</p></details>
-      <details class="qa"><summary>¿Tengo que clasificar la nube o crear proyectos antes?</summary><p>No. No hay que crear proyectos, clasificar la nube ni escribir código: eliges las tres carpetas desde una interfaz gráfica y LiDrift hace el resto.</p></details>
-      <details class="qa"><summary>¿Qué incluye el informe de calidad?</summary><p>Por cada zona, la coherencia entre pasadas antes y después del ajuste, la cobertura del solape y el número de pasadas, la densidad de pulsos y, si hay GCP, la exactitud vertical. También documenta las correcciones aplicadas a cada pasada.</p></details>
+      <details class="qa"><summary>¿Qué es el ajuste de pasadas LiDAR (strip adjustment)?</summary><p>Es corregir los pequeños errores de posición y orientación de cada pasada del vuelo para que las zonas de solape coincidan en cota y planta. LiDrift lo hace tomando como referencia el terreno y sus rasgos: tejados, taludes y otras estructuras.</p></details>
+      <details class="qa"><summary>¿Necesito puntos de control (GCP)?</summary><p>No. LiDrift ajusta las pasadas entre sí sin puntos de control. Si los tienes, los admite para el anclaje absoluto, y el informe añade entonces la exactitud vertical (error medio y RMSE contra los puntos de control).</p></details>
+      <details class="qa"><summary>¿Sirve para vuelos con dron, avión o helicóptero?</summary><p>Sí. LiDrift ajusta las pasadas de cualquier plataforma, siempre que tengas los archivos LAS o LAZ del vuelo y sus trayectorias.</p></details>
+      <details class="qa"><summary>¿Qué datos necesito para empezar?</summary><p>Los LAS o LAZ del vuelo y las trayectorias de la plataforma (avión, helicóptero o dron), cada uno en su carpeta, más una carpeta de salida. El sistema de coordenadas y el tipo de altura se leen de la cabecera del archivo.</p></details>
+      <details class="qa"><summary>¿Tengo que clasificar la nube o crear proyectos antes?</summary><p>No. No hay que crear proyectos, clasificar la nube ni escribir ninguna línea de código: eliges las tres carpetas desde una interfaz gráfica y LiDrift hace el resto.</p></details>
+      <details class="qa"><summary>¿Qué incluye el informe de calidad?</summary><p>Por cada zona, la coherencia entre pasadas antes y después del ajuste, la cobertura del solape y el número de pasadas, la densidad de pulsos y, si hay GCP, la exactitud vertical. También incluye los datos del vuelo: longitud total, pasadas y puntos totales procesados. Si indicas un área de trabajo, añade la cobertura y la densidad registradas sobre ella. Además, documenta las correcciones aplicadas a cada pasada.</p></details>
       <details class="qa"><summary>¿Se envían mis datos a algún servidor?</summary><p>No. El procesado es 100 % local: LiDrift no envía tus datos a ningún sitio.</p></details>
       <details class="qa"><summary>¿Puedo procesar varios proyectos o zonas a la vez?</summary><p>Sí. LiDrift detecta bloques separados por kilómetros en un mismo vuelo y ajusta cada zona por separado, con un informe por zona. Además, encadena decenas de proyectos de una sola tirada.</p></details>
       <details class="qa"><summary>¿Cuánto cuesta y hay prueba gratuita?</summary><p>La licencia es anual y por puesto: 800 € al año como precio de lanzamiento y 1.500 € al año después, IVA no incluido. Puedes pedir una prueba gratuita sobre tus propios datos antes de decidir.</p></details>
@@ -776,7 +787,7 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
 <footer>
   <div class="wrap">
     <a class="brand" href="#"><img src="logo.png" alt="">LiDrift</a>
-    <span>Sin proyectos, sin clasificar, sin código: tres carpetas y listo.</span>
+    <span>Sin proyectos, sin clasificar, sin escribir código: tres carpetas y listo.</span>
     <nav class="legal" aria-label="Legal"><a href="aviso-legal.html">Aviso legal</a><a href="privacidad.html">Política de privacidad</a><a href="privacidad.html#cookies">Cookies</a></nav>
   </div>
   <div class="wrap copy">© 2026 LiDrift</div>
