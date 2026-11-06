@@ -1,27 +1,31 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Software de ajuste de pasadas LiDAR | LiDrift</title>
-<meta name="description" content="Software para ajustar pasadas LiDAR de dron, avión o helicóptero en cota y planta y generar el informe de calidad para el cliente. Sin proyectos ni clasificación. Prueba gratuita.">
+<title>LiDAR Strip Adjustment Software | LiDrift</title>
+<meta name="description" content="Software that adjusts LiDAR strips from drone, aircraft or helicopter flights, vertically and horizontally, and produces the client-ready quality report. No projects, no classification. Free trial.">
 <meta name="theme-color" content="#14120f">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://lidrift.com/">
+<link rel="alternate" hreflang="en" href="https://lidrift.com/">
+<link rel="alternate" hreflang="es" href="https://lidrift.com/es/">
+<link rel="alternate" hreflang="x-default" href="https://lidrift.com/">
 <meta property="og:site_name" content="LiDrift">
-<meta property="og:locale" content="es_ES">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://lidrift.com/">
-<meta property="og:title" content="LiDrift – Ajuste de pasadas LiDAR e informe de calidad">
-<meta property="og:description" content="Ajuste automático entre pasadas e informe de calidad para el cliente. Procesado local, licencia anual por puesto y prueba gratuita.">
-<meta property="og:image" content="https://lidrift.com/img/og-lidrift.png">
+<meta property="og:title" content="LiDrift – LiDAR strip adjustment and quality report">
+<meta property="og:description" content="Automatic strip-to-strip adjustment and a client-ready quality report. Local processing, annual per-seat license and free trial.">
+<meta property="og:image" content="https://lidrift.com/img/og-lidrift-en.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="LiDrift: perfil de nube LiDAR con cuatro pasadas alineadas tras el ajuste">
+<meta property="og:image:alt" content="LiDrift: LiDAR point cloud profile with four strips aligned after adjustment">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="LiDrift – Ajuste de pasadas LiDAR e informe de calidad">
-<meta name="twitter:description" content="Ajuste automático entre pasadas e informe de calidad para el cliente. Procesado local, licencia anual por puesto y prueba gratuita.">
-<meta name="twitter:image" content="https://lidrift.com/img/og-lidrift.png">
+<meta name="twitter:title" content="LiDrift – LiDAR strip adjustment and quality report">
+<meta name="twitter:description" content="Automatic strip-to-strip adjustment and a client-ready quality report. Local processing, annual per-seat license and free trial.">
+<meta name="twitter:image" content="https://lidrift.com/img/og-lidrift-en.png">
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="apple-touch-icon" href="logo.png">
 <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -44,7 +48,7 @@
    "@id": "https://lidrift.com/#web",
    "url": "https://lidrift.com/",
    "name": "LiDrift",
-   "inLanguage": "es",
+   "inLanguage": "en",
    "publisher": {
     "@id": "https://lidrift.com/#org"
    }
@@ -54,27 +58,27 @@
    "@id": "https://lidrift.com/#app",
    "name": "LiDrift",
    "url": "https://lidrift.com/",
-   "description": "Software para ajustar pasadas LiDAR de dron, avión o helicóptero en cota y planta y generar el informe de calidad para el cliente. Sin proyectos ni clasificación. Prueba gratuita.",
+   "description": "Software that adjusts LiDAR strips from drone, aircraft or helicopter flights, vertically and horizontally, and produces the client-ready quality report. No projects, no classification. Free trial.",
    "applicationCategory": "BusinessApplication",
-   "inLanguage": "es",
-   "image": "https://lidrift.com/img/og-lidrift.png",
+   "inLanguage": "en",
+   "image": "https://lidrift.com/img/og-lidrift-en.png",
    "publisher": {
     "@id": "https://lidrift.com/#org"
    },
    "featureList": [
-    "Ajuste de pasadas LiDAR en cota y planta",
-    "Informe de calidad para el cliente",
-    "Zonas independientes automáticas",
-    "Proceso por lotes de muchos proyectos",
-    "Puntos de control (GCP) opcionales",
+    "LiDAR strip adjustment, vertical and horizontal",
+    "Quality report for your client",
+    "Automatic independent zones",
+    "Batch processing of many projects",
+    "Optional ground control points (GCPs)",
     "Procesado 100 % local"
    ],
    "offers": {
     "@type": "Offer",
-    "url": "https://lidrift.com/#tarifas",
+    "url": "https://lidrift.com/#pricing",
     "price": "800",
     "priceCurrency": "EUR",
-    "description": "Licencia anual por puesto, precio de lanzamiento. Después 1.500 € al año. IVA no incluido.",
+    "description": "Annual per-seat license, launch price. Afterwards €1,500 per year. VAT not included.",
     "priceSpecification": {
      "@type": "UnitPriceSpecification",
      "price": "800",
@@ -90,74 +94,74 @@
    "mainEntity": [
     {
      "@type": "Question",
-     "name": "¿Qué es el ajuste de pasadas LiDAR (strip adjustment)?",
+     "name": "What is LiDAR strip adjustment?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Es corregir los pequeños errores de posición y orientación de cada pasada del vuelo para que las zonas de solape coincidan en cota y planta. LiDrift lo hace tomando como referencia el terreno y sus rasgos: tejados, taludes y otras estructuras."
+      "text": "It means correcting the small position and orientation errors of each strip in a flight so that the overlap areas match vertically and horizontally. LiDrift does it using the terrain and its features as a reference: roofs, embankments and other structures."
      }
     },
     {
      "@type": "Question",
-     "name": "¿Necesito puntos de control (GCP)?",
+     "name": "Do I need ground control points (GCPs)?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "No. LiDrift ajusta las pasadas entre sí sin puntos de control. Si los tienes, los admite para el anclaje absoluto, y el informe añade entonces la exactitud vertical (error medio y RMSE contra los puntos de control)."
+      "text": "No. LiDrift adjusts the strips to one another without control points. If you have them, it accepts them for absolute anchoring, and the report then adds the vertical accuracy (mean error and RMSE against the control points)."
      }
     },
     {
      "@type": "Question",
-     "name": "¿Sirve para vuelos con dron, avión o helicóptero?",
+     "name": "Does it work for drone, plane and helicopter flights?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Sí. LiDrift ajusta las pasadas de cualquier plataforma, siempre que tengas los archivos LAS o LAZ del vuelo y sus trayectorias."
+      "text": "Yes. LiDrift adjusts the strips from any platform, as long as you have the LAS or LAZ files of the flight and their trajectories."
      }
     },
     {
      "@type": "Question",
-     "name": "¿Qué datos necesito para empezar?",
+     "name": "What data do I need to get started?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Los LAS o LAZ del vuelo y las trayectorias de la plataforma (avión, helicóptero o dron), cada uno en su carpeta, más una carpeta de salida. El sistema de coordenadas y el tipo de altura se leen de la cabecera del archivo."
+      "text": "The LAS or LAZ files of the flight and the trajectories of the platform (plane, helicopter or drone), each in its own folder, plus an output folder. The coordinate system and the height type are read from the file header."
      }
     },
     {
      "@type": "Question",
-     "name": "¿Tengo que clasificar la nube o crear proyectos antes?",
+     "name": "Do I need to classify the point cloud or set up projects first?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "No. No hay que crear proyectos, clasificar la nube ni escribir ninguna línea de código: eliges las tres carpetas desde una interfaz gráfica y LiDrift hace el resto."
+      "text": "No. There is no need to create projects, classify the point cloud or write a single line of code: you choose the three folders in a graphical interface and LiDrift does the rest."
      }
     },
     {
      "@type": "Question",
-     "name": "¿Qué incluye el informe de calidad?",
+     "name": "What does the quality report include?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Por cada zona, la coherencia entre pasadas antes y después del ajuste, la cobertura del solape y el número de pasadas, la densidad de pulsos y, si hay GCP, la exactitud vertical. También incluye los datos del vuelo: longitud total, pasadas y puntos totales procesados. Si indicas un área de trabajo, añade la cobertura y la densidad registradas sobre ella. Además, documenta las correcciones aplicadas a cada pasada."
+      "text": "For each zone: the consistency between strips before and after adjustment, the overlap coverage and the number of strips, the pulse density and, if you use GCPs, the vertical accuracy. It also includes the flight data: total length, strips and total points processed. If you specify a work area, it adds the coverage and density recorded over it. It also documents the corrections applied to each strip."
      }
     },
     {
      "@type": "Question",
-     "name": "¿Se envían mis datos a algún servidor?",
+     "name": "Is my data sent to any server?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "No. El procesado es 100 % local: LiDrift no envía tus datos a ningún sitio."
+      "text": "No. Processing is 100% local: LiDrift does not send your data anywhere."
      }
     },
     {
      "@type": "Question",
-     "name": "¿Puedo procesar varios proyectos o zonas a la vez?",
+     "name": "Can I process several projects or zones at once?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Sí. LiDrift detecta bloques separados por kilómetros en un mismo vuelo y ajusta cada zona por separado, con un informe por zona. Además, encadena decenas de proyectos de una sola tirada."
+      "text": "Yes. LiDrift detects blocks that are kilometers apart within a single flight and adjusts each zone separately, with one report per zone. It can also chain dozens of projects in a single run."
      }
     },
     {
      "@type": "Question",
-     "name": "¿Cuánto cuesta y hay prueba gratuita?",
+     "name": "How much does it cost, and is there a free trial?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "La licencia es anual y por puesto: 800 € al año como precio de lanzamiento y 1.500 € al año después, IVA no incluido. Puedes pedir una prueba gratuita sobre tus propios datos antes de decidir."
+      "text": "The license is annual and per seat: €800 per year as the launch price and €1,500 per year afterwards, VAT not included. You can request a free trial on your own data before you decide."
      }
     }
    ]
@@ -182,21 +186,29 @@ a{color:inherit}
 .wrap{width:min(1120px,100% - 40px);margin-inline:auto}
 h1,h2,h3{font-family:var(--display)}
 
-/* Botones */
+/* Buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font:600 15px/1 var(--body);padding:14px 24px;border-radius:999px;border:1px solid var(--line-strong);color:var(--gold-light);background:transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s}
 .btn:hover{border-color:var(--gold);background:rgba(200,169,106,.1)}
 .btn.solid{background:linear-gradient(135deg,#e6c98f,#c8a96a);color:var(--ink);border-color:transparent}
 .btn.solid:hover{background:linear-gradient(135deg,#f0d9a8,#d4b676);transform:translateY(-1px)}
 .btn.small{padding:10px 18px;font-size:14px}
 
-/* Navegación */
+/* Navigation */
 header{position:sticky;top:0;z-index:50;background:rgba(20,18,15,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:20px;height:68px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font:700 21px/1 var(--display);letter-spacing:-.2px}
 .brand img{height:34px;width:auto;border-radius:6px;display:block}
 nav{display:flex;align-items:center;gap:30px;font-size:14px;color:var(--muted)}
 nav a{text-decoration:none;transition:color .2s}
-nav a:not(.btn):hover{color:var(--gold-light)}
+nav a:not(.btn):not(.lang):hover{color:var(--gold-light)}
+.lang{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line-strong);border-radius:99px;padding:7px 12px;font:600 13px/1 var(--body);letter-spacing:.4px;color:var(--gold-light);transition:background .2s,border-color .2s}
+.lang svg{width:15px;height:15px;flex:none}
+.lang:hover{border-color:var(--gold);background:rgba(200,169,106,.1)}
+.nav-sm{display:none}
+nav .btn{white-space:nowrap}
+@media (max-width:520px){.nav-lg{display:none}.nav-sm{display:inline}nav{gap:8px}.bar{gap:10px}.btn.small{padding:10px 14px}.lang{padding:7px 10px}}
+@media (max-width:400px){.brand{font-size:18px;gap:8px}.brand img{height:28px}.btn.small{padding:10px 12px;font-size:13px}}
+@media (max-width:340px){.brand{font-size:16px;gap:7px}.brand img{height:26px}.btn.small{padding:10px 10px;font-size:12.5px}.lang{padding:7px 8px;gap:5px}}
 
 /* Hero */
 .hero{position:relative;padding:84px 0 96px;overflow:hidden}
@@ -221,7 +233,7 @@ canvas{display:block;width:100%;height:280px;border-radius:14px;background:radia
 .legend{display:flex;gap:14px}
 .legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:baseline}
 
-/* Secciones */
+/* Sections */
 section{padding:96px 0}
 h2{font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:600;letter-spacing:-.9px;margin-bottom:16px;max-width:22ch}
 .intro{max-width:60ch;color:var(--muted);font-size:17px;margin-bottom:48px}
@@ -240,7 +252,7 @@ h2{font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:600;letter-spac
 .cell p{color:var(--muted);font-size:15px;max-width:48ch}
 
 
-/* Deslizador MDS / MDT */
+/* DSM / DTM slider */
 .cmp-sec .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
 .cmp-sec .intro{margin-bottom:28px}
 .gains{list-style:none;display:grid;gap:0}
@@ -264,7 +276,7 @@ h2{font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:600;letter-spac
 .cmp-note{font-size:12px;color:var(--muted);margin-top:10px;padding-inline:4px}
 @media (max-width:900px){.cmp-sec .wrap{grid-template-columns:1fr;gap:36px}}
 
-/* Informe */
+/* Report */
 .report{position:relative;background:var(--bg-2);border-block:1px solid var(--line);overflow:hidden}
 .report:before{content:"";position:absolute;left:-10%;top:-30%;width:760px;height:760px;background:radial-gradient(circle,rgba(200,169,106,.10),transparent 62%);pointer-events:none}
 .report .wrap{position:relative}
@@ -313,7 +325,7 @@ h2{font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:600;letter-spac
 }
 @media (max-width:480px){.d-row{grid-template-columns:1fr;gap:4px}.d-axis,.rp-leg{margin-left:0}}
 
-/* Correcciones */
+/* Corrections */
 .parts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
 .part{background:linear-gradient(180deg,var(--bg-3),var(--bg-2));border:1px solid var(--line);border-radius:18px;padding:18px 14px 16px;text-align:center}
 .part svg{width:100%;height:auto;display:block;margin-bottom:10px}
@@ -322,7 +334,7 @@ h2{font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:600;letter-spac
 .key{display:flex;gap:22px;justify-content:center;margin-top:22px;font-size:13px;color:var(--muted)}
 .key i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}
 
-/* Tres carpetas */
+/* Three folders */
 .alt{background:var(--bg-2);border-block:1px solid var(--line)}
 .wrap.two{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
 .folders{list-style:none;counter-reset:f;display:grid;gap:0;margin-bottom:26px}
@@ -344,7 +356,7 @@ h2{font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:600;letter-spac
 .go{margin-top:6px;text-align:center;font-weight:600;font-size:15px;color:var(--ink);background:linear-gradient(135deg,#e6c98f,#c8a96a);border-radius:12px;padding:14px}
 .win figcaption{font-size:12px;color:var(--muted);padding:0 22px 16px}
 
-/* Tiempo */
+/* Time */
 .vs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .vs>div{border-radius:22px;padding:32px}
 .vs h3{font:600 20px var(--display);margin-bottom:16px}
@@ -357,7 +369,7 @@ h2{font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:600;letter-spac
 .vs-b p{margin-top:22px;font:600 19px var(--display);color:var(--gold-light)}
 @media (max-width:900px){.wrap.two,.vs{grid-template-columns:1fr;gap:16px}.wrap.two{gap:36px}}
 
-/* Pasos */
+/* Steps */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;counter-reset:s}
 .step{padding:0 32px 0 0;position:relative}
 .step:before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid var(--gold);color:var(--gold-light);font:700 17px var(--display);margin-bottom:20px;background:var(--bg);position:relative;z-index:1}
@@ -367,7 +379,7 @@ h2{font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:600;letter-spac
 .step p{color:var(--muted);font-size:15px;max-width:30ch}
 .note{margin-top:44px;padding:18px 22px;border:1px solid var(--line);border-radius:14px;color:var(--muted);font-size:14px;max-width:72ch}
 
-/* Tarifas */
+/* Pricing */
 .pricing{position:relative;overflow:hidden;background:var(--bg-2);border-block:1px solid var(--line)}
 .pricing:before{content:"";position:absolute;left:50%;top:0;width:640px;height:420px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(200,169,106,.14),transparent 70%);pointer-events:none}
 .pricing .wrap{position:relative}
@@ -391,7 +403,7 @@ h2{font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:600;letter-spac
 .cond p:before{content:"";position:absolute;left:0;top:.65em;width:5px;height:5px;border-radius:50%;background:var(--gold)}
 .cond strong{color:var(--text);font-weight:600}
 
-/* Eyebrow y preguntas frecuentes */
+/* Eyebrow and FAQ */
 .eyebrow{display:inline-block;font:600 12.5px/1 var(--body);letter-spacing:.9px;text-transform:uppercase;color:var(--gold-light);border:1px solid var(--line-strong);border-radius:99px;padding:8px 14px;margin-bottom:22px}
 .faq .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
 .faq h2{max-width:14ch}
@@ -406,7 +418,7 @@ h2{font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:600;letter-spac
 .qa p{color:var(--muted);font-size:15.5px;padding:0 44px 22px 0;max-width:64ch}
 @media (max-width:900px){.faq .wrap{grid-template-columns:1fr;gap:28px}}
 
-/* Contacto */
+/* Contact */
 .contact .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start}
 .contact h2{max-width:14ch}
 .contact .intro{margin-bottom:28px}
@@ -442,7 +454,7 @@ footer .legal a:hover{color:var(--gold-light)}
 footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px}
 
 @media (max-width:900px){
-  nav a:not(.btn){display:none}
+  nav a:not(.btn):not(.lang){display:none}
   .hero{padding:56px 0 64px}
   .hero .wrap,.report .wrap,.contact .wrap{grid-template-columns:1fr;gap:40px}
   section{padding:64px 0}
@@ -467,13 +479,14 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
 <header>
   <div class="wrap bar">
     <a class="brand" href="#"><img src="logo.png" alt="">LiDrift</a>
-    <nav aria-label="Principal">
-      <a href="#como">Cómo funciona</a>
-      <a href="#resultado">Resultados</a>
-      <a href="#informe">Informe</a>
-      <a href="#tarifas">Tarifas</a>
-      <a href="#preguntas">Preguntas</a>
-      <a href="#contacto" class="btn solid small">Pedir prueba gratuita</a>
+    <nav aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#results">Results</a>
+      <a href="#report">Report</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a class="lang" href="es/" hreflang="es" lang="es" title="Español" aria-label="Ver esta web en español"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3z"/></svg>ES</a>
+      <a href="#contact" class="btn solid small"><span class="nav-lg">Request a free trial</span><span class="nav-sm">Free trial</span></a>
     </nav>
   </div>
 </header>
@@ -482,48 +495,48 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
 <div class="hero">
   <div class="wrap">
     <div>
-      <p class="eyebrow">Software de ajuste de pasadas LiDAR</p>
-      <h1>Pasadas LiDAR alineadas, con el informe de calidad listo para el cliente</h1>
-      <p class="lead">LiDrift alinea en cota y planta las pasadas de cualquier vuelo LiDAR, sea con dron, avión o helicóptero. Toma como referencia el propio terreno y los rasgos que detecta: tejados, taludes y otras estructuras. No necesita puntos de control, aunque los admite si los tienes. Eliges tres carpetas en una interfaz gráfica, sin escribir ninguna línea de código.</p>
+      <p class="eyebrow">LiDAR strip adjustment software</p>
+      <h1>Aligned LiDAR strips, with the quality report ready for your client</h1>
+      <p class="lead">LiDrift aligns the strips of any LiDAR flight, whether flown by drone, plane or helicopter, both vertically and horizontally. It uses the terrain itself and the features it detects as a reference: roofs, embankments and other structures. It needs no ground control points, although it accepts them if you have them. You choose three folders in a graphical interface, without writing a single line of code.</p>
       <div class="actions">
-        <a class="btn solid" href="#contacto">Pedir prueba gratuita</a>
-        <a class="btn" href="#tarifas">Ver tarifas</a>
+        <a class="btn solid" href="#contact">Request a free trial</a>
+        <a class="btn" href="#pricing">View pricing</a>
       </div>
       <div class="facts">
-        <span>Procesado 100 % local</span>
-        <span>Dron, avión o helicóptero</span>
-        <span>Acepta LAS y LAZ</span>
-        <span>Sin escribir ninguna línea de código</span>
-        <span>GCP opcionales</span>
+        <span>100% local processing</span>
+        <span>Drone, plane or helicopter</span>
+        <span>Accepts LAS and LAZ</span>
+        <span>No code to write</span>
+        <span>Optional GCPs</span>
       </div>
     </div>
 
     <figure class="demo">
       <div class="demo-top">
-        <div class="seg" role="group" aria-label="Estado de las pasadas">
-          <button type="button" id="b0" aria-pressed="true">Sin ajustar</button>
-          <button type="button" id="b1" aria-pressed="false">Ajustado</button>
+        <div class="seg" role="group" aria-label="Strip status">
+          <button type="button" id="b0" aria-pressed="true">Unadjusted</button>
+          <button type="button" id="b1" aria-pressed="false">Adjusted</button>
         </div>
-        <div class="readout"><b id="rms">2,0 m</b>discrepancia entre pasadas</div>
+        <div class="readout"><b id="rms">2.0 m</b>strip-to-strip discrepancy</div>
       </div>
-      <canvas id="cv" role="img" aria-label="Perfil con dos tejados y suelo en pendiente en el que cuatro pasadas LiDAR se superponen tras el ajuste"></canvas>
+      <canvas id="cv" role="img" aria-label="Profile with two roofs and sloping ground in which four LiDAR strips overlap after adjustment"></canvas>
       <figcaption>
-        <span class="legend"><span><i style="background:#c8a96a"></i>Pasada 1</span><span><i style="background:#f3e6c4"></i>Pasada 2</span><span><i style="background:#8fb8c9"></i>Pasada 3</span><span><i style="background:#d9896b"></i>Pasada 4</span></span>
-        <span>Simulación ilustrativa: perfil en una zona de solape</span>
+        <span class="legend"><span><i style="background:#c8a96a"></i>Strip 1</span><span><i style="background:#f3e6c4"></i>Strip 2</span><span><i style="background:#8fb8c9"></i>Strip 3</span><span><i style="background:#d9896b"></i>Strip 4</span></span>
+        <span>Illustrative simulation: profile across an overlap area</span>
       </figcaption>
     </figure>
   </div>
 </div>
 
-<section id="como">
+<section id="how">
   <div class="wrap">
-    <h2>Pensado para ser directo</h2>
-    <p class="intro">Ajustar las pasadas de un vuelo suele significar montar un proyecto, clasificar la nube, configurar parámetros y dedicar a un técnico especializado, y aún falta preparar un informe que el cliente pueda leer. <strong>LiDrift hace el ajuste y el informe de calidad con solo elegir tres carpetas.</strong></p>
+    <h2>Built to be straightforward</h2>
+    <p class="intro">Adjusting the strips of a flight usually means setting up a project, classifying the point cloud, configuring parameters and dedicating a specialist technician, and you still have to prepare a report your client can read. <strong>LiDrift does the adjustment and the quality report just by choosing three folders.</strong></p>
     <div class="bento">
       <div class="cell">
-        <svg viewBox="0 0 400 100" fill="none" aria-hidden="true"><rect x="8" y="14" width="104" height="72" rx="12" stroke="#c8a96a" stroke-width="1.6" fill="rgba(200,169,106,.06)"/><g transform="translate(46 26)"><path d="M0 3a3 3 0 0 1 3-3h7l3 3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3z" stroke="#c8a96a" stroke-width="1.8" fill="rgba(200,169,106,.1)"/></g><text x="60" y="74" text-anchor="middle" fill="#f1ece0" font-size="10.5" font-weight="600" font-family="Inter,sans-serif">Entrada (LAS/LAZ)</text><path d="M127 44l6 6-6 6" stroke="#c8a96a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="148" y="14" width="104" height="72" rx="12" stroke="#c8a96a" stroke-width="1.6" fill="rgba(200,169,106,.06)"/><g transform="translate(186 26)"><path d="M0 3a3 3 0 0 1 3-3h7l3 3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3z" stroke="#c8a96a" stroke-width="1.8" fill="rgba(200,169,106,.1)"/></g><text x="200" y="74" text-anchor="middle" fill="#f1ece0" font-size="11.5" font-weight="600" font-family="Inter,sans-serif">Trayectorias</text><path d="M267 44l6 6-6 6" stroke="#c8a96a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="288" y="14" width="104" height="72" rx="12" stroke="#e6c98f" stroke-width="1.6" fill="rgba(230,201,143,.1)"/><g transform="translate(326 26)"><path d="M0 3a3 3 0 0 1 3-3h7l3 3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3z" stroke="#e6c98f" stroke-width="1.8" fill="rgba(200,169,106,.1)"/></g><text x="340" y="74" text-anchor="middle" fill="#f1ece0" font-size="11.5" font-weight="600" font-family="Inter,sans-serif">Salida</text></svg>
-        <h3>Sin proyectos, sin clasificación, sin escribir código</h3>
-        <p>Eliges la carpeta de LAS o LAZ, la de trayectorias y la de salida desde una interfaz gráfica. No hay que crear proyectos, clasificar la nube ni escribir ninguna línea de código.</p>
+        <svg viewBox="0 0 400 100" fill="none" aria-hidden="true"><rect x="8" y="14" width="104" height="72" rx="12" stroke="#c8a96a" stroke-width="1.6" fill="rgba(200,169,106,.06)"/><g transform="translate(46 26)"><path d="M0 3a3 3 0 0 1 3-3h7l3 3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3z" stroke="#c8a96a" stroke-width="1.8" fill="rgba(200,169,106,.1)"/></g><text x="60" y="74" text-anchor="middle" fill="#f1ece0" font-size="10.5" font-weight="600" font-family="Inter,sans-serif">Input (LAS/LAZ)</text><path d="M127 44l6 6-6 6" stroke="#c8a96a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="148" y="14" width="104" height="72" rx="12" stroke="#c8a96a" stroke-width="1.6" fill="rgba(200,169,106,.06)"/><g transform="translate(186 26)"><path d="M0 3a3 3 0 0 1 3-3h7l3 3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3z" stroke="#c8a96a" stroke-width="1.8" fill="rgba(200,169,106,.1)"/></g><text x="200" y="74" text-anchor="middle" fill="#f1ece0" font-size="11.5" font-weight="600" font-family="Inter,sans-serif">Trajectories</text><path d="M267 44l6 6-6 6" stroke="#c8a96a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="288" y="14" width="104" height="72" rx="12" stroke="#e6c98f" stroke-width="1.6" fill="rgba(230,201,143,.1)"/><g transform="translate(326 26)"><path d="M0 3a3 3 0 0 1 3-3h7l3 3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3z" stroke="#e6c98f" stroke-width="1.8" fill="rgba(200,169,106,.1)"/></g><text x="340" y="74" text-anchor="middle" fill="#f1ece0" font-size="11.5" font-weight="600" font-family="Inter,sans-serif">Output</text></svg>
+        <h3>No projects, no classification, no code</h3>
+        <p>You choose the folder with the LAS or LAZ files, the trajectories folder and the output folder from a graphical interface. There is no need to create projects, classify the point cloud or write a single line of code.</p>
       </div>
       <div class="cell">
         <svg viewBox="0 0 200 100" fill="none" aria-hidden="true">
@@ -534,10 +547,10 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
 <path d="M150 28C140 28 132 34 122 38" stroke="#c8a96a" stroke-width="1.6" stroke-dasharray="3 3" stroke-linecap="round"/>
 <path d="M30 84h140" stroke="#34302a" stroke-width="1.5"/>
 <path d="M100 78v12" stroke="#c8a96a" stroke-width="2" stroke-linecap="round"/>
-<text x="100" y="98" text-anchor="middle" fill="#a39d90" font-size="8.5" font-family="Inter,sans-serif">cota y planta</text>
+<text x="100" y="98" text-anchor="middle" fill="#a39d90" font-size="8.5" font-family="Inter,sans-serif">vertical + horizontal</text>
 </svg>
-        <h3>Ajuste entre pasadas</h3>
-        <p>Corrige cota y planta registrando las pasadas sobre el terreno y sus rasgos. GCP opcionales para anclaje absoluto.</p>
+        <h3>Strip-to-strip adjustment</h3>
+        <p>Corrects vertical and horizontal offsets by registering the strips against the terrain and its features. Optional GCPs for absolute anchoring.</p>
       </div>
       <div class="cell">
         <svg viewBox="0 0 200 100" fill="none" aria-hidden="true">
@@ -547,78 +560,78 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
 <g stroke="#e6c98f" stroke-width="1" opacity=".7"><path d="M120.5 37L186.5 45M119 48L185 56M117.5 59L183.5 67"/></g>
 <path d="M90 52h26M90 47v10M116 47v10" stroke="#8a8372" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="2 3"/>
 <text x="103" y="42" text-anchor="middle" fill="#a39d90" font-size="9" font-family="Inter,sans-serif">km</text>
-<text x="46" y="96" text-anchor="middle" fill="#e6c98f" font-size="9" font-weight="600" font-family="Inter,sans-serif">Zona 1</text>
-<text x="152" y="96" text-anchor="middle" fill="#e6c98f" font-size="9" font-weight="600" font-family="Inter,sans-serif">Zona 2</text>
+<text x="46" y="96" text-anchor="middle" fill="#e6c98f" font-size="9" font-weight="600" font-family="Inter,sans-serif">Zone 1</text>
+<text x="152" y="96" text-anchor="middle" fill="#e6c98f" font-size="9" font-weight="600" font-family="Inter,sans-serif">Zone 2</text>
 </svg>
-        <h3>Zonas independientes automáticas</h3>
-        <p>Detecta bloques separados por kilómetros en un mismo vuelo y ajusta cada zona por separado, con un informe por zona.</p>
+        <h3>Automatic independent zones</h3>
+        <p>Detects blocks that are kilometers apart within a single flight and adjusts each zone separately, with one report per zone.</p>
       </div>
       <div class="cell">
-        <svg viewBox="0 0 400 100" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="7" stroke="#c8a96a" stroke-width="1.6"/><path d="M10.8 14.2l2.4 2.6 4.4-5" stroke="#c8a96a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="30" y="18" fill="#f1ece0" font-size="11.5" font-family="Inter,sans-serif">Proyecto 01</text><rect x="130" y="10" width="260" height="8" rx="4" fill="#2b261e"/><rect x="130" y="10" width="260" height="8" rx="4" fill="#c8a96a"/><circle cx="14" cy="38" r="7" stroke="#c8a96a" stroke-width="1.6"/><path d="M10.8 38.2l2.4 2.6 4.4-5" stroke="#c8a96a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="30" y="42" fill="#f1ece0" font-size="11.5" font-family="Inter,sans-serif">Proyecto 02</text><rect x="130" y="34" width="260" height="8" rx="4" fill="#2b261e"/><rect x="130" y="34" width="260" height="8" rx="4" fill="#c8a96a"/><circle cx="14" cy="62" r="7" stroke="#e6c98f" stroke-width="1.6" stroke-dasharray="4 3"/><circle cx="14" cy="62" r="2.4" fill="#e6c98f"/><text x="30" y="66" fill="#f1ece0" font-size="11.5" font-family="Inter,sans-serif">Proyecto 03</text><rect x="130" y="58" width="260" height="8" rx="4" fill="#2b261e"/><rect x="130" y="58" width="161" height="8" rx="4" fill="#e6c98f"/><circle cx="14" cy="86" r="7" stroke="#5d584d" stroke-width="1.6"/><text x="30" y="90" fill="#8a8372" font-size="11.5" font-family="Inter,sans-serif">Proyecto 04</text><rect x="130" y="82" width="260" height="8" rx="4" fill="#2b261e"/></svg>
-        <h3>Proceso por lotes</h3>
-        <p>Encadena decenas de proyectos de una sola tirada, adaptándose a los recursos del equipo sin saturarlo.</p>
+        <svg viewBox="0 0 400 100" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="7" stroke="#c8a96a" stroke-width="1.6"/><path d="M10.8 14.2l2.4 2.6 4.4-5" stroke="#c8a96a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="30" y="18" fill="#f1ece0" font-size="11.5" font-family="Inter,sans-serif">Project 01</text><rect x="130" y="10" width="260" height="8" rx="4" fill="#2b261e"/><rect x="130" y="10" width="260" height="8" rx="4" fill="#c8a96a"/><circle cx="14" cy="38" r="7" stroke="#c8a96a" stroke-width="1.6"/><path d="M10.8 38.2l2.4 2.6 4.4-5" stroke="#c8a96a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="30" y="42" fill="#f1ece0" font-size="11.5" font-family="Inter,sans-serif">Project 02</text><rect x="130" y="34" width="260" height="8" rx="4" fill="#2b261e"/><rect x="130" y="34" width="260" height="8" rx="4" fill="#c8a96a"/><circle cx="14" cy="62" r="7" stroke="#e6c98f" stroke-width="1.6" stroke-dasharray="4 3"/><circle cx="14" cy="62" r="2.4" fill="#e6c98f"/><text x="30" y="66" fill="#f1ece0" font-size="11.5" font-family="Inter,sans-serif">Project 03</text><rect x="130" y="58" width="260" height="8" rx="4" fill="#2b261e"/><rect x="130" y="58" width="161" height="8" rx="4" fill="#e6c98f"/><circle cx="14" cy="86" r="7" stroke="#5d584d" stroke-width="1.6"/><text x="30" y="90" fill="#8a8372" font-size="11.5" font-family="Inter,sans-serif">Project 04</text><rect x="130" y="82" width="260" height="8" rx="4" fill="#2b261e"/></svg>
+        <h3>Batch processing</h3>
+        <p>Chains dozens of projects in a single run, adapting to your machine's resources without overloading it.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="cmp-sec" id="resultado">
+<section class="cmp-sec" id="results">
   <div class="wrap">
     <div>
-      <h2>Con la nube bien ajustada, todo lo que sale de ella mejora</h2>
-      <p class="intro">Mismo vuelo, dos productos. Desliza para pasar del modelo de superficie al de terreno y comprueba lo que se ve cuando las pasadas están bien ajustadas.</p>
+      <h2>With a well-adjusted point cloud, everything derived from it gets better</h2>
+      <p class="intro">Same flight, two products. Slide to switch from the surface model to the terrain model and see what you get when the strips are properly adjusted.</p>
       <ul class="gains">
-        <li><b>Productos que salen bien a la primera</b><span>Modelos de superficie y de terreno limpios, listos para entregar.</span></li>
-        <li><b>Clasificación más fiable</b><span>Los algoritmos separan mejor el suelo de la vegetación y las estructuras.</span></li>
-        <li><b>Sin saltos entre pasadas</b><span>Las zonas de solape son continuas, sin franjas ni líneas de unión.</span></li>
-        <li><b>MDT sin escalones</b><span>Cauces, taludes y microrrelieve se leen con nitidez.</span></li>
+        <li><b>Deliverables that come out right the first time</b><span>Clean surface and terrain models, ready to deliver.</span></li>
+        <li><b>More reliable classification</b><span>Algorithms separate the ground from vegetation and structures more accurately.</span></li>
+        <li><b>No steps between strips</b><span>Overlap areas are continuous, with no banding or seam lines.</span></li>
+        <li><b>DTM without steps</b><span>Stream channels, embankments and micro-relief read crisply.</span></li>
       </ul>
     </div>
     <div class="cmp-card">
       <div class="cmp-top">
-        <div class="seg" role="group" aria-label="Zona de ejemplo">
-          <button type="button" id="z1" aria-pressed="true">Bosque y cauces</button>
-          <button type="button" id="z2" aria-pressed="false">Relieve bajo bosque denso</button>
+        <div class="seg" role="group" aria-label="Example area">
+          <button type="button" id="z1" aria-pressed="true">Forest and streams</button>
+          <button type="button" id="z2" aria-pressed="false">Terrain under dense forest</button>
         </div>
       </div>
       <div class="cmp" id="cmp">
-        <img id="im-b" src="img/mdt1.jpg" alt="Modelo digital del terreno (MDT) generado a partir de una nube LiDAR ajustada con LiDrift" loading="lazy" decoding="async" draggable="false">
-        <img id="im-t" class="top" src="img/mds1.jpg" alt="Modelo digital de superficie (MDS) generado a partir de una nube LiDAR ajustada con LiDrift" loading="lazy" decoding="async" draggable="false">
-        <span class="tg l">MDS<small>Superficie</small></span>
-        <span class="tg r">MDT<small>Terreno</small></span>
+        <img id="im-b" src="img/mdt1.jpg" alt="Digital terrain model (DTM) generated from a LiDAR point cloud adjusted with LiDrift" loading="lazy" decoding="async" draggable="false">
+        <img id="im-t" class="top" src="img/mds1.jpg" alt="Digital surface model (DSM) generated from a LiDAR point cloud adjusted with LiDrift" loading="lazy" decoding="async" draggable="false">
+        <span class="tg l">DSM<small>Surface</small></span>
+        <span class="tg r">DTM<small>Terrain</small></span>
         <div class="hd" aria-hidden="true"><i><svg viewBox="0 0 24 24" fill="none" stroke="#e6c98f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></i></div>
-        <input type="range" id="rg" min="0" max="100" value="50" aria-label="Comparar modelo de superficie (MDS) y de terreno (MDT)">
+        <input type="range" id="rg" min="0" max="100" value="50" aria-label="Compare surface model (DSM) and terrain model (DTM)">
       </div>
-      <p class="cmp-note">Modelos digitales de superficie (MDS) y de terreno (MDT) generados a partir de una nube LiDAR ajustada con LiDrift.</p>
+      <p class="cmp-note">Digital surface models (DSM) and digital terrain models (DTM) generated from a LiDAR point cloud adjusted with LiDrift.</p>
     </div>
   </div>
 </section>
 
-<section class="report" id="informe">
+<section class="report" id="report">
   <div class="wrap">
     <div class="head">
-      <h2>Un informe de calidad listo para entregar al cliente</h2>
-      <p class="intro">Cada informe recoge las cifras de lo que había y de lo que queda, además de los datos del vuelo: longitud total, número de pasadas y puntos totales procesados. Si indicas un área de trabajo, añade también la cobertura y la densidad de puntos registradas sobre ella. Así el cliente ve la mejora con números.</p>
+      <h2>A quality report ready to hand to your client</h2>
+      <p class="intro">Each report records the figures for what was there and what remains, along with the flight data: total length, number of strips and total points processed. If you specify a work area, it also adds the coverage and point density recorded over it. That way your client sees the improvement in numbers.</p>
     </div>
 
-    <div class="rp" id="rp" role="group" aria-label="Ejemplo ilustrativo de informe de calidad">
-      <div class="rp-top"><b>Informe de calidad · Levantamiento LiDAR aéreo</b><span>Ejemplo ilustrativo</span></div>
+    <div class="rp" id="rp" role="group" aria-label="Illustrative example of a quality report">
+      <div class="rp-top"><b>Quality report · Airborne LiDAR survey</b><span>Illustrative example</span></div>
 
       <div class="kpis">
-        <div class="kpi"><b>1,4<small>cm</small></b><p>Diferencia de cota típica entre pasadas (mediana)</p></div>
-        <div class="kpi"><b>99<small>%</small></b><p>Superficie con diferencia entre pasadas ≤ 10 cm</p></div>
-        <div class="kpi"><b>0,7<small>cm</small></b><p>Coherencia horizontal entre pasadas</p></div>
-        <div class="kpi"><b>15,2<small>pts/m²</small></b><p>Densidad de pulsos (mediana)</p></div>
+        <div class="kpi"><b>1.4<small>cm</small></b><p>Typical height difference between strips (median)</p></div>
+        <div class="kpi"><b>99<small style="margin-left:1px">%</small></b><p>Area where the strip-to-strip difference is ≤ 10 cm</p></div>
+        <div class="kpi"><b>0.7<small>cm</small></b><p>Horizontal consistency between strips</p></div>
+        <div class="kpi"><b>15.2<small>pts/m²</small></b><p>Pulse density (median)</p></div>
       </div>
 
 
       <div class="rp-low">
         <div class="rp-box">
-          <h4>Reparto de la superficie con solape según la diferencia de cota entre pasadas</h4>
-          <div class="dist-body"><div class="d-row"><span class="d-lbl">Original</span><div class="d-bar"><i class="bseg c1" style="--w:6%"></i><i class="bseg c2" style="--w:5%"></i><i class="bseg c3" style="--w:11%">11 %</i><i class="bseg c4" style="--w:78%">78 %</i></div></div>
-          <div class="d-row"><span class="d-lbl">Entregado</span><div class="d-bar"><i class="bseg c1" style="--w:94%">94 %</i><i class="bseg c2" style="--w:5%"></i><i class="bseg c3" style="--w:1%"></i></div></div>
-          <div class="d-axis" aria-hidden="true"><span>0 %</span><span>25 %</span><span>50 %</span><span>75 %</span><span>100 %</span></div></div>
-          <ul class="rp-leg" aria-label="Leyenda">
+          <h4>Share of the overlap area by height difference between strips</h4>
+          <div class="dist-body"><div class="d-row"><span class="d-lbl">Original</span><div class="d-bar"><i class="bseg c1" style="--w:6%"></i><i class="bseg c2" style="--w:5%"></i><i class="bseg c3" style="--w:11%">11%</i><i class="bseg c4" style="--w:78%">78%</i></div></div>
+          <div class="d-row"><span class="d-lbl">Delivered</span><div class="d-bar"><i class="bseg c1" style="--w:94%">94%</i><i class="bseg c2" style="--w:5%"></i><i class="bseg c3" style="--w:1%"></i></div></div>
+          <div class="d-axis" aria-hidden="true"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div></div>
+          <ul class="rp-leg" aria-label="Legend">
         <li><i style="background:var(--c1)"></i>≤ 5 cm</li>
         <li><i style="background:var(--c2)"></i>5 – 10 cm</li>
         <li><i style="background:var(--c3)"></i>10 – 20 cm</li>
@@ -626,157 +639,157 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
       </ul>
         </div>
         <div class="rp-box">
-          <h4>Antes y después</h4>
-          <div class="ba"><b>Coherencia vertical entre pasadas</b><span>Diferencia de cota típica (mediana) donde se solapan dos pasadas</span><div class="ba-v"><s>43,1 cm</s><i aria-hidden="true">→</i><strong>1,4 cm</strong><em>31 veces menor</em></div></div>
-          <div class="ba"><b>Superficie homogénea</b><span>Parte del solape con diferencias de cota de 10 cm o menos</span><div class="ba-v"><s>11 %</s><i aria-hidden="true">→</i><strong>99 %</strong><em>+88 puntos</em></div></div>
+          <h4>Before and after</h4>
+          <div class="ba"><b>Vertical consistency between strips</b><span>Typical height difference (median) where two strips overlap</span><div class="ba-v"><s>43.1 cm</s><i aria-hidden="true">→</i><strong>1.4 cm</strong><em>31× smaller</em></div></div>
+          <div class="ba"><b>Uniform surface</b><span>Share of the overlap with height differences of 10 cm or less</span><div class="ba-v"><s>11%</s><i aria-hidden="true">→</i><strong>99%</strong><em>+88 points</em></div></div>
         </div>
       </div>
 
-      <p class="rp-note">La diferencia se mide solo donde se solapan dos o más pasadas, en celdas de terreno despejado de 2 m.</p>
-      <div class="rp-foot"><span>Longitud total del vuelo</span><span>Pasadas procesadas</span><span>Puntos totales procesados</span><span>Cobertura y densidad sobre tu área (opcional)</span><span>Coordenadas y alturas del propio archivo</span></div>
+      <p class="rp-note">The difference is measured only where two or more strips overlap, in 2 m cells of open ground.</p>
+      <div class="rp-foot"><span>Total flight length</span><span>Strips processed</span><span>Total points processed</span><span>Coverage and density over your area (optional)</span><span>Coordinates and heights from the file itself</span></div>
     </div>
   </div>
 </section>
 
-<section class="corr" id="correcciones">
+<section class="corr" id="corrections">
   <div class="wrap">
-    <h2>Corrige el sistema y cada pasada</h2>
-    <p class="intro">LiDrift calcula primero la calibración del sistema (boresight), común a todo el vuelo, y después la corrección propia de cada pasada. <strong>Todo queda documentado en el informe.</strong></p>
+    <h2>Corrections for the system and for every strip</h2>
+    <p class="intro">LiDrift first computes the system calibration (boresight), common to the whole flight, and then the correction specific to each strip. <strong>Everything is documented in the report.</strong></p>
     <div class="parts">
-      <figure class="part"><svg viewBox="0 0 140 90" fill="none" aria-hidden="true"><use href="#plane-front" x="46" y="36" width="48" height="18" fill="#5d584d"/><use href="#plane-front" x="46" y="36" width="48" height="18" fill="#e6c98f" transform="rotate(-16 70 46.2)"/><path d="M102 62C110 54 110 40 102 32" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/><path d="M38 32C30 40 30 54 38 62" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/></svg><figcaption><b>Roll</b><span>giro alrededor del eje de vuelo (alabeo)</span></figcaption></figure>
-      <figure class="part"><svg viewBox="0 0 140 90" fill="none" aria-hidden="true"><use href="#plane" x="47" y="22" width="46" height="46" fill="#5d584d"/><use href="#plane" x="47" y="22" width="46" height="46" fill="#e6c98f" transform="rotate(22 70 45)"/><path d="M50 16C62 6 80 6 91 15" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/></svg><figcaption><b>Heading</b><span>giro alrededor de la vertical (guiñada)</span></figcaption></figure>
-      <figure class="part"><svg viewBox="0 0 140 90" fill="none" aria-hidden="true"><use href="#plane" x="47" y="34" width="46" height="46" fill="#5d584d"/><use href="#plane" x="47" y="12" width="46" height="46" fill="#e6c98f"/><path d="M22 72V22" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/><path d="M118 72V22" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/></svg><figcaption><b>A lo largo del vuelo</b><span>desplazamiento hacia delante o atrás</span></figcaption></figure>
-      <figure class="part"><svg viewBox="0 0 140 90" fill="none" aria-hidden="true"><use href="#plane" x="34" y="22" width="46" height="46" fill="#5d584d"/><use href="#plane" x="60" y="22" width="46" height="46" fill="#e6c98f"/><path d="M36 12H104" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/><path d="M36 80H104" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/></svg><figcaption><b>A través del vuelo</b><span>desplazamiento hacia un lado</span></figcaption></figure>
-      <figure class="part"><svg viewBox="0 0 140 90" fill="none" aria-hidden="true"><use href="#plane-side" x="44" y="37" width="52" height="16.25" fill="#5d584d"/><use href="#plane-side" x="44" y="37" width="52" height="16.25" fill="#e6c98f" transform="rotate(-10 70 45.9)"/><path d="M108 60C116 52 116 40 108 32" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/><path d="M32 32C24 40 24 52 32 60" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/></svg><figcaption><b>Pitch</b><span>cabeceo: en el terreno se ve como «a lo largo»</span></figcaption></figure>
+      <figure class="part"><svg viewBox="0 0 140 90" fill="none" aria-hidden="true"><use href="#plane-front" x="46" y="36" width="48" height="18" fill="#5d584d"/><use href="#plane-front" x="46" y="36" width="48" height="18" fill="#e6c98f" transform="rotate(-16 70 46.2)"/><path d="M102 62C110 54 110 40 102 32" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/><path d="M38 32C30 40 30 54 38 62" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/></svg><figcaption><b>Roll</b><span>rotation about the flight axis</span></figcaption></figure>
+      <figure class="part"><svg viewBox="0 0 140 90" fill="none" aria-hidden="true"><use href="#plane" x="47" y="22" width="46" height="46" fill="#5d584d"/><use href="#plane" x="47" y="22" width="46" height="46" fill="#e6c98f" transform="rotate(22 70 45)"/><path d="M50 16C62 6 80 6 91 15" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/></svg><figcaption><b>Heading</b><span>rotation about the vertical axis (yaw)</span></figcaption></figure>
+      <figure class="part"><svg viewBox="0 0 140 90" fill="none" aria-hidden="true"><use href="#plane" x="47" y="34" width="46" height="46" fill="#5d584d"/><use href="#plane" x="47" y="12" width="46" height="46" fill="#e6c98f"/><path d="M22 72V22" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/><path d="M118 72V22" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/></svg><figcaption><b>Along track</b><span>shift forward or backward</span></figcaption></figure>
+      <figure class="part"><svg viewBox="0 0 140 90" fill="none" aria-hidden="true"><use href="#plane" x="34" y="22" width="46" height="46" fill="#5d584d"/><use href="#plane" x="60" y="22" width="46" height="46" fill="#e6c98f"/><path d="M36 12H104" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/><path d="M36 80H104" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/></svg><figcaption><b>Across track</b><span>sideways shift</span></figcaption></figure>
+      <figure class="part"><svg viewBox="0 0 140 90" fill="none" aria-hidden="true"><use href="#plane-side" x="44" y="37" width="52" height="16.25" fill="#5d584d"/><use href="#plane-side" x="44" y="37" width="52" height="16.25" fill="#e6c98f" transform="rotate(-10 70 45.9)"/><path d="M108 60C116 52 116 40 108 32" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/><path d="M32 32C24 40 24 52 32 60" stroke="#e6c98f" stroke-width="1.8" stroke-linecap="round" fill="none" marker-end="url(#ah)"/></svg><figcaption><b>Pitch</b><span>nose up or down: on the ground it shows up as an “along track” shift</span></figcaption></figure>
     </div>
-    <p class="key"><span><i style="background:#5d584d"></i>Sin corregir</span><span><i style="background:#e6c98f"></i>Corregido</span></p>
+    <p class="key"><span><i style="background:#5d584d"></i>Uncorrected</span><span><i style="background:#e6c98f"></i>Corrected</span></p>
   </div>
 </section>
 
-<section class="alt" id="sencillo">
+<section class="alt" id="simple">
   <div class="wrap two">
     <div>
-      <h2>Elige tres carpetas. Nada más.</h2>
-      <p class="intro">Sin escribir ninguna línea de código y sin preparar proyectos: todo se hace desde una interfaz gráfica.</p>
+      <h2>Choose three folders. That's it.</h2>
+      <p class="intro">No code to write and no projects to set up: everything is done from a graphical interface.</p>
       <ol class="folders">
-        <li><b>Carpeta de entrada</b><span>Los LAS o LAZ del vuelo.</span></li>
-        <li><b>Carpeta de trayectorias</b><span>Las trayectorias del vuelo (avión, helicóptero o dron).</span></li>
-        <li><b>Carpeta de salida</b><span>Aquí se guardan las pasadas ajustadas y el informe de calidad.</span></li>
+        <li><b>Input folder</b><span>The LAS or LAZ files of the flight.</span></li>
+        <li><b>Trajectories folder</b><span>The flight trajectories (plane, helicopter or drone).</span></li>
+        <li><b>Output folder</b><span>This is where the adjusted strips and the quality report are saved.</span></li>
       </ol>
-      <p class="note">Opcional: indica un área de trabajo y el informe añadirá la cobertura y la densidad sobre ella. El sistema de coordenadas y el tipo de altura se leen de la cabecera del archivo. El procesado es local: LiDrift no envía tus datos a ningún sitio.</p>
+      <p class="note">Optional: specify a work area and the report will add the coverage and density over it. The coordinate system and the height type are read from the file header. Processing is local: LiDrift does not send your data anywhere.</p>
     </div>
     <figure class="win">
       <div class="win-bar"><i></i><i></i><i></i><span>LiDrift</span></div>
       <div class="win-body">
-        <div class="pick"><label>Carpeta de entrada (LAS/LAZ)</label><div class="fld"><span>D:\Vuelo\Entrada</span><b>Elegir</b></div></div>
-        <div class="pick"><label>Carpeta de trayectorias</label><div class="fld"><span>D:\Vuelo\Trayectorias</span><b>Elegir</b></div></div>
-        <div class="pick"><label>Carpeta de salida</label><div class="fld"><span>D:\Vuelo\Salida</span><b>Elegir</b></div></div>
-        <div class="go">Ajustar pasadas</div>
+        <div class="pick"><label>Input folder (LAS/LAZ)</label><div class="fld"><span>D:\Flight\Input</span><b>Browse</b></div></div>
+        <div class="pick"><label>Trajectories folder</label><div class="fld"><span>D:\Flight\Trajectories</span><b>Browse</b></div></div>
+        <div class="pick"><label>Output folder</label><div class="fld"><span>D:\Flight\Output</span><b>Browse</b></div></div>
+        <div class="go">Adjust strips</div>
       </div>
-      <figcaption>Ilustración de la interfaz</figcaption>
+      <figcaption>Interface illustration</figcaption>
     </figure>
   </div>
 </section>
 
 <section class="time">
   <div class="wrap">
-    <h2>El tiempo de tu equipo, para otra cosa</h2>
-    <p class="intro">Preparar proyectos y datos suele ocupar a uno o varios técnicos. Con LiDrift ese trabajo desaparece: <strong>eliges las carpetas y el ajuste y el informe salen solos.</strong></p>
+    <h2>Your team's time, for something else</h2>
+    <p class="intro">Preparing projects and data usually ties up one or more technicians. With LiDrift that work disappears: <strong>you choose the folders and the adjustment and the report come out on their own.</strong></p>
     <div class="vs">
       <div class="vs-a">
-        <h3>Antes</h3>
-        <ul><li>Crear y configurar proyectos</li><li>Preparar y organizar los datos</li><li>Clasificar la nube previamente</li><li>Configurar parámetros para cada vuelo</li><li>Preparar el informe para el cliente</li></ul>
+        <h3>Before</h3>
+        <ul><li>Creating and configuring projects</li><li>Preparing and organizing the data</li><li>Classifying the point cloud beforehand</li><li>Setting parameters for each flight</li><li>Preparing the client report</li></ul>
       </div>
       <div class="vs-b">
-        <h3>Con LiDrift</h3>
-        <ul><li>Carpeta de entrada</li><li>Carpeta de trayectorias</li><li>Carpeta de salida</li></ul>
-        <p>Nada más. Sin escribir ninguna línea de código.</p>
+        <h3>With LiDrift</h3>
+        <ul><li>Input folder</li><li>Trajectories folder</li><li>Output folder</li></ul>
+        <p>That's it. No code to write.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="pricing" id="tarifas">
+<section class="pricing" id="pricing">
   <div class="wrap">
-    <h2>Una sola licencia</h2>
-    <p class="intro">Precio por puesto y año, con todo incluido y actualizaciones durante la vigencia.</p>
+    <h2>One license</h2>
+    <p class="intro">Price per seat per year, everything included, with updates for as long as the license lasts.</p>
     <div class="plan">
-      <div class="tag">PRECIO DE LANZAMIENTO</div>
+      <div class="tag">LAUNCH PRICE</div>
       <div class="plan-in">
-        <h3>Licencia anual por puesto</h3>
-        <div class="price"><sup>€</sup><b>800</b><span>/ año</span></div>
-        <p class="after">Después: <strong>1.500 € / año</strong>. Precios en euros, IVA no incluido.</p>
+        <h3>Annual license per seat</h3>
+        <div class="price"><sup>€</sup><b>800</b><span>/ year</span></div>
+        <p class="after">Then: <strong>€1,500 / year</strong>. Prices in euros, VAT not included.</p>
         <ul class="checks">
-          <li>Ajuste de pasadas (cota y planta)</li>
-          <li>Informe de calidad para el cliente</li>
-          <li>Zonas independientes automáticas</li>
-          <li>Proceso por lotes de muchos proyectos</li>
-          <li>Actualizaciones durante la licencia</li>
-          <li>Soporte por correo</li>
+          <li>Strip adjustment (vertical and horizontal)</li>
+          <li>Quality report for your client</li>
+          <li>Automatic independent zones</li>
+          <li>Batch processing of many projects</li>
+          <li>Updates throughout the license</li>
+          <li>Email support</li>
         </ul>
-        <a class="btn solid" href="#contacto">Pedir prueba gratuita</a>
+        <a class="btn solid" href="#contact">Request a free trial</a>
       </div>
     </div>
     <div class="cond">
-      <p><strong>Prueba gratuita</strong> sobre tus datos antes de decidir.</p>
-      <p>El <strong>precio de lanzamiento se respeta en las renovaciones</strong> de los primeros clientes. Descuento por varios puestos.</p>
-      <p>Licencia <strong>anual, por puesto</strong>, nominal e intransferible, para uso interno del cliente.</p>
-      <p>Oferta válida 30 días. Se aplica el IVA que corresponda según el país de facturación.</p>
+      <p><strong>Free trial</strong> on your own data before you decide.</p>
+      <p>The <strong>launch price is honored on renewals</strong> for the first customers. Discount for multiple seats.</p>
+      <p><strong>Annual, per-seat</strong> license, named and non-transferable, for the customer's internal use.</p>
+      <p>Offer valid for 30 days. VAT is applied as appropriate for the billing country.</p>
     </div>
   </div>
 </section>
 
-<section class="faq" id="preguntas">
+<section class="faq" id="faq">
   <div class="wrap">
     <div>
-      <h2>Preguntas frecuentes</h2>
-      <p class="intro">Lo que suelen preguntar antes de probar LiDrift con sus datos.</p>
+      <h2>Frequently asked questions</h2>
+      <p class="intro">What people usually ask before trying LiDrift on their own data.</p>
     </div>
     <div>
-      <details class="qa"><summary>¿Qué es el ajuste de pasadas LiDAR (strip adjustment)?</summary><p>Es corregir los pequeños errores de posición y orientación de cada pasada del vuelo para que las zonas de solape coincidan en cota y planta. LiDrift lo hace tomando como referencia el terreno y sus rasgos: tejados, taludes y otras estructuras.</p></details>
-      <details class="qa"><summary>¿Necesito puntos de control (GCP)?</summary><p>No. LiDrift ajusta las pasadas entre sí sin puntos de control. Si los tienes, los admite para el anclaje absoluto, y el informe añade entonces la exactitud vertical (error medio y RMSE contra los puntos de control).</p></details>
-      <details class="qa"><summary>¿Sirve para vuelos con dron, avión o helicóptero?</summary><p>Sí. LiDrift ajusta las pasadas de cualquier plataforma, siempre que tengas los archivos LAS o LAZ del vuelo y sus trayectorias.</p></details>
-      <details class="qa"><summary>¿Qué datos necesito para empezar?</summary><p>Los LAS o LAZ del vuelo y las trayectorias de la plataforma (avión, helicóptero o dron), cada uno en su carpeta, más una carpeta de salida. El sistema de coordenadas y el tipo de altura se leen de la cabecera del archivo.</p></details>
-      <details class="qa"><summary>¿Tengo que clasificar la nube o crear proyectos antes?</summary><p>No. No hay que crear proyectos, clasificar la nube ni escribir ninguna línea de código: eliges las tres carpetas desde una interfaz gráfica y LiDrift hace el resto.</p></details>
-      <details class="qa"><summary>¿Qué incluye el informe de calidad?</summary><p>Por cada zona, la coherencia entre pasadas antes y después del ajuste, la cobertura del solape y el número de pasadas, la densidad de pulsos y, si hay GCP, la exactitud vertical. También incluye los datos del vuelo: longitud total, pasadas y puntos totales procesados. Si indicas un área de trabajo, añade la cobertura y la densidad registradas sobre ella. Además, documenta las correcciones aplicadas a cada pasada.</p></details>
-      <details class="qa"><summary>¿Se envían mis datos a algún servidor?</summary><p>No. El procesado es 100 % local: LiDrift no envía tus datos a ningún sitio.</p></details>
-      <details class="qa"><summary>¿Puedo procesar varios proyectos o zonas a la vez?</summary><p>Sí. LiDrift detecta bloques separados por kilómetros en un mismo vuelo y ajusta cada zona por separado, con un informe por zona. Además, encadena decenas de proyectos de una sola tirada.</p></details>
-      <details class="qa"><summary>¿Cuánto cuesta y hay prueba gratuita?</summary><p>La licencia es anual y por puesto: 800 € al año como precio de lanzamiento y 1.500 € al año después, IVA no incluido. Puedes pedir una prueba gratuita sobre tus propios datos antes de decidir.</p></details>
+      <details class="qa"><summary>What is LiDAR strip adjustment?</summary><p>It means correcting the small position and orientation errors of each strip in a flight so that the overlap areas match vertically and horizontally. LiDrift does it using the terrain and its features as a reference: roofs, embankments and other structures.</p></details>
+      <details class="qa"><summary>Do I need ground control points (GCPs)?</summary><p>No. LiDrift adjusts the strips to one another without control points. If you have them, it accepts them for absolute anchoring, and the report then adds the vertical accuracy (mean error and RMSE against the control points).</p></details>
+      <details class="qa"><summary>Does it work for drone, plane and helicopter flights?</summary><p>Yes. LiDrift adjusts the strips from any platform, as long as you have the LAS or LAZ files of the flight and their trajectories.</p></details>
+      <details class="qa"><summary>What data do I need to get started?</summary><p>The LAS or LAZ files of the flight and the trajectories of the platform (plane, helicopter or drone), each in its own folder, plus an output folder. The coordinate system and the height type are read from the file header.</p></details>
+      <details class="qa"><summary>Do I need to classify the point cloud or set up projects first?</summary><p>No. There is no need to create projects, classify the point cloud or write a single line of code: you choose the three folders in a graphical interface and LiDrift does the rest.</p></details>
+      <details class="qa"><summary>What does the quality report include?</summary><p>For each zone: the consistency between strips before and after adjustment, the overlap coverage and the number of strips, the pulse density and, if you use GCPs, the vertical accuracy. It also includes the flight data: total length, strips and total points processed. If you specify a work area, it adds the coverage and density recorded over it. It also documents the corrections applied to each strip.</p></details>
+      <details class="qa"><summary>Is my data sent to any server?</summary><p>No. Processing is 100% local: LiDrift does not send your data anywhere.</p></details>
+      <details class="qa"><summary>Can I process several projects or zones at once?</summary><p>Yes. LiDrift detects blocks that are kilometers apart within a single flight and adjusts each zone separately, with one report per zone. It can also chain dozens of projects in a single run.</p></details>
+      <details class="qa"><summary>How much does it cost, and is there a free trial?</summary><p>The license is annual and per seat: €800 per year as the launch price and €1,500 per year afterwards, VAT not included. You can request a free trial on your own data before you decide.</p></details>
     </div>
   </div>
 </section>
 
-<section class="contact alt" id="contacto">
+<section class="contact alt" id="contact">
   <div class="wrap">
     <div>
-      <h2>Pruébalo con tus propios datos</h2>
-      <p class="intro">Cuéntanos el tamaño aproximado de tu proyecto y te preparamos una prueba gratuita.</p>
-      <p class="direct">¿Prefieres escribirnos directamente? <a href="mailto:info@lidrift.com">info@lidrift.com</a></p>
+      <h2>Try it on your own data</h2>
+      <p class="intro">Tell us roughly how big your project is and we will prepare a free trial for you.</p>
+      <p class="direct">Prefer to write to us directly? <a href="mailto:info@lidrift.com">info@lidrift.com</a></p>
     </div>
 
     <form class="form" id="form" action="https://api.web3forms.com/submit" method="POST" novalidate>
       <input type="hidden" name="access_key" value="eb8ac132-9169-4ef6-af52-e2d30bf46c61">
-      <input type="hidden" name="subject" value="Nueva solicitud de prueba gratuita – LiDrift">
+      <input type="hidden" name="subject" value="Nueva solicitud de prueba gratuita – LiDrift [EN]">
       <input type="hidden" name="from_name" value="Web LiDrift">
       <input class="hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-      <div class="field"><label for="f-name">Nombre</label><input id="f-name" name="nombre" type="text" autocomplete="name" required placeholder="Tu nombre"></div>
-      <div class="field"><label for="f-mail">Correo electrónico</label><input id="f-mail" name="email" type="email" autocomplete="email" required placeholder="tu@empresa.com"></div>
-      <div class="field"><label for="f-co">Empresa</label><input id="f-co" name="empresa" type="text" autocomplete="organization" placeholder="Opcional"></div>
+      <div class="field"><label for="f-name">Name</label><input id="f-name" name="nombre" type="text" autocomplete="name" required placeholder="Your name"></div>
+      <div class="field"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email" required placeholder="you@company.com"></div>
+      <div class="field"><label for="f-co">Company</label><input id="f-co" name="empresa" type="text" autocomplete="organization" placeholder="Optional"></div>
       <div class="field">
-        <label for="f-size">Tamaño aproximado del proyecto</label>
+        <label for="f-size">Approximate project size</label>
         <select id="f-size" name="tamano">
-          <option value="">Selecciona…</option>
-          <option>Menos de 50 GB</option>
+          <option value="">Select…</option>
+          <option>Less than 50 GB</option>
           <option>50 – 500 GB</option>
-          <option>Más de 500 GB</option>
-          <option>Aún no lo sé</option>
+          <option>More than 500 GB</option>
+          <option>I don't know yet</option>
         </select>
       </div>
-      <div class="field full"><label for="f-msg">Mensaje</label><textarea id="f-msg" name="mensaje" placeholder="Sensor, tipo de vuelo, qué te gustaría comprobar…"></textarea></div>
-      <label class="consent"><input type="checkbox" id="f-ok" required>Acepto que LiDrift use estos datos solo para responder a mi solicitud.</label>
+      <div class="field full"><label for="f-msg">Message</label><textarea id="f-msg" name="mensaje" placeholder="Sensor, type of flight, what you would like to check…"></textarea></div>
+      <label class="consent"><input type="checkbox" id="f-ok" required>I agree to LiDrift using this data only to respond to my request.</label>
       <div class="submit">
-        <button class="btn solid" type="submit" id="send">Enviar solicitud</button>
+        <button class="btn solid" type="submit" id="send">Send request</button>
         <span class="status" id="status" role="status" aria-live="polite"></span>
       </div>
     </form>
@@ -787,40 +800,41 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
 <footer>
   <div class="wrap">
     <a class="brand" href="#"><img src="logo.png" alt="">LiDrift</a>
-    <span>Sin proyectos, sin clasificar, sin escribir código: tres carpetas y listo.</span>
-    <nav class="legal" aria-label="Legal"><a href="aviso-legal.html">Aviso legal</a><a href="privacidad.html">Política de privacidad</a><a href="privacidad.html#cookies">Cookies</a></nav>
+    <span>No projects, no classification, no code: three folders and you're done.</span>
+    <nav class="legal" aria-label="Legal"><a href="legal-notice.html">Legal notice</a><a href="privacy.html">Privacy policy</a><a href="privacy.html#cookies">Cookies</a></nav>
   </div>
   <div class="wrap copy">© 2026 LiDrift</div>
 </footer>
 
 <script>
-/* ---------- Demostración: perfil con árbol, tejado y estructura, antes / después del ajuste ---------- */
+/* ---------- Demo: profile with tree, roof and structure, before / after adjustment ---------- */
 (function(){
   var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+  var DEC=document.documentElement.lang==='es'?',':'.';
   var b0=document.getElementById('b0'),b1=document.getElementById('b1'),out=document.getElementById('rms');
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var colors=['#c8a96a','#f3e6c4','#8fb8c9','#d9896b'];
-  /* desplazamiento por pasada: dx (planta), dz (cota), tilt (inclinación a lo largo del perfil) */
-  /* cada pasada se desvía en una dirección distinta: izquierda, derecha, arriba, abajo */
+  /* offset per strip: dx (horizontal), dz (height), tl (tilt along the profile) */
+  /* each strip drifts in a different direction: left, right, up, down */
   var base=[{dx:-17,dz:4,tl:3},{dx:19,dz:-13,tl:-6},{dx:3,dz:12,tl:5},{dx:10,dz:6,tl:-2}];
   var t=0,target=0,raf=null,W=0,H=0,dpr=1,swaths=[];
 
   function rng(s){return function(){s|=0;s=s+0x6D2B79F5|0;var r=Math.imul(s^s>>>15,1|s);r=r+Math.imul(r^r>>>7,61|r)^r;return((r^r>>>14)>>>0)/4294967296}}
 
-  /* geometría tomada del perfil de referencia (px de la imagen original, 1487x665) */
+  /* geometry taken from the reference profile (px of the original image, 1487x665) */
   var X0=250,XW=1237,Y0=190,YH=310;
   function nx(x){return (x-X0)/XW}
   function ny(y){return .22+(y-Y0)/YH*.58}
-  /* ps: por pasada [nº de puntos, desde, hasta] (fracción del recorrido). Cada pasada solo captura lo que realmente vio. */
+  /* ps: per strip [number of points, from, to] (fraction of the path). Each strip only captures what it actually saw. */
   var GEO=[
-    {z:2.5,p:[[250,416.7],[540,424.6]],ps:{0:[130,0,1],1:[110,0,1],2:[95,0,1],3:[130,0,1]}},   /* suelo izquierdo */
-    {z:2.5,p:[[705,436],[797,437]],ps:{0:[22,0,1],3:[20,0,1]}},                                /* suelo junto a la casa */
-    {z:2.5,p:[[1010,447],[1487,485]],ps:{0:[200,0,1],3:[190,0,1],1:[90,.3,1]}},                /* suelo derecho en pendiente */
+    {z:2.5,p:[[250,416.7],[540,424.6]],ps:{0:[130,0,1],1:[110,0,1],2:[95,0,1],3:[130,0,1]}},   /* left ground */
+    {z:2.5,p:[[705,436],[797,437]],ps:{0:[22,0,1],3:[20,0,1]}},                                /* ground next to the house */
+    {z:2.5,p:[[1010,447],[1487,485]],ps:{0:[200,0,1],3:[190,0,1],1:[90,.3,1]}},                /* sloping right ground */
     {z:2.5,p:[[497,363],[505,335],[520,312],[545,275],[580,243],[614,220],[650,240],[690,275],[720,315],[738,350],[740,370]],
-      ps:{0:[105,0,1],1:[85,0,1],3:[90,0,1],2:[7,0,.18]}},                                     /* cubierta curva */
-    {z:2.5,p:[[775,305],[900,263],[1032,307]],ps:{0:[95,0,1],1:[80,0,1],3:[90,0,1]}},          /* tejado a dos aguas */
-    {z:1.5,p:[[795,345],[795,437]],ps:{1:[26,0,1]}},                                           /* pared izquierda: solo una pasada */
-    {z:1.5,p:[[1006,372],[1006,448]],ps:{3:[20,0,1]}}                                          /* pared derecha: solo otra pasada */
+      ps:{0:[105,0,1],1:[85,0,1],3:[90,0,1],2:[7,0,.18]}},                                     /* curved roof */
+    {z:2.5,p:[[775,305],[900,263],[1032,307]],ps:{0:[95,0,1],1:[80,0,1],3:[90,0,1]}},          /* gabled roof */
+    {z:1.5,p:[[795,345],[795,437]],ps:{1:[26,0,1]}},                                           /* left wall: only one strip */
+    {z:1.5,p:[[1006,372],[1006,448]],ps:{3:[20,0,1]}}                                          /* right wall: only another strip */
   ];
   function sample(poly,n,r,z,out,t0,t1){
     var i,j,L=[],tot=0,d,u;
@@ -837,13 +851,13 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
     for(var k=0;k<4;k++){
       var r=rng(21+k*131),pts=[],g,c,i;
       for(g=0;g<GEO.length;g++){c=GEO[g].ps[k];if(c)sample(GEO[g].p,c[0],r,GEO[g].z,pts,c[1],c[2])}
-      if(k===2)for(i=0;i<6;i++)pts.push([nx(758+r()*44),ny(240+r()*120)]); /* algunos retornos sueltos */
+      if(k===2)for(i=0;i<6;i++)pts.push([nx(758+r()*44),ny(240+r()*120)]); /* a few stray returns */
       swaths.push(pts);
     }
   }
   function fmt(m){
-    if(m>=1)return m.toFixed(1).replace('.',',')+' m';
-    var c=m*100;return (c>=10?Math.round(c)+'':c.toFixed(1).replace('.',','))+' cm';
+    if(m>=1)return m.toFixed(1).replace('.',DEC)+' m';
+    var c=m*100;return (c>=10?Math.round(c)+'':c.toFixed(1).replace('.',DEC))+' cm';
   }
   function size(){
     dpr=Math.min(window.devicePixelRatio||1,2);
@@ -854,7 +868,7 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
   function draw(){
     ctx.clearRect(0,0,W,H);
     var s=1-.993*t,mx=W*.03,uw=W-mx*2,i,k,j,p;
-    /* referencia: forma real del perfil */
+    /* reference: actual shape of the profile */
     ctx.strokeStyle='rgba(230,201,143,'+(.05+.12*t)+')';ctx.lineWidth=1;ctx.setLineDash([4,5]);
     for(i=0;i<GEO.length;i++){
       ctx.beginPath();
@@ -872,7 +886,7 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
       }
     }
     ctx.globalAlpha=1;
-    out.textContent=fmt(2*s);   /* 2 m de discrepancia antes, 1,4 cm después */
+    out.textContent=fmt(2*s);   /* 2 m of discrepancy before, 1.4 cm after */
   }
   function tick(now){
     var d=target-t;
@@ -891,7 +905,7 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
   setTimeout(function(){go(1)},reduce?0:1100);
 })();
 
-/* ---------- Deslizador MDS / MDT ---------- */
+/* ---------- DSM / DTM slider ---------- */
 (function(){
   var box=document.getElementById('cmp'),rg=document.getElementById('rg');
   var top=document.getElementById('im-t'),bot=document.getElementById('im-b');
@@ -906,7 +920,7 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
   }
   z1.onclick=function(){zone(0)};z2.onclick=function(){zone(1)};
   new Image().src=set[1].s;new Image().src=set[1].t;
-  /* una sola pasada de demostración al llegar a la sección */
+  /* a single demo sweep when the section comes into view */
   if(!reduce&&'IntersectionObserver' in window){
     var done=false,io=new IntersectionObserver(function(en){
       if(done||!en[0].isIntersecting)return;done=true;io.disconnect();
@@ -923,7 +937,7 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
   }
 })();
 
-/* ---------- Informe: barras que se llenan al llegar ---------- */
+/* ---------- Report: bars that fill up on arrival ---------- */
 (function(){
   var c=document.getElementById('rp');
   if(!c||!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
@@ -935,30 +949,30 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
   io.observe(c);
 })();
 
-/* ---------- Formulario de contacto (sin abrir el cliente de correo) ---------- */
+/* ---------- Contact form (without opening the email client) ---------- */
 (function(){
   var f=document.getElementById('form'),st=document.getElementById('status'),btn=document.getElementById('send');
-  var okHTML='<div class="sent" role="status"><div class="ok"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e6c98f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3>Solicitud enviada</h3><p>Gracias, te respondemos por correo en cuanto revisemos tu solicitud.</p></div>';
+  var okHTML='<div class="sent" role="status"><div class="ok"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e6c98f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3>Request sent</h3><p>Thank you, we will reply by email as soon as we have reviewed your request.</p></div>';
   f.addEventListener('submit',function(e){
     e.preventDefault();
     st.className='status';
     var name=f.nombre.value.trim(),mail=f.email.value.trim();
-    if(!name||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){st.className='status err';st.textContent='Revisa tu nombre y un correo válido.';return}
-    if(!document.getElementById('f-ok').checked){st.className='status err';st.textContent='Marca la casilla de consentimiento para enviar.';return}
+    if(!name||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){st.className='status err';st.textContent='Please check your name and enter a valid email address.';return}
+    if(!document.getElementById('f-ok').checked){st.className='status err';st.textContent='Please tick the consent box to send your request.';return}
     if(f.botcheck.checked){return}
-    btn.disabled=true;btn.textContent='Enviando…';st.textContent='';
+    btn.disabled=true;btn.textContent='Sending…';st.textContent='';
     var data={};
     new FormData(f).forEach(function(v,k){data[k]=v});
     data.name=data.nombre;
     fetch('https://api.web3forms.com/submit',{
       method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)
-    }).then(function(r){return r.json().catch(function(){return{success:false,message:'Respuesta no válida del servidor (código '+r.status+')'}})}).then(function(j){
-      if(j&&j.success){f.innerHTML=okHTML}else{throw new Error((j&&j.message)||'Error desconocido')}
+    }).then(function(r){return r.json().catch(function(){return{success:false,message:'Invalid response from the server (code '+r.status+')'}})}).then(function(j){
+      if(j&&j.success){f.innerHTML=okHTML}else{throw new Error((j&&j.message)||'Unknown error')}
     }).catch(function(err){
-      console.error('Formulario:',err);
-      var why=(err&&err.message&&err.message!=='Failed to fetch')?err.message:'No hay conexión con el servicio de envío (puede estar bloqueado por tu navegador o una extensión)';
-      btn.disabled=false;btn.textContent='Enviar solicitud';
-      st.className='status err';st.innerHTML='No se pudo enviar: '+why+'. Puedes escribir a <a href="mailto:info@lidrift.com" style="color:inherit;text-decoration:underline">info@lidrift.com</a>.';
+      console.error('Form:',err);
+      var why=(err&&err.message&&err.message!=='Failed to fetch')?err.message:'Could not connect to the sending service (it may be blocked by your browser or an extension)';
+      btn.disabled=false;btn.textContent='Send request';
+      st.className='status err';st.innerHTML='Could not send: '+why+'. You can email us at <a href="mailto:info@lidrift.com" style="color:inherit;text-decoration:underline">info@lidrift.com</a>.';
     });
   });
 })();

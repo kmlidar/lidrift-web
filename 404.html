@@ -1,18 +1,28 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Página no encontrada | LiDrift</title>
+<title>Page not found | LiDrift</title>
 <style>
 body{margin:0;min-height:100vh;display:grid;place-items:center;background:#14120f;color:#f1ece0;font-family:Inter,system-ui,sans-serif;text-align:center;padding:24px}
 h1{font-size:clamp(34px,6vw,56px);font-weight:600;letter-spacing:-1.4px;margin:0 0 12px}
 p{color:#a39d90;margin:0 0 28px}
 a{display:inline-block;text-decoration:none;font-weight:600;color:#14120f;background:linear-gradient(135deg,#e6c98f,#c8a96a);border-radius:999px;padding:14px 24px}
+[hidden]{display:none}
 </style>
 </head>
 <body>
-<main><h1>Esta página no existe</h1><p>Puede que el enlace esté roto o que la página se haya movido.</p><a href="/">Volver a LiDrift</a></main>
+<main>
+<div id="en"><h1>This page doesn't exist</h1><p>The link may be broken or the page may have moved.</p><a href="/">Back to LiDrift</a></div>
+<div id="es" hidden><h1>Esta página no existe</h1><p>Puede que el enlace esté roto o que la página se haya movido.</p><a href="/es/">Volver a LiDrift</a></div>
+</main>
+<script>
+if(location.pathname.indexOf('/es/')===0){
+  document.documentElement.lang='es';document.title='Página no encontrada | LiDrift';
+  document.getElementById('en').hidden=true;document.getElementById('es').hidden=false;
+}
+</script>
 </body>
 </html>
