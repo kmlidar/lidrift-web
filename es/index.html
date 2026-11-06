@@ -228,7 +228,7 @@ h1{font-size:clamp(34px,4.6vw,56px);line-height:1.08;font-weight:600;letter-spac
 .seg button[aria-pressed="true"]{background:var(--gold);color:var(--ink)}
 .readout{font-size:13px;color:var(--muted);text-align:right}
 .readout b{display:block;font:700 28px/1.05 var(--display);color:var(--gold-light);letter-spacing:-.5px;font-variant-numeric:tabular-nums}
-canvas{display:block;width:100%;height:280px;border-radius:14px;background:radial-gradient(120% 90% at 50% 0,#201c15,#16130f)}
+canvas{display:block;width:100%;height:auto;aspect-ratio:1507/540;border-radius:14px;background:radial-gradient(120% 90% at 50% 0,#201c15,#16130f)}
 .demo figcaption{font-size:12px;color:var(--muted);margin-top:10px;padding-inline:4px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .legend{display:flex;gap:14px}
 .legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:baseline}
@@ -467,7 +467,6 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
   .checks,.cond,.form{grid-template-columns:1fr}
   .plan-in{padding:40px 22px 28px}
   .price b{font-size:68px}
-  canvas{height:240px}
   .form{padding:24px 18px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
@@ -519,7 +518,7 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
         </div>
         <div class="readout"><b id="rms">2,0 m</b>discrepancia entre pasadas</div>
       </div>
-      <canvas id="cv" role="img" aria-label="Perfil con dos tejados y suelo en pendiente en el que cuatro pasadas LiDAR se superponen tras el ajuste"></canvas>
+      <canvas id="cv" role="img" aria-label="Perfil con un árbol, una cubierta curva y suelo en pendiente en el que cuatro pasadas LiDAR están desalineadas antes del ajuste y se superponen después"></canvas>
       <figcaption>
         <span class="legend"><span><i style="background:#c8a96a"></i>Pasada 1</span><span><i style="background:#f3e6c4"></i>Pasada 2</span><span><i style="background:#8fb8c9"></i>Pasada 3</span><span><i style="background:#d9896b"></i>Pasada 4</span></span>
         <span>Simulación ilustrativa: perfil en una zona de solape</span>
@@ -813,48 +812,10 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
   var DEC=document.documentElement.lang==='es'?',':'.';
   var b0=document.getElementById('b0'),b1=document.getElementById('b1'),out=document.getElementById('rms');
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var colors=['#c8a96a','#f3e6c4','#8fb8c9','#d9896b'];
-  /* desplazamiento por pasada: dx (planta), dz (cota), tilt (inclinación a lo largo del perfil) */
-  /* cada pasada se desvía en una dirección distinta: izquierda, derecha, arriba, abajo */
-  var base=[{dx:-17,dz:4,tl:3},{dx:19,dz:-13,tl:-6},{dx:3,dz:12,tl:5},{dx:10,dz:6,tl:-2}];
-  var t=0,target=0,raf=null,W=0,H=0,dpr=1,swaths=[];
+  /* real profile captures, recoloured with the site palette: [unadjusted, adjusted] */
+  var imgs=[new Image(),new Image()],loaded=0;
+  var t=0,target=0,raf=null,W=0,H=0,dpr=1;
 
-  function rng(s){return function(){s|=0;s=s+0x6D2B79F5|0;var r=Math.imul(s^s>>>15,1|s);r=r+Math.imul(r^r>>>7,61|r)^r;return((r^r>>>14)>>>0)/4294967296}}
-
-  /* geometría tomada del perfil de referencia (px de la imagen original, 1487x665) */
-  var X0=250,XW=1237,Y0=190,YH=310;
-  function nx(x){return (x-X0)/XW}
-  function ny(y){return .22+(y-Y0)/YH*.58}
-  /* ps: por pasada [nº de puntos, desde, hasta] (fracción del recorrido). Cada pasada solo captura lo que realmente vio. */
-  var GEO=[
-    {z:2.5,p:[[250,416.7],[540,424.6]],ps:{0:[130,0,1],1:[110,0,1],2:[95,0,1],3:[130,0,1]}},   /* suelo izquierdo */
-    {z:2.5,p:[[705,436],[797,437]],ps:{0:[22,0,1],3:[20,0,1]}},                                /* suelo junto a la casa */
-    {z:2.5,p:[[1010,447],[1487,485]],ps:{0:[200,0,1],3:[190,0,1],1:[90,.3,1]}},                /* suelo derecho en pendiente */
-    {z:2.5,p:[[497,363],[505,335],[520,312],[545,275],[580,243],[614,220],[650,240],[690,275],[720,315],[738,350],[740,370]],
-      ps:{0:[105,0,1],1:[85,0,1],3:[90,0,1],2:[7,0,.18]}},                                     /* cubierta curva */
-    {z:2.5,p:[[775,305],[900,263],[1032,307]],ps:{0:[95,0,1],1:[80,0,1],3:[90,0,1]}},          /* tejado a dos aguas */
-    {z:1.5,p:[[795,345],[795,437]],ps:{1:[26,0,1]}},                                           /* pared izquierda: solo una pasada */
-    {z:1.5,p:[[1006,372],[1006,448]],ps:{3:[20,0,1]}}                                          /* pared derecha: solo otra pasada */
-  ];
-  function sample(poly,n,r,z,out,t0,t1){
-    var i,j,L=[],tot=0,d,u;
-    for(i=0;i<poly.length-1;i++){d=Math.hypot(poly[i+1][0]-poly[i][0],poly[i+1][1]-poly[i][1]);L.push(d);tot+=d}
-    for(i=0;i<n;i++){
-      u=(t0+(t1-t0)*r())*tot;
-      for(j=0;j<L.length-1&&u>L[j];j++)u-=L[j];
-      var f=L[j]?u/L[j]:0,A=poly[j],B=poly[j+1];
-      out.push([nx(A[0]+(B[0]-A[0])*f+(r()-.5)*z),ny(A[1]+(B[1]-A[1])*f+(r()-.5)*z)]);
-    }
-  }
-  function build(){
-    swaths=[];
-    for(var k=0;k<4;k++){
-      var r=rng(21+k*131),pts=[],g,c,i;
-      for(g=0;g<GEO.length;g++){c=GEO[g].ps[k];if(c)sample(GEO[g].p,c[0],r,GEO[g].z,pts,c[1],c[2])}
-      if(k===2)for(i=0;i<6;i++)pts.push([nx(758+r()*44),ny(240+r()*120)]); /* algunos retornos sueltos */
-      swaths.push(pts);
-    }
-  }
   function fmt(m){
     if(m>=1)return m.toFixed(1).replace('.',DEC)+' m';
     var c=m*100;return (c>=10?Math.round(c)+'':c.toFixed(1).replace('.',DEC))+' cm';
@@ -867,27 +828,17 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
   }
   function draw(){
     ctx.clearRect(0,0,W,H);
-    var s=1-.993*t,mx=W*.03,uw=W-mx*2,i,k,j,p;
-    /* referencia: forma real del perfil */
-    ctx.strokeStyle='rgba(230,201,143,'+(.05+.12*t)+')';ctx.lineWidth=1;ctx.setLineDash([4,5]);
-    for(i=0;i<GEO.length;i++){
-      ctx.beginPath();
-      for(j=0;j<GEO[i].p.length;j++){var q=GEO[i].p[j],px=mx+nx(q[0])*uw,py=ny(q[1])*H;j?ctx.lineTo(px,py):ctx.moveTo(px,py)}
-      ctx.stroke();
+    var s=1-.993*t;
+    ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
+    if(loaded>1){
+      ctx.globalAlpha=1-t;ctx.drawImage(imgs[0],0,0,W,H);
+      ctx.globalAlpha=t;ctx.drawImage(imgs[1],0,0,W,H);
+      ctx.globalAlpha=1;
     }
-    ctx.setLineDash([]);
-    ctx.globalAlpha=.92;
-    for(k=0;k<4;k++){
-      ctx.fillStyle=colors[k];
-      var dx=base[k].dx*s*(W/520)*1.5,dz=base[k].dz*s*(H/280)*1.5,tl=base[k].tl*s*(H/280)*1.5;
-      for(j=0;j<swaths[k].length;j++){
-        p=swaths[k][j];
-        ctx.beginPath();ctx.arc(mx+p[0]*uw+dx,p[1]*H+dz+tl*(p[0]-.5),1.6,0,6.2832);ctx.fill();
-      }
-    }
-    ctx.globalAlpha=1;
     out.textContent=fmt(2*s);   /* 2 m de discrepancia antes, 1,4 cm después */
   }
+  imgs[0].onload=imgs[1].onload=function(){loaded++;draw()};
+  imgs[0].src='../img/lidar-sin-ajustar.png';imgs[1].src='../img/lidar-ajustado.png';
   function tick(now){
     var d=target-t;
     if(Math.abs(d)<.002){t=target;draw();raf=null;return}
@@ -900,7 +851,7 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
     if(!raf)raf=requestAnimationFrame(tick);
   }
   b0.onclick=function(){go(0)};b1.onclick=function(){go(1)};
-  build();size();
+  size();
   window.addEventListener('resize',size);
   setTimeout(function(){go(1)},reduce?0:1100);
 })();
