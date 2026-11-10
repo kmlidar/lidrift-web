@@ -37,6 +37,24 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://lidrift.com/legal-notice.html"/>
   </url>
   <url>
+    <loc>https://lidrift.com/license-terms.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lidrift.com/license-terms.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lidrift.com/es/condiciones-licencia.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lidrift.com/license-terms.html"/>
+  </url>
+  <url>
+    <loc>https://lidrift.com/es/condiciones-licencia.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lidrift.com/license-terms.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lidrift.com/es/condiciones-licencia.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lidrift.com/license-terms.html"/>
+  </url>
+  <url>
     <loc>https://lidrift.com/privacy.html</loc>
     <lastmod>2026-11-06</lastmod>
     <changefreq>yearly</changefreq>
