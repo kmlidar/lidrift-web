@@ -589,6 +589,12 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
     </div>
     <div class="cmp-card">
       <div class="cmp-top">
+        <div class="seg" role="group" aria-label="View">
+          <button type="button" id="t1" aria-pressed="true">DSM / DTM models</button>
+          <button type="button" id="t2" aria-pressed="false">LiDAR point cloud</button>
+        </div>
+      </div>
+      <div class="cmp-top" id="zones">
         <div class="seg" role="group" aria-label="Example area">
           <button type="button" id="z1" aria-pressed="true">Forest and streams</button>
           <button type="button" id="z2" aria-pressed="false">Terrain under dense forest</button>
@@ -597,12 +603,12 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
       <div class="cmp" id="cmp">
         <img id="im-b" src="img/mdt1.jpg" alt="Digital terrain model (DTM) generated from a LiDAR point cloud adjusted with LiDrift" loading="lazy" decoding="async" draggable="false">
         <img id="im-t" class="top" src="img/mds1.jpg" alt="Digital surface model (DSM) generated from a LiDAR point cloud adjusted with LiDrift" loading="lazy" decoding="async" draggable="false">
-        <span class="tg l">DSM<small>Surface</small></span>
-        <span class="tg r">DTM<small>Terrain</small></span>
+        <span class="tg l" id="tgl">DSM<small>Surface</small></span>
+        <span class="tg r" id="tgr">DTM<small>Terrain</small></span>
         <div class="hd" aria-hidden="true"><i><svg viewBox="0 0 24 24" fill="none" stroke="#e6c98f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></i></div>
         <input type="range" id="rg" min="0" max="100" value="50" aria-label="Compare surface model (DSM) and terrain model (DTM)">
       </div>
-      <p class="cmp-note">Digital surface models (DSM) and digital terrain models (DTM) generated from a LiDAR point cloud adjusted with LiDrift.</p>
+      <p class="cmp-note" id="cmp-note">Digital surface models (DSM) and digital terrain models (DTM) generated from a LiDAR point cloud adjusted with LiDrift.</p>
     </div>
   </div>
 </section>
@@ -896,8 +902,17 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
     top.src=set[i].s;bot.src=set[i].t;
     z1.setAttribute('aria-pressed',i===0);z2.setAttribute('aria-pressed',i===1);
   }
-  z1.onclick=function(){zone(0)};z2.onclick=function(){zone(1)};
-  new Image().src=set[1].s;new Image().src=set[1].t;
+  var curZone=0,mode=0;
+  z1.onclick=function(){curZone=0;zone(0)};z2.onclick=function(){curZone=1;zone(1)};
+  var t1=document.getElementById('t1'),t2=document.getElementById('t2'),zones=document.getElementById('zones');
+  var tgl=document.getElementById('tgl'),tgr=document.getElementById('tgr'),note=document.getElementById('cmp-note');
+  function applyMode(){
+    if(mode===0){zone(curZone);zones.style.display='';tgl.innerHTML='DSM<small>Surface</small>';tgr.innerHTML='DTM<small>Terrain</small>';note.textContent='Digital surface models (DSM) and digital terrain models (DTM) generated from a LiDAR point cloud adjusted with LiDrift.';}
+    else{top.src='img/lidar-antes.png';bot.src='img/lidar-despues.png';zones.style.display='none';tgl.innerHTML='Before<small>Unadjusted</small>';tgr.innerHTML='After<small>Adjusted</small>';note.textContent='A LiDAR cross-section: the ground goes from a doubled surface (before) to a single clean line (after).';}
+    t1.setAttribute('aria-pressed',mode===0);t2.setAttribute('aria-pressed',mode===1);rg.value=50;pos(50);
+  }
+  t1.onclick=function(){mode=0;applyMode()};t2.onclick=function(){mode=1;applyMode()};
+  new Image().src=set[1].s;new Image().src=set[1].t;new Image().src='img/lidar-antes.png';new Image().src='img/lidar-despues.png';
   /* a single demo sweep when the section comes into view */
   if(!reduce&&'IntersectionObserver' in window){
     var done=false,io=new IntersectionObserver(function(en){
