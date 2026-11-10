@@ -589,6 +589,12 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
     </div>
     <div class="cmp-card">
       <div class="cmp-top">
+        <div class="seg" role="group" aria-label="Vista">
+          <button type="button" id="t1" aria-pressed="true">Modelos MDS/MDT</button>
+          <button type="button" id="t2" aria-pressed="false">Nube LiDAR</button>
+        </div>
+      </div>
+      <div class="cmp-top" id="zones">
         <div class="seg" role="group" aria-label="Zona de ejemplo">
           <button type="button" id="z1" aria-pressed="true">Bosque y cauces</button>
           <button type="button" id="z2" aria-pressed="false">Relieve bajo bosque denso</button>
@@ -597,12 +603,12 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
       <div class="cmp" id="cmp">
         <img id="im-b" src="../img/mdt1.jpg" alt="Modelo digital del terreno (MDT) generado a partir de una nube LiDAR ajustada con LiDrift" loading="lazy" decoding="async" draggable="false">
         <img id="im-t" class="top" src="../img/mds1.jpg" alt="Modelo digital de superficie (MDS) generado a partir de una nube LiDAR ajustada con LiDrift" loading="lazy" decoding="async" draggable="false">
-        <span class="tg l">MDS<small>Superficie</small></span>
-        <span class="tg r">MDT<small>Terreno</small></span>
+        <span class="tg l" id="tgl">MDS<small>Superficie</small></span>
+        <span class="tg r" id="tgr">MDT<small>Terreno</small></span>
         <div class="hd" aria-hidden="true"><i><svg viewBox="0 0 24 24" fill="none" stroke="#e6c98f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></i></div>
         <input type="range" id="rg" min="0" max="100" value="50" aria-label="Comparar modelo de superficie (MDS) y de terreno (MDT)">
       </div>
-      <p class="cmp-note">Modelos digitales de superficie (MDS) y de terreno (MDT) generados a partir de una nube LiDAR ajustada con LiDrift.</p>
+      <p class="cmp-note" id="cmp-note">Modelos digitales de superficie (MDS) y de terreno (MDT) generados a partir de una nube LiDAR ajustada con LiDrift.</p>
     </div>
   </div>
 </section>
@@ -896,8 +902,17 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
     top.src=set[i].s;bot.src=set[i].t;
     z1.setAttribute('aria-pressed',i===0);z2.setAttribute('aria-pressed',i===1);
   }
-  z1.onclick=function(){zone(0)};z2.onclick=function(){zone(1)};
-  new Image().src=set[1].s;new Image().src=set[1].t;
+  var curZone=0,mode=0;
+  z1.onclick=function(){curZone=0;zone(0)};z2.onclick=function(){curZone=1;zone(1)};
+  var t1=document.getElementById('t1'),t2=document.getElementById('t2'),zones=document.getElementById('zones');
+  var tgl=document.getElementById('tgl'),tgr=document.getElementById('tgr'),note=document.getElementById('cmp-note');
+  function applyMode(){
+    if(mode===0){zone(curZone);zones.style.display='';tgl.innerHTML='MDS<small>Superficie</small>';tgr.innerHTML='MDT<small>Terreno</small>';note.textContent='Modelos digitales de superficie (MDS) y de terreno (MDT) generados a partir de una nube LiDAR ajustada con LiDrift.';}
+    else{top.src='../img/lidar-antes.png';bot.src='../img/lidar-despues.png';zones.style.display='none';tgl.innerHTML='Antes<small>Sin ajustar</small>';tgr.innerHTML='Después<small>Ajustado</small>';note.textContent='Sección transversal del LiDAR: el suelo pasa de una superficie doble (antes) a una sola línea limpia (después).';}
+    t1.setAttribute('aria-pressed',mode===0);t2.setAttribute('aria-pressed',mode===1);rg.value=50;pos(50);
+  }
+  t1.onclick=function(){mode=0;applyMode()};t2.onclick=function(){mode=1;applyMode()};
+  new Image().src=set[1].s;new Image().src=set[1].t;new Image().src='../img/lidar-antes.png';new Image().src='../img/lidar-despues.png';
   /* una sola pasada de demostración al llegar a la sección */
   if(!reduce&&'IntersectionObserver' in window){
     var done=false,io=new IntersectionObserver(function(en){
