@@ -356,6 +356,21 @@ h2{font-size:clamp(28px,3.6vw,44px);line-height:1.12;font-weight:600;letter-spac
 .go{margin-top:6px;text-align:center;font-weight:600;font-size:15px;color:var(--ink);background:linear-gradient(135deg,#e6c98f,#c8a96a);border-radius:12px;padding:14px}
 .win figcaption{font-size:12px;color:var(--muted);padding:0 22px 16px}
 
+/* Method */
+.method{background:var(--bg-2);border-block:1px solid var(--line)}
+.method .head{max-width:60ch;margin-bottom:46px}
+.method .intro{margin-bottom:0}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mcard{background:linear-gradient(180deg,var(--bg-3),var(--bg-2));border:1px solid var(--line);border-radius:22px;padding:30px;transition:border-color .25s}
+.mcard:hover{border-color:var(--line-strong)}
+.mic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:rgba(200,169,106,.1);border:1px solid var(--line-strong);margin-bottom:22px}
+.mic svg{width:24px;height:24px;display:block}
+.mcard h3{font-size:20px;font-weight:700;letter-spacing:-.4px;margin-bottom:8px}
+.mcard p{color:var(--muted);font-size:15px}
+.mfoot{margin-top:26px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);max-width:94ch}
+.mfoot b{color:#d9d2c0;font-weight:600}
+@media (max-width:760px){.mgrid{grid-template-columns:1fr}}
+
 /* Time */
 .vs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .vs>div{border-radius:22px;padding:32px}
@@ -554,12 +569,22 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
       </div>
       <div class="cell">
         <svg viewBox="0 0 200 100" fill="none" aria-hidden="true">
-<polygon points="8,30 78,22 84,74 14,82" fill="rgba(200,169,106,.08)" stroke="#c8a96a" stroke-width="1.6" stroke-linejoin="round"/>
-<g stroke="#c8a96a" stroke-width="1" opacity=".7"><path d="M9.2 40.4L79.2 32.4M10.4 50.8L80.4 42.8M11.6 61.2L81.6 53.2M12.8 71.6L82.8 63.6"/></g>
-<polygon points="122,26 188,34 182,78 116,70" fill="rgba(230,201,143,.08)" stroke="#e6c98f" stroke-width="1.6" stroke-linejoin="round"/>
-<g stroke="#e6c98f" stroke-width="1" opacity=".7"><path d="M120.5 37L186.5 45M119 48L185 56M117.5 59L183.5 67"/></g>
-<path d="M90 52h26M90 47v10M116 47v10" stroke="#8a8372" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="2 3"/>
-<text x="103" y="42" text-anchor="middle" fill="#a39d90" font-size="9" font-family="Inter,sans-serif">km</text>
+<g transform="rotate(-7 46 50)">
+<rect x="12" y="21" width="70" height="11" rx="3" fill="rgba(200,169,106,.09)" stroke="#c8a96a" stroke-width=".9"/>
+<rect x="9" y="30" width="75" height="11" rx="3" fill="rgba(200,169,106,.09)" stroke="#c8a96a" stroke-width=".9"/>
+<rect x="13" y="39" width="69" height="11" rx="3" fill="rgba(200,169,106,.09)" stroke="#c8a96a" stroke-width=".9"/>
+<rect x="10" y="48" width="73" height="11" rx="3" fill="rgba(200,169,106,.09)" stroke="#c8a96a" stroke-width=".9"/>
+<rect x="15" y="57" width="65" height="11" rx="3" fill="rgba(200,169,106,.09)" stroke="#c8a96a" stroke-width=".9"/>
+</g>
+<g transform="rotate(5 150 50)">
+<rect x="118" y="23" width="66" height="11" rx="3" fill="rgba(230,201,143,.09)" stroke="#e6c98f" stroke-width=".9"/>
+<rect x="121" y="32" width="64" height="11" rx="3" fill="rgba(230,201,143,.09)" stroke="#e6c98f" stroke-width=".9"/>
+<rect x="116" y="41" width="70" height="11" rx="3" fill="rgba(230,201,143,.09)" stroke="#e6c98f" stroke-width=".9"/>
+<rect x="120" y="50" width="65" height="11" rx="3" fill="rgba(230,201,143,.09)" stroke="#e6c98f" stroke-width=".9"/>
+<rect x="118" y="59" width="67" height="11" rx="3" fill="rgba(230,201,143,.09)" stroke="#e6c98f" stroke-width=".9"/>
+</g>
+<path d="M89 50h22M89 46v8M111 46v8" stroke="#8a8372" stroke-width="1.3" stroke-linecap="round" stroke-dasharray="2 3"/>
+<text x="100" y="44" text-anchor="middle" fill="#a39d90" font-size="9" font-family="Inter,sans-serif">km</text>
 <text x="46" y="96" text-anchor="middle" fill="#e6c98f" font-size="9" font-weight="600" font-family="Inter,sans-serif">Zone 1</text>
 <text x="152" y="96" text-anchor="middle" fill="#e6c98f" font-size="9" font-weight="600" font-family="Inter,sans-serif">Zone 2</text>
 </svg>
@@ -672,28 +697,36 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
   </div>
 </section>
 
-<section class="alt" id="simple">
-  <div class="wrap two">
-    <div>
-      <h2>Choose three folders. That's it.</h2>
-      <p class="intro">No code to write and no projects to set up: everything is done from a graphical interface.</p>
-      <ol class="folders">
-        <li><b>Input folder</b><span>The LAS or LAZ files of the flight.</span></li>
-        <li><b>Trajectories folder</b><span>The flight trajectories (plane, helicopter or drone).</span></li>
-        <li><b>Output folder</b><span>This is where the adjusted strips and the quality report are saved.</span></li>
-      </ol>
-      <p class="note">Optional: specify a work area and the report will add the coverage and density over it. The coordinate system and the height type are read from the file header. Processing is local: LiDrift does not send your data anywhere.</p>
+<section class="method" id="method">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">The method</span>
+      <h2>A robust adjustment, not a black box</h2>
+      <p class="intro">Beneath the simplicity there is serious geodesy. In broad terms, this is what LiDrift does with your strips.</p>
     </div>
-    <figure class="win">
-      <div class="win-bar"><i></i><i></i><i></i><span>LiDrift</span></div>
-      <div class="win-body">
-        <div class="pick"><label>Input folder (LAS/LAZ)</label><div class="fld"><span>D:\Flight\Input</span><b>Browse</b></div></div>
-        <div class="pick"><label>Trajectories folder</label><div class="fld"><span>D:\Flight\Trajectories</span><b>Browse</b></div></div>
-        <div class="pick"><label>Output folder</label><div class="fld"><span>D:\Flight\Output</span><b>Browse</b></div></div>
-        <div class="go">Adjust strips</div>
+    <div class="mgrid">
+      <div class="mcard">
+        <div class="mic"><svg viewBox="0 0 24 24" fill="none" stroke="#e6c98f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h18"/><path d="M8 4v16" opacity=".5"/></svg></div>
+        <h3>Matches the overlapping surfaces</h3>
+        <p>It finds the areas where strips overlap and compares them point-to-plane. No need to classify the ground or to have control points beforehand.</p>
       </div>
-      <figcaption>Interface illustration</figcaption>
-    </figure>
+      <div class="mcard">
+        <div class="mic"><svg viewBox="0 0 24 24" fill="none" stroke="#e6c98f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M4 8c4 3 12 3 16 0M4 16c4-3 12-3 16 0"/></svg></div>
+        <h3>Weighted by reliability</h3>
+        <p>It solves the corrections giving more weight to the reliable areas, in a way that is insensitive to vegetation, buildings and stray points.</p>
+      </div>
+      <div class="mcard">
+        <div class="mic"><svg viewBox="0 0 24 24" fill="none" stroke="#e6c98f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c4-8 14-8 18 0"/><path d="M3 17l2-3M21 17l-2-3M12 9v8"/></svg></div>
+        <h3>Correction along each strip</h3>
+        <p>Not just a global boresight (roll, pitch and heading): it also corrects the variable drift along each flight line.</p>
+      </div>
+      <div class="mcard">
+        <div class="mic"><svg viewBox="0 0 24 24" fill="none" stroke="#e6c98f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>GNSS anchoring and verification</h3>
+        <p>It relies on the GNSS trajectories so the block is not warped, and the quality report measures strip-to-strip consistency before and after.</p>
+      </div>
+    </div>
+    <p class="mfoot"><b>Published techniques</b> (least-squares block adjustment and surface matching, Bayesian in approach), implemented in-house by LiDrift. The internal parameters and the error model are part of the product.</p>
   </div>
 </section>
 
