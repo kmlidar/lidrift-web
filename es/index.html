@@ -539,7 +539,7 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
           <button type="button" id="b0" aria-pressed="true">Sin ajustar</button>
           <button type="button" id="b1" aria-pressed="false">Ajustado</button>
         </div>
-        <div class="readout"><b id="rms">2,0 m</b>discrepancia entre pasadas</div>
+        <div class="readout"><b id="rms">43,1 cm</b>discrepancia entre pasadas</div>
       </div>
       <canvas id="cv" role="img" aria-label="Perfil con un árbol, una cubierta curva y suelo en pendiente en el que cuatro pasadas LiDAR están desalineadas antes del ajuste y se superponen después"></canvas>
       <figcaption>
@@ -883,7 +883,7 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
   }
   function fmt(m){
     if(m>=1)return m.toFixed(1).replace('.',DEC)+' m';
-    var c=m*100;return (c>=10?Math.round(c)+'':c.toFixed(1).replace('.',DEC))+' cm';
+    var c=m*100;return c.toFixed(1).replace('.',DEC)+' cm';
   }
   function size(){
     dpr=Math.min(window.devicePixelRatio||1,2);
@@ -912,7 +912,7 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
     g.addColorStop(.95,'rgba(0,0,0,1)');g.addColorStop(1,'rgba(0,0,0,0)');
     ctx.globalCompositeOperation='destination-in';ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
     ctx.globalCompositeOperation='source-over';
-    out.textContent=fmt(2*s);   /* 2 m de discrepancia antes, 1,4 cm después */
+    out.textContent=fmt(0.431+(0.014-0.431)*t);   /* 43,1 cm de discrepancia antes, 1,4 cm después */
   }
   function tick(now){
     var d=target-t;
