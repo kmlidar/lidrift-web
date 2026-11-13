@@ -492,6 +492,14 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
   canvas{height:190px}
   .form{padding:24px 18px}
 }
+.scale .wrap{display:grid;grid-template-columns:1fr minmax(0,440px);gap:64px;align-items:center}
+.scale .intro{margin-bottom:24px}
+.scale .facts{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.scale .facts li{border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--muted);font-size:14px}
+.scale .facts b{display:block;font:600 22px/1.2 var(--display);color:var(--text);margin-bottom:4px}
+.vframe{position:relative;aspect-ratio:4/5;border-radius:16px;overflow:hidden;background:#16130f;border:1px solid var(--line)}
+.vframe video{display:block;width:100%;height:100%;object-fit:cover}
+@media (max-width:900px){.scale .wrap{grid-template-columns:1fr;gap:36px}.vframe{max-width:440px;width:100%;margin-inline:auto}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 </head>
@@ -755,6 +763,22 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
   </div>
 </section>
 
+<section class="scale" id="scale">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Dos proyectos reales</span>
+      <h2>De una zona de 12&nbsp;km² a un bloque de 680&nbsp;km²</h2>
+      <p class="intro">El mismo flujo y el mismo PC de sobremesa. El bloque grande tiene 15 veces más puntos que el pequeño y tardó 15 veces más: <strong>3.934 millones de puntos ajustados y documentados en 2&nbsp;h&nbsp;48&nbsp;min, sin nadie delante del teclado.</strong></p>
+      <ul class="facts"><li><b>11 min</b>12 km² · 9 pasadas · 258 M puntos</li><li><b>2 h 48 min</b>680 km² · 242 pasadas · 3.934 M puntos</li><li><b>1,5 cm</b>diferencia mediana entre pasadas (antes 47,4 cm)</li><li><b>0</b>pasos manuales entre las carpetas y el informe</li></ul>
+    </div>
+    <div class="vframe">
+      <video id="scale-video" muted loop playsinline preload="none" width="720" height="900"
+        poster="../video/lidrift-scale-poster.jpg" data-src="../video/lidrift-scale.mp4"
+        aria-label="Vídeo: una zona pequeña y un bloque regional procesados con LiDrift"></video>
+    </div>
+  </div>
+</section>
+
 <section class="pricing" id="tarifas">
   <div class="wrap">
     <h2>Una sola licencia</h2>
@@ -1010,6 +1034,18 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
       st.className='status err';st.innerHTML='No se pudo enviar: '+why+'. Puedes escribir a <a href="mailto:info@lidrift.com" style="color:inherit;text-decoration:underline">info@lidrift.com</a>.';
     });
   });
+})();
+</script>
+<script>
+(function(){
+  var v=document.getElementById('scale-video');if(!v)return;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function load(){if(!v.src){v.src=v.getAttribute('data-src');}}
+  if(reduce||!('IntersectionObserver' in window)){v.controls=true;v.preload='none';v.setAttribute('src',v.getAttribute('data-src'));return;}
+  new IntersectionObserver(function(en){en.forEach(function(e){
+    if(e.isIntersecting){load();var p=v.play();if(p&&p.catch)p.catch(function(){v.controls=true;});}
+    else{v.pause();}
+  });},{rootMargin:'200px 0px',threshold:.25}).observe(v);
 })();
 </script>
 </body>
