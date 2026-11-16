@@ -456,6 +456,7 @@ textarea{resize:vertical;min-height:110px}
 input::placeholder,textarea::placeholder{color:#6f6a5e}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,169,106,.18)}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.h-captcha{grid-column:1/-1;min-height:78px}
 .consent{grid-column:1/-1;display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted)}
 .consent input{width:18px;height:18px;margin-top:2px;flex:none;padding:0;accent-color:var(--gold);appearance:auto;-webkit-appearance:checkbox}
 .submit{grid-column:1/-1;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
@@ -860,6 +861,7 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
       </div>
       <div class="field full"><label for="f-msg">Message</label><textarea id="f-msg" name="mensaje" placeholder="Sensor, type of flight, what you would like to check…"></textarea></div>
       <label class="consent"><input type="checkbox" id="f-ok" required>I agree to LiDrift using this data only to respond to my request.</label>
+      <div class="h-captcha" data-captcha="true" data-theme="dark"></div>
       <div class="submit">
         <button class="btn solid" type="submit" id="send">Send request</button>
         <span class="status" id="status" role="status" aria-live="polite"></span>
@@ -1019,6 +1021,8 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
     if(!name||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){st.className='status err';st.textContent='Please check your name and enter a valid email address.';return}
     if(!document.getElementById('f-ok').checked){st.className='status err';st.textContent='Please tick the consent box to send your request.';return}
     if(f.botcheck.checked){return}
+    var cap=f.querySelector('textarea[name=h-captcha-response]');
+    if(!cap||!cap.value){st.className='status err';st.textContent='Please complete the captcha to send your request.';return}
     btn.disabled=true;btn.textContent='Sending…';st.textContent='';
     var data={};
     new FormData(f).forEach(function(v,k){data[k]=v});
@@ -1031,6 +1035,7 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
       console.error('Form:',err);
       var why=(err&&err.message&&err.message!=='Failed to fetch')?err.message:'Could not connect to the sending service (it may be blocked by your browser or an extension)';
       btn.disabled=false;btn.textContent='Send request';
+      if(window.hcaptcha){try{hcaptcha.reset()}catch(_){}}
       st.className='status err';st.innerHTML='Could not send: '+why+'. You can email us at <a href="mailto:info@lidrift.com" style="color:inherit;text-decoration:underline">info@lidrift.com</a>.';
     });
   });
@@ -1048,5 +1053,6 @@ footer .copy{display:block;margin-top:18px;padding-top:18px;border-top:1px solid
   });},{rootMargin:'200px 0px',threshold:.25}).observe(v);
 })();
 </script>
+<script src="https://web3forms.com/client/script.js" async defer></script>
 </body>
 </html>
